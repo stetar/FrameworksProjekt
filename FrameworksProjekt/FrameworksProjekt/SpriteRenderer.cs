@@ -11,7 +11,7 @@ namespace FrameworksProjekt
     public class SpriteRenderer : Component, ILoadable, IDrawable
     {
         private Rectangle rectangle;
-        private Texture2D spirte;
+        private Texture2D sprite;
         private string spriteName;
         private float layerDepth;
         private SpriteEffects effects;
@@ -26,8 +26,8 @@ namespace FrameworksProjekt
 
         public Texture2D Sprite
         {
-            get { return spirte; }
-            set { spirte = value; }
+            get { return sprite; }
+            set { sprite = value; }
         }
 
         public Vector2 Offset
@@ -52,7 +52,7 @@ namespace FrameworksProjekt
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(spirte, GameObject.GetTransform.position + offset, rectangle, color, 0, Vector2.Zero, 1, effects, layerDepth);
+            spriteBatch.Draw(sprite, GameObject.GetTransform.Position + offset, rectangle, color, 0, Vector2.Zero, 1, effects, layerDepth);
         }
 
         public void LoadContent(ContentManager content)

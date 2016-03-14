@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FrameworksProjekt
 {
-    class Transform : Component
+    public class Transform : Component
     {
         public Vector2 Position { get; set; }
 
