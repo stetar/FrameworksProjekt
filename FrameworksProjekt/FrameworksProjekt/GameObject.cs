@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,10 +10,15 @@ using Microsoft.Xna.Framework.Content;
 
 namespace FrameworksProjekt
 {
-    class GameObject
+    public class GameObject
     {
-
+        private Transform transform;
         private List<Component> components;
+
+        public Transform GetTransform
+        {
+            get { return transform; }
+        }
 
         public GameObject()
         {
