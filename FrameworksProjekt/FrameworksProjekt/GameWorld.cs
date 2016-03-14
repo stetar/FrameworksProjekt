@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,6 +12,7 @@ namespace FrameworksProjekt
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private List<GameObject> gameObjects; 
 
         private static GameWorld instance;
 
@@ -42,7 +44,7 @@ namespace FrameworksProjekt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            gameObjects = new List<GameObject>();
             base.Initialize();
         }
 
@@ -54,6 +56,11 @@ namespace FrameworksProjekt
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            foreach (GameObject obj in gameObjects)
+            {
+                obj.LoadContent(Content);
+            }
 
             // TODO: use this.Content to load your game content here
         }
@@ -78,7 +85,11 @@ namespace FrameworksProjekt
                 Exit();
 
             // TODO: Add your update logic here
-
+            Delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
+            foreach (GameObject obj in gameObjects)
+            {
+                obj.Update();
+            }
             base.Update(gameTime);
         }
 
@@ -92,6 +103,14 @@ namespace FrameworksProjekt
 
             // TODO: Add your drawing code here
 
+            spriteBatch.Begin();
+
+            foreach (GameObject obj in gameObjects)
+            {
+                obj.Draw(spriteBatch);
+            }
+
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
