@@ -12,6 +12,7 @@ namespace FrameworksProjekt
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        public float delta;
         private static GameWorld instance;
 
         public static GameWorld Instance
