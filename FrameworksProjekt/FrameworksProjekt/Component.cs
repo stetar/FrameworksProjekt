@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FrameworksProjekt
 {
-    class Component
+    public class Component
     {
         private GameObject gameObject;
 
