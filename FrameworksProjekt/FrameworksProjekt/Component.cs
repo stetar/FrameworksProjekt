@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FrameworksProjekt
 {
-    class Test
+    class Component
     {
     }
 }
