@@ -22,7 +22,11 @@ namespace FrameworksProjekt
 
         public GameObject()
         {
+            components = new List<Component>();
 
+            this.transform = new Transform(this, Vector2.Zero);
+
+            AddComponent(transform);
         }
 
         public void LoadContent(ContentManager content)

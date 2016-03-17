@@ -39,10 +39,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="Builder\Director.cs" />
     <Compile Include="Components\Animator.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
+    <Compile Include="Interfaces\IBuilder.cs" />
+    <Compile Include="Strategies\Idle.cs" />
+    <Compile Include="Interfaces\IStrategy.cs" />
+    <Compile Include="Builder\PlayerBuilder.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\ILoadable.cs" />
     <Compile Include="Interfaces\IUpdateable.cs" />
@@ -60,7 +65,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Pirate1Spritesheet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
+    <Content Include="Content\Pirate1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
