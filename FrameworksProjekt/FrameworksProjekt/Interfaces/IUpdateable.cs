@@ -7,7 +7,6 @@ namespace FrameworksProjekt
 {
     interface IUpdateable
     {
-
         void Update();
     }
 }

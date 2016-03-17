@@ -14,7 +14,7 @@ namespace FrameworksProjekt
         SpriteBatch spriteBatch;
         private List<GameObject> gameObjects; 
 
-        public float delta;
+        public float Delta { get; set; }
         private static GameWorld instance;
 
         public static GameWorld Instance
