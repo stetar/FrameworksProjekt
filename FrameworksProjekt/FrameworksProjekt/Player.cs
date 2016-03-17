@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using FrameworksProjekt.Factories;
 
 namespace FrameworksProjekt
 {
@@ -24,6 +25,8 @@ namespace FrameworksProjekt
         public Animator animator;
         private Direction direction;
         private IStrategy strategy;
+
+        CategoryFac cs = new CategoryFac();
 
         public Player(GameObject gameObject) : base(gameObject)
         {
