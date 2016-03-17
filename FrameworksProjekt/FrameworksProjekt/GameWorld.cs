@@ -46,6 +46,9 @@ namespace FrameworksProjekt
         {
             // TODO: Add your initialization logic here
             gameObjects = new List<GameObject>();
+            Director d = new Director(new PlayerBuilder());
+            gameObjects.Add(d.Construct());
+
             base.Initialize();
         }
 
@@ -86,7 +89,7 @@ namespace FrameworksProjekt
                 Exit();
 
             // TODO: Add your update logic here
-            Delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
+            delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
             foreach (GameObject obj in gameObjects)
             {
                 obj.Update();
@@ -100,7 +103,7 @@ namespace FrameworksProjekt
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
 

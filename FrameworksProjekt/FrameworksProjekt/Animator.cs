@@ -44,7 +44,7 @@ namespace FrameworksProjekt
         public Animator(GameObject gameObject) : base(gameObject)
         {
             animations = new Dictionary<string, Animation>();
-            fps = 5;
+            fps = 2;
             this.spriteRenderer = (SpriteRenderer)GameObject.GetComponent("SpriteRenderer");
         }
 
@@ -60,6 +60,8 @@ namespace FrameworksProjekt
                 currentIndex = 0;
                 //GameObject.OnAnimationDone(animationName);
             }
+
+            spriteRenderer.Rectangle = rectangles[currentIndex];
         }
 
         public void CreateAnimation(string animationName, Animation animation)
@@ -77,6 +79,8 @@ namespace FrameworksProjekt
 
                 this.spriteRenderer.Offset = animations[animationName].Offset;
 
+                this.fps = animations[animationName].Fps;
+
                 this.animationName = animationName;
 
                 timeElapsed = 0;
@@ -87,7 +91,7 @@ namespace FrameworksProjekt
 
         public void LoadContent(ContentManager content)
         {
-
+            
         }
     }
 }
