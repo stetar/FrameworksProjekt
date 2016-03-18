@@ -18,7 +18,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildGameObject()
         {
-            go = new GameObject();
+            go = new GameObject(Vector2.Zero);
             go.AddComponent(new SpriteRenderer(go, "pirate1Spritesheet", 1, Color.White));
             go.AddComponent(new Minion(go));
             go.AddComponent(new Animator(go));

@@ -49,6 +49,9 @@ namespace FrameworksProjekt.Components
         public void Draw(SpriteBatch spriteBatch)
         {
 #if DEBUG
+            int x = GameWorld.Instance.Camera.X;
+            int y = 
+
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
             Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y, 1, CollisionBox.Height);

@@ -21,6 +21,6 @@ namespace FrameworksProjekt.Components
             
         }
 
-        public void 
+       
     }
 }
