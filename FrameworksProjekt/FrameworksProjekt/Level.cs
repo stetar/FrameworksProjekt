@@ -13,7 +13,9 @@ namespace FrameworksProjekt
         private Texture2D background;
         private string imageString;
         // Actions to do if collision with given interest-point
-        private Dictionary<Vector2, Action> interestPoints;
+        private Dictionary<Rectangle, Action> interestPoints;
+
+        bool test;
 
         public int Width
         {
@@ -28,6 +30,19 @@ namespace FrameworksProjekt
             get
             {
                 return background.Height;
+            }
+        }
+
+        public Dictionary<Rectangle, Action> InterestPoints
+        {
+            get
+            {
+                return interestPoints;
+            }
+
+            set
+            {
+                interestPoints = value;
             }
         }
 
