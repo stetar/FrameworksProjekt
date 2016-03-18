@@ -50,7 +50,6 @@
     <Compile Include="Components\Player.cs" />
     <Compile Include="Components\SpriteRenderer.cs" />
     <Compile Include="Components\Transform.cs" />
-    <Compile Include="Components\Door.cs" />
     <Compile Include="Factories\CategoryFac.cs" />
     <Compile Include="Factories\inventoryFac.cs" />
     <Compile Include="Factories\ItemFac.cs" />
@@ -126,7 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

@@ -12,7 +12,7 @@ namespace FrameworksProjekt.Components
     {
         private SpriteRenderer spriteRenderer;
         private Texture2D sprite;
-        private bool doCollisionCheck;
+        private bool doCollisionCheck = true;
 
         public Rectangle CollisionBox
         {
@@ -49,6 +49,9 @@ namespace FrameworksProjekt.Components
         public void Draw(SpriteBatch spriteBatch)
         {
 #if DEBUG
+            int x = (int)GameWorld.Instance.Camera.Position.X;
+            int y = (int)GameWorld.Instance.Camera.Position.Y;
+
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
             Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y, 1, CollisionBox.Height);
@@ -72,11 +75,23 @@ namespace FrameworksProjekt.Components
                     {
                         if (CollisionBox.Intersects(other.CollisionBox))
                         {
+                            doCollisionCheck = false;
                             GameObject.OnCollisionStay(other);
                         }
                     }
                 }
+
+                foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
+                {
+                    if (key.Intersects(this.CollisionBox))
+                    {
+                        GameWorld.Instance.GameLevel.InterestPoints[Key].Value;
+                    }
+                }
             }
+
+
+            doCollisionCheck = true;
         }
 
         public void Update()
