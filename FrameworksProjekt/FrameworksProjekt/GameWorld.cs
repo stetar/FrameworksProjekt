@@ -59,11 +59,25 @@ namespace FrameworksProjekt
             }
         }
 
+        internal Level GameLevel
+        {
+            get
+            {
+                return gameLevel;
+            }
+            set
+            {
+                gameLevel = value;
+            }
+        }
+
         private GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.Camera = new Camera(Vector2.Zero);
+            graphics.PreferredBackBufferWidth = 1422;
+            graphics.PreferredBackBufferHeight = 800;
         }
 
         /// <summary>
@@ -79,6 +93,8 @@ namespace FrameworksProjekt
             Director d = new Director(new PlayerBuilder());
             gameObjects.Add(d.Construct());
 
+            this.gameLevel = new OutsideLevel("Aarhus");
+
             base.Initialize();
         }
 
@@ -90,6 +106,8 @@ namespace FrameworksProjekt
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            this.GameLevel.LoadContent(Content);
 
             foreach (GameObject obj in gameObjects)
             {
@@ -121,7 +139,7 @@ namespace FrameworksProjekt
                 Exit();
 
             // TODO: Add your update logic here
-            delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
+            Delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
             foreach (GameObject obj in gameObjects)
             {
                 obj.Update();
@@ -140,6 +158,8 @@ namespace FrameworksProjekt
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
+
+            gameLevel.Draw(spriteBatch);
 
             foreach (GameObject obj in gameObjects)
             {

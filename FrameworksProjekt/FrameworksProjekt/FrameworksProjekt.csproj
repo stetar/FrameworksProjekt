@@ -41,33 +41,33 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
-    <Compile Include="Animator.cs" />
+    <Compile Include="Builder\Director.cs" />
+    <Compile Include="Builder\PlayerBuilder.cs" />
     <Compile Include="Camera.cs" />
-    <Compile Include="Component.cs" />
-    <Compile Include="Director.cs" />
+    <Compile Include="Components\Animator.cs" />
+    <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\Player.cs" />
+    <Compile Include="Components\SpriteRenderer.cs" />
+    <Compile Include="Components\Transform.cs" />
     <Compile Include="Factories\CategoryFac.cs" />
     <Compile Include="Factories\inventoryFac.cs" />
     <Compile Include="Factories\ItemFac.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
-    <Compile Include="IBuilder.cs" />
-    <Compile Include="Idle.cs" />
-    <Compile Include="IDrawable.cs" />
-    <Compile Include="ILoadable.cs" />
     <Compile Include="InsideLevel.cs" />
-    <Compile Include="IStrategy.cs" />
-    <Compile Include="IUpdateable.cs" />
+    <Compile Include="Interfaces\IBuilder.cs" />
+    <Compile Include="Interfaces\IDrawable.cs" />
+    <Compile Include="Interfaces\ILoadable.cs" />
+    <Compile Include="Interfaces\IStrategy.cs" />
+    <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="OutsideLevel.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpriteRenderer.cs" />
+    <Compile Include="Strategies\Idle.cs" />
     <Compile Include="Tools\AutoFac.cs" />
     <Compile Include="Tools\Conn.cs" />
     <Compile Include="Tools\Mapper.cs" />
-    <Compile Include="Transform.cs" />
     <Compile Include="Types\category.cs" />
     <Compile Include="Types\inventory.cs" />
     <Compile Include="Types\items.cs" />
@@ -102,6 +102,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Aarhus.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pirate1Spritesheet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

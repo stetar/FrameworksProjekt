@@ -52,7 +52,7 @@ namespace FrameworksProjekt
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, GameObject.GetTransform.Position + offset, rectangle, color, 0, Vector2.Zero, 1, effects, layerDepth);
+            spriteBatch.Draw(sprite, GameObject.GetTransform.Position + offset - GameWorld.Instance.Camera.Position, rectangle, color, 0, Vector2.Zero, 1, effects, layerDepth);
         }
 
         public void LoadContent(ContentManager content)

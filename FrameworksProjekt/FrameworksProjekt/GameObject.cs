@@ -20,11 +20,11 @@ namespace FrameworksProjekt
             get { return transform; }
         }
 
-        public GameObject()
+        public GameObject(Vector2 position)
         {
             components = new List<Component>();
 
-            this.transform = new Transform(this, Vector2.Zero);
+            this.transform = new Transform(this, position);
 
             AddComponent(transform);
         }
