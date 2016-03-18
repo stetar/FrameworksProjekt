@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FrameworksProjekt
 {
-    class Animator : Component , ILoadable, IUpdateable
+    class Animator : Component, ILoadable, IUpdateable
     {
         private SpriteRenderer spriteRenderer;
         private int currentIndex;
@@ -50,7 +50,7 @@ namespace FrameworksProjekt
 
         public void Update()
         {
-            timeElapsed += GameWorld.Instance.delta;
+            timeElapsed += GameWorld.Instance.Delta;
 
             currentIndex = (int)(timeElapsed * fps);
             

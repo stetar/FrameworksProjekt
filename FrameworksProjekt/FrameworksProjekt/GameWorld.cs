@@ -17,7 +17,7 @@ namespace FrameworksProjekt
         private Camera camera;
         private Rectangle displayRect;
 
-        public float delta;
+        public float Delta { get; set; }
         private static GameWorld instance;
 
         public static GameWorld Instance
