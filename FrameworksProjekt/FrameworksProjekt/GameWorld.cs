@@ -13,7 +13,10 @@ namespace FrameworksProjekt
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private List<GameObject> gameObjects;
+        private List<GameObject> gameObjects; 
+        private Level gameLevel;
+        private Camera camera;
+        private Rectangle displayRect;
         private List<Minion> _minions;  
 
         public float Delta { get; set; }
@@ -38,10 +41,37 @@ namespace FrameworksProjekt
             set { _minions = value; }
         }
 
+        public Camera Camera
+        {
+            get
+            {
+                return camera;
+            }
+
+            set
+            {
+                camera = value;
+            }
+        }
+
+        public Rectangle DisplayRect
+        {
+            get
+            {
+                return displayRect;
+            }
+
+            set
+            {
+                displayRect = value;
+            }
+        }
+
         private GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.Camera = new Camera(Vector2.Zero);
         }
 
         /// <summary>
@@ -73,6 +103,8 @@ namespace FrameworksProjekt
             {
                 obj.LoadContent(Content);
             }
+
+            DisplayRect = GraphicsDevice.Viewport.Bounds;
 
             // TODO: use this.Content to load your game content here
         }
