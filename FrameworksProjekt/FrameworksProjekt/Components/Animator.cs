@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FrameworksProjekt
 {
-    class Animator : Component, ILoadable, IUpdateable
+    public class Animator : Component, ILoadable, IUpdateable
     {
         private SpriteRenderer spriteRenderer;
         private int currentIndex;

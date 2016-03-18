@@ -47,12 +47,14 @@ namespace FrameworksProjekt
             ks = Keyboard.GetState();
             Vector2 translation = Vector2.Zero;
 
-            // Left
+            //Left
             if(ks.IsKeyDown(Keys.A))
             {
                 translation += new Vector2(-1, 0);
                 direction = Direction.Left;
             }
+
+            //Right
             else if(ks.IsKeyDown(Keys.D))
             {
                 translation += new Vector2(1, 0);
@@ -61,7 +63,7 @@ namespace FrameworksProjekt
 
             UpdateAnimation();
 
-            GameObject.GetTransform.Translate(translation * speed * GameWorld.Instance.delta);
+            GameObject.GetTransform.Translate(translation * speed * GameWorld.Instance.Delta);
         }
 
         public void UpdateAnimation()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FrameworksProjekt.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,7 +13,8 @@ namespace FrameworksProjekt
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private List<GameObject> gameObjects; 
+        private List<GameObject> gameObjects;
+        private List<Minion> _minions;  
 
         public float Delta { get; set; }
         private static GameWorld instance;
@@ -28,6 +30,12 @@ namespace FrameworksProjekt
 
                 return instance;
             }
+        }
+
+        public List<Minion> Minions
+        {
+            get { return _minions; }
+            set { _minions = value; }
         }
 
         private GameWorld()
@@ -89,7 +97,7 @@ namespace FrameworksProjekt
                 Exit();
 
             // TODO: Add your update logic here
-            delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
+            Delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
             foreach (GameObject obj in gameObjects)
             {
                 obj.Update();
