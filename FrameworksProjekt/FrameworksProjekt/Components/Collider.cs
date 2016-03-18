@@ -52,10 +52,10 @@ namespace FrameworksProjekt.Components
             int x = (int)GameWorld.Instance.Camera.Position.X;
             int y = (int)GameWorld.Instance.Camera.Position.Y;
 
-            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
-            Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width, 1);
-            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y, 1, CollisionBox.Height);
-            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y, 1, CollisionBox.Height);
+            Rectangle topLine = new Rectangle(CollisionBox.X - x, CollisionBox.Y - y, CollisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X - x, CollisionBox.Y + CollisionBox.Height - y, CollisionBox.Width, 1);
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width - x, CollisionBox.Y - y, 1, CollisionBox.Height);
+            Rectangle leftLine = new Rectangle(CollisionBox.X - x, CollisionBox.Y - y, 1, CollisionBox.Height);
 
             spriteBatch.Draw(sprite, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(sprite, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
@@ -85,7 +85,7 @@ namespace FrameworksProjekt.Components
                 {
                     if (key.Intersects(this.CollisionBox))
                     {
-                        GameWorld.Instance.GameLevel.InterestPoints[Key].Value;
+                        GameWorld.Instance.GameLevel.InterestPoints[key].;
                     }
                 }
             }

@@ -65,6 +65,7 @@
     <Compile Include="Interfaces\IStrategy.cs" />
     <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="LevelBuilder.cs" />
     <Compile Include="OutsideLevel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
