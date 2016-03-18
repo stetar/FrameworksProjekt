@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FrameworksProjekt
 {
-    class Animation
+    public class Animation
     {
         public int Frames { get; set; } 
         public float Fps { get; set; }

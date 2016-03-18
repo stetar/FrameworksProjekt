@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FrameworksProjekt.Components;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using FrameworksProjekt.Factories;
+using FrameworksProjekt.Interfaces;
 
 namespace FrameworksProjekt
 {
@@ -17,7 +19,7 @@ namespace FrameworksProjekt
         Right
     }
 
-    class Player : Component, ILoadable, IUpdateable
+    class Player : Component, ILoadable, IUpdateable, IOnCollisionStay
     {
         private float speed = 100;
         KeyboardState ks;
@@ -52,13 +54,15 @@ namespace FrameworksProjekt
             ks = Keyboard.GetState();
             Vector2 translation = Vector2.Zero;
 
-            // Left
+            //Left
             if(ks.IsKeyDown(Keys.A))
             {
                 translation += new Vector2(-1, 0);
                 direction = Direction.Left;
                 animator.PlayAnimation("WalkLeft");
             }
+
+            //Right
             else if(ks.IsKeyDown(Keys.D))
             {
                 translation += new Vector2(1, 0);
@@ -118,6 +122,19 @@ namespace FrameworksProjekt
             }
 
             GameWorld.Instance.Camera.Position = new Vector2(x, y);
+        }
+
+        public void OnCollisonStay(Collider other)
+        {
+            if (other == other.GameObject.GetComponent("Door"))
+            {
+                KeyboardState ks = new KeyboardState();
+
+                if (ks.IsKeyDown(Keys.Space))
+                {
+                    
+                }
+            }
         }
     }
 }

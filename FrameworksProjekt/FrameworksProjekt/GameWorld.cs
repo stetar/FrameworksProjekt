@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FrameworksProjekt.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -16,6 +17,8 @@ namespace FrameworksProjekt
         private Level gameLevel;
         private Camera camera;
         private Rectangle displayRect;
+        private List<Minion> minions;
+        private List<Collider> colliders; 
 
         public float Delta { get; set; }
         private static GameWorld instance;
@@ -31,6 +34,12 @@ namespace FrameworksProjekt
 
                 return instance;
             }
+        }
+
+        public List<Minion> Minions
+        {
+            get { return minions; }
+            set { minions = value; }
         }
 
         public Camera Camera
@@ -69,6 +78,12 @@ namespace FrameworksProjekt
             {
                 gameLevel = value;
             }
+        }
+
+        public List<Collider> Colliders
+        {
+            get { return colliders; }
+            set { colliders = value; }
         }
 
         private GameWorld()

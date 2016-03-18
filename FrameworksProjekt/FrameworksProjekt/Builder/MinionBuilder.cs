@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FrameworksProjekt.Components;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace FrameworksProjekt
+namespace FrameworksProjekt.Builder
 {
-    class PlayerBuilder : IBuilder
+    class MinionBuilder : IBuilder
     {
         private GameObject go;
 
@@ -19,11 +18,10 @@ namespace FrameworksProjekt
 
         public void BuildGameObject()
         {
-            go = new GameObject(new Vector2(0, 500));
+            go = new GameObject();
             go.AddComponent(new SpriteRenderer(go, "pirate1Spritesheet", 1, Color.White));
-            go.AddComponent(new Player(go));
+            go.AddComponent(new Minion(go));
             go.AddComponent(new Animator(go));
-            go.AddComponent(new Collider(go));
         }
     }
 }
