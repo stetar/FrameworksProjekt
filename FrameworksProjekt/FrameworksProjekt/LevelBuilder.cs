@@ -8,6 +8,17 @@ namespace FrameworksProjekt
     static class LevelBuilder
     {
 
-        static void BuildLevel
+        public static void BuildLevel1()
+        {
+
+        }
+
+        public static void BuildCellarLvl()
+        {
+            Level l = new InsideLevel("Cellar");
+            GameWorld.Instance.LoadLevel(l);
+
+            GameWorld.Instance.GameLevel = l;
+        }
     }
 }

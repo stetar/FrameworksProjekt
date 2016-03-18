@@ -109,6 +109,9 @@ namespace FrameworksProjekt
             gameObjects.Add(d.Construct());
 
             this.gameLevel = new OutsideLevel("Aarhus");
+            this.gameLevel.InterestPoints.Add(new Rectangle(500, 500, 100, 100), (() => LevelBuilder.BuildCellarLvl()));
+
+            this.Colliders = new List<Collider>();
 
             base.Initialize();
         }
@@ -183,6 +186,11 @@ namespace FrameworksProjekt
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        public void LoadLevel(Level l)
+        {
+            l.LoadContent(Content);
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace FrameworksProjekt
 {
-    abstract class Level
+    public abstract class Level
     {
         private Texture2D background;
         private string imageString;
@@ -49,6 +49,7 @@ namespace FrameworksProjekt
         public Level(string imageString)
         {
             this.imageString = imageString;
+            this.InterestPoints = new Dictionary<Rectangle, Action>();
         }
 
         public void LoadContent(ContentManager content)
