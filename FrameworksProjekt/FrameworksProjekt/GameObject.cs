@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Text;
+using FrameworksProjekt.Components;
+using FrameworksProjekt.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -89,6 +91,17 @@ namespace FrameworksProjekt
                 if(c.GetType().Name == component)
                 {
                     components.Remove(c);
+                }
+            }
+        }
+
+        public void OnCollisionStay(Collider other)
+        {
+            foreach (Component c in components)
+            {
+                if (c is IOnCollisionStay)
+                {
+                    (c as IOnCollisionStay).OnCollisonStay(other);
                 }
             }
         }

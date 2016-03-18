@@ -17,7 +17,8 @@ namespace FrameworksProjekt
         private Level gameLevel;
         private Camera camera;
         private Rectangle displayRect;
-        private List<Minion> _minions;  
+        private List<Minion> minions;
+        private List<Collider> colliders; 
 
         public float Delta { get; set; }
         private static GameWorld instance;
@@ -37,8 +38,8 @@ namespace FrameworksProjekt
 
         public List<Minion> Minions
         {
-            get { return _minions; }
-            set { _minions = value; }
+            get { return minions; }
+            set { minions = value; }
         }
 
         public Camera Camera
@@ -65,6 +66,12 @@ namespace FrameworksProjekt
             {
                 displayRect = value;
             }
+        }
+
+        public List<Collider> Colliders
+        {
+            get { return colliders; }
+            set { colliders = value; }
         }
 
         private GameWorld()
