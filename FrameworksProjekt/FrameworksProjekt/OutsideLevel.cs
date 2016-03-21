@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace FrameworksProjekt
 {
@@ -15,7 +16,7 @@ namespace FrameworksProjekt
 
         public override void CreateInterestPoints()
         {
-
+            GameWorld.Instance.GameLevel.InterestPoints.Add(new Rectangle(), );
         }
     }
 }

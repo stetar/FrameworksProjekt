@@ -75,7 +75,6 @@ namespace FrameworksProjekt.Components
                     {
                         if (CollisionBox.Intersects(other.CollisionBox))
                         {
-                            doCollisionCheck = false;
                             GameObject.OnCollisionStay(other);
                         }
                     }
@@ -89,9 +88,6 @@ namespace FrameworksProjekt.Components
                     }
                 }
             }
-
-
-            doCollisionCheck = true;
         }
 
         public void Update()

@@ -105,6 +105,7 @@ namespace FrameworksProjekt
         {
             // TODO: Add your initialization logic here
             gameObjects = new List<GameObject>();
+            Colliders = new List<Collider>();
             Director d = new Director(new PlayerBuilder());
             gameObjects.Add(d.Construct());
 

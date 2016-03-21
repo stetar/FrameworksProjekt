@@ -8,6 +8,6 @@ namespace FrameworksProjekt
     static class LevelBuilder
     {
 
-        static void BuildLevel
+        //static void BuildLevel
     }
 }
