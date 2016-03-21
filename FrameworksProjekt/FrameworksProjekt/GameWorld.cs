@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FrameworksProjekt.Builder;
 using FrameworksProjekt.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -86,6 +87,12 @@ namespace FrameworksProjekt
             set { colliders = value; }
         }
 
+        public List<GameObject> GameObjects
+        {
+            get { return gameObjects; }
+            set { gameObjects = value; }
+        }
+
         private GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -106,10 +113,13 @@ namespace FrameworksProjekt
             // TODO: Add your initialization logic here
             gameObjects = new List<GameObject>();
             Colliders = new List<Collider>();
-            Director d = new Director(new PlayerBuilder());
-            gameObjects.Add(d.Construct());
+            GameObjectDirector GOD = new GameObjectDirector(new PlayerBuilder());
+            gameObjects.Add(GOD.Construct());
 
-            this.gameLevel = new OutsideLevel("Aarhus");
+            LevelDirector LD  = new LevelDirector(new AarhusBuilder());
+            gameLevel = LD.Construct();
+
+            this.Colliders = new List<Collider>();
 
             base.Initialize();
         }
@@ -184,6 +194,11 @@ namespace FrameworksProjekt
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        public void LoadLevel(Level l)
+        {
+            l.LoadContent(Content);
         }
     }
 }

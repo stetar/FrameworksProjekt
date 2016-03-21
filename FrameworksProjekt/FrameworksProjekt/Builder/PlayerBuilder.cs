@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace FrameworksProjekt
 {
-    class PlayerBuilder : IBuilder
+    class PlayerBuilder : IGOBuilder
     {
         private GameObject go;
 

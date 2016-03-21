@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace FrameworksProjekt.Builder
 {
-    class MinionBuilder : IBuilder
+    class MinionBuilder : IGOBuilder
     {
         private GameObject go;
 

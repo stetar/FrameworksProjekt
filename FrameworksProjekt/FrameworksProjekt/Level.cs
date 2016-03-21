@@ -8,10 +8,11 @@ using System.Text;
 
 namespace FrameworksProjekt
 {
-    abstract class Level
+    public class Level
     {
         private Texture2D background;
         private string imageString;
+        
         // Actions to do if collision with given interest-point
         private Dictionary<Rectangle, Action> interestPoints;
 
@@ -49,14 +50,13 @@ namespace FrameworksProjekt
         public Level(string imageString)
         {
             this.imageString = imageString;
+            this.InterestPoints = new Dictionary<Rectangle, Action>();
         }
 
         public void LoadContent(ContentManager content)
         {
             background = content.Load<Texture2D>(imageString);
         }
-
-        public abstract void CreateInterestPoints();
 
         public void Draw(SpriteBatch spriteBatch)
         {

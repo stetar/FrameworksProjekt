@@ -14,9 +14,9 @@ namespace FrameworksProjekt
 
         }
 
-        public override void CreateInterestPoints()
+        public void CreateInterestPoints()
         {
-            GameWorld.Instance.GameLevel.InterestPoints.Add(new Rectangle(), );
+            
         }
     }
 }

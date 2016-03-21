@@ -16,6 +16,7 @@ namespace FrameworksProjekt
     {
         private Transform transform;
         private List<Component> components;
+        public int YPhone { get; set; }
 
         public Transform GetTransform
         {
