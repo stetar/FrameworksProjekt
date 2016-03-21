@@ -24,11 +24,27 @@ namespace FrameworksProjekt
             }
         }
 
-        public InsideLevel(string imageString, Vector2 spawnPoint, Vector2 exitPoint) : base(imageString)
+        public InsideLevel(string imageString, Vector2 spawnPoint, Vector2 exitPoint, Tuple <int, int> boundaries) : base(imageString, boundaries)
         {
             this.spawnPoint = spawnPoint;
             this.ExitPoint = exitPoint;
-            ((Transform)GameWorld.Instance.Player.GetComponent("Transform")).Position = spawnPoint;
+            SetPlayerPosition();
+        }
+
+        public void SetPlayerPosition()
+        {
+            Vector2 spawn = spawnPoint;
+
+            if(spawnPoint.X < Boundaries.Item1)
+            {
+                spawn.X = Boundaries.Item1;
+            }
+            else if(spawnPoint.X > Boundaries.Item2)
+            {
+                spawn.X = Boundaries.Item2;
+            }
+
+            GameWorld.Instance.Player.GetTransform.Position = spawnPoint;
         }
 
         public override void CreateInterestPoints()

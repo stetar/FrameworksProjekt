@@ -3,6 +3,7 @@ using FrameworksProjekt.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace FrameworksProjekt
 {
@@ -124,7 +125,7 @@ namespace FrameworksProjekt
             gameObjects.Add(player);
             this.player = player;
 
-            this.gameLevel = new OutsideLevel("Aarhus");
+            this.gameLevel = new OutsideLevel("Aarhus", new Tuple<int, int>(200, 200));
             this.gameLevel.InterestPoints.Add(new Rectangle(500, 500, 100, 100), (() => LevelBuilder.BuildCellarLvl()));
 
             this.Colliders = new List<Collider>();

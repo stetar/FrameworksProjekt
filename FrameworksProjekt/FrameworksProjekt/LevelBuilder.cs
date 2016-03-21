@@ -16,7 +16,7 @@ namespace FrameworksProjekt
 
         public static void BuildCellarLvl()
         {
-            Level l = new InsideLevel("Cellar", new Vector2(100, 500),  new Vector2(0, 500));
+            Level l = new InsideLevel("Cellar", new Vector2(100, 500),  new Vector2(0, 500), new Tuple<int, int>(400, 400));
             GameWorld.Instance.LoadLevel(l);
 
             GameWorld.Instance.GameLevel = l;

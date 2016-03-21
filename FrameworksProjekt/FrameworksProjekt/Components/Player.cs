@@ -75,8 +75,21 @@ namespace FrameworksProjekt
             }
 
             UpdateAnimation();
-
-            GameObject.GetTransform.Translate(translation * speed * GameWorld.Instance.Delta);
+            
+            // Player is too far right
+            if(GameObject.GetTransform.Position.X + translation.X * speed * GameWorld.Instance.Delta > GameWorld.Instance.GameLevel.Boundaries.Item2)
+            {
+                GameObject.GetTransform.Position = new Vector2(GameWorld.Instance.GameLevel.Boundaries.Item2, GameObject.GetTransform.Position.Y);
+            }
+            // Player is too far left 
+            else if(GameObject.GetTransform.Position.X + translation.X * speed * GameWorld.Instance.Delta < GameWorld.Instance.GameLevel.Boundaries.Item1)
+            {
+                GameObject.GetTransform.Position = new Vector2(GameWorld.Instance.GameLevel.Boundaries.Item1, GameObject.GetTransform.Position.Y);
+            }
+            else
+            {
+                GameObject.GetTransform.Translate(translation * speed * GameWorld.Instance.Delta);
+            }           
         }
 
         public void UpdateAnimation()
