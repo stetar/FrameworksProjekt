@@ -4,6 +4,7 @@ using FrameworksProjekt.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace FrameworksProjekt
 {
@@ -17,6 +18,7 @@ namespace FrameworksProjekt
         private List<GameObject> gameObjects;
         private Level gameLevel;
         private Camera camera;
+        private GameObject player;
         private Rectangle displayRect;
         private List<Minion> minions;
         private List<Collider> colliders; 
@@ -87,6 +89,19 @@ namespace FrameworksProjekt
             set { colliders = value; }
         }
 
+        public GameObject Player
+        {
+            get
+            {
+                return player;
+            }
+
+            set
+            {
+                player = value;
+            }
+        }
+
         public List<GameObject> GameObjects
         {
             get { return gameObjects; }
@@ -112,9 +127,11 @@ namespace FrameworksProjekt
         {
             // TODO: Add your initialization logic here
             gameObjects = new List<GameObject>();
-            Colliders = new List<Collider>();
             GameObjectDirector GOD = new GameObjectDirector(new PlayerBuilder());
-            gameObjects.Add(GOD.Construct());
+            GameObject player = GOD.Construct();
+            gameObjects.Add(player);
+            this.player = player;
+            Colliders = new List<Collider>();
 
             LevelDirector LD  = new LevelDirector(new AarhusBuilder());
             gameLevel = LD.Construct();

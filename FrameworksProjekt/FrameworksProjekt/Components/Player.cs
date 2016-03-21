@@ -75,8 +75,21 @@ namespace FrameworksProjekt
             }
 
             UpdateAnimation();
-
-            GameObject.GetTransform.Translate(translation * speed * GameWorld.Instance.Delta);
+            
+            // Player is too far right
+            if(GameObject.GetTransform.Position.X + translation.X * speed * GameWorld.Instance.Delta > GameWorld.Instance.GameLevel.Boundaries.Item2)
+            {
+                GameObject.GetTransform.Position = new Vector2(GameWorld.Instance.GameLevel.Boundaries.Item2, GameObject.GetTransform.Position.Y);
+            }
+            // Player is too far left 
+            else if(GameObject.GetTransform.Position.X + translation.X * speed * GameWorld.Instance.Delta < GameWorld.Instance.GameLevel.Boundaries.Item1)
+            {
+                GameObject.GetTransform.Position = new Vector2(GameWorld.Instance.GameLevel.Boundaries.Item1, GameObject.GetTransform.Position.Y);
+            }
+            else
+            {
+                GameObject.GetTransform.Translate(translation * speed * GameWorld.Instance.Delta);
+            }           
         }
 
         public void UpdateAnimation()
@@ -86,9 +99,9 @@ namespace FrameworksProjekt
 
         public void CreateAnimations()
         {
-            animator.CreateAnimation("IdleFront", new Animation(4, 0, 0, 128, 128, 4, new Vector2(0, 0)));
-            animator.CreateAnimation("WalkRight", new Animation(4, 128, 0, 128, 128, 8, new Vector2(0, 0)));
-            animator.CreateAnimation("WalkLeft", new Animation(4, 256, 0, 128, 128, 8, new Vector2(0, 0)));
+            animator.CreateAnimation("IdleFront", new Animation(2, 0, 0, 128, 128, 2, new Vector2(0, 0)));
+            animator.CreateAnimation("WalkRight", new Animation(2, 128, 0, 128, 128, 4, new Vector2(0, 0)));
+            animator.CreateAnimation("WalkLeft", new Animation(2, 256, 0, 128, 128, 4, new Vector2(0, 0)));
 
             animator.PlayAnimation("IdleFront");
         }
