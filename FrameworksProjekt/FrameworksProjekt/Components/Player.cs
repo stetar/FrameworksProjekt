@@ -86,9 +86,9 @@ namespace FrameworksProjekt
 
         public void CreateAnimations()
         {
-            animator.CreateAnimation("IdleFront", new Animation(4, 0, 0, 128, 128, 4, new Vector2(0, 0)));
-            animator.CreateAnimation("WalkRight", new Animation(4, 128, 0, 128, 128, 8, new Vector2(0, 0)));
-            animator.CreateAnimation("WalkLeft", new Animation(4, 256, 0, 128, 128, 8, new Vector2(0, 0)));
+            animator.CreateAnimation("IdleFront", new Animation(2, 0, 0, 128, 128, 2, new Vector2(0, 0)));
+            animator.CreateAnimation("WalkRight", new Animation(2, 128, 0, 128, 128, 4, new Vector2(0, 0)));
+            animator.CreateAnimation("WalkLeft", new Animation(2, 256, 0, 128, 128, 4, new Vector2(0, 0)));
 
             animator.PlayAnimation("IdleFront");
         }

@@ -16,6 +16,7 @@ namespace FrameworksProjekt
         private List<GameObject> gameObjects;
         private Level gameLevel;
         private Camera camera;
+        private GameObject player;
         private Rectangle displayRect;
         private List<Minion> minions;
         private List<Collider> colliders; 
@@ -86,6 +87,19 @@ namespace FrameworksProjekt
             set { colliders = value; }
         }
 
+        public GameObject Player
+        {
+            get
+            {
+                return player;
+            }
+
+            set
+            {
+                player = value;
+            }
+        }
+
         private GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -106,7 +120,9 @@ namespace FrameworksProjekt
             // TODO: Add your initialization logic here
             gameObjects = new List<GameObject>();
             Director d = new Director(new PlayerBuilder());
-            gameObjects.Add(d.Construct());
+            GameObject player = d.Construct();
+            gameObjects.Add(player);
+            this.player = player;
 
             this.gameLevel = new OutsideLevel("Aarhus");
             this.gameLevel.InterestPoints.Add(new Rectangle(500, 500, 100, 100), (() => LevelBuilder.BuildCellarLvl()));
