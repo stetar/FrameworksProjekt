@@ -12,6 +12,7 @@ namespace FrameworksProjekt
     {
         private Texture2D background;
         private string imageString;
+        
         // Actions to do if collision with given interest-point
         private Dictionary<Rectangle, Action> interestPoints;
 
