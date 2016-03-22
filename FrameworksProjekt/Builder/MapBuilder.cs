@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using FrameworksProjekt.Interfaces;
 using Microsoft.Xna.Framework;
+using FrameworksProjekt.Interfaces;
 
 namespace FrameworksProjekt.Builder
 {
-    class KøbenhavnBuilder : ILBuilder
+    class MapBuilder : ILBuilder
     {
         private Level l;
 
@@ -18,12 +18,8 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new OutsideLevel("København", new Vector2(0, 500), new Tuple<int, int>(0, 0), City.København);
-        }
-
-        public void DirectoryAction()
-        {
-
+            l = new Level("Denmark", new Vector2(-150, -150), new Tuple<int, int>(0, 0));
         }
     }
+
 }

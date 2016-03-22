@@ -43,11 +43,14 @@
     <Compile Include="Animation.cs" />
     <Compile Include="Builder\AarhusBuilder.cs" />
     <Compile Include="Builder\CellarBuilder.cs" />
+    <Compile Include="Builder\Director.cs" />
     <Compile Include="Builder\EsbjergBuilder.cs" />
     <Compile Include="Builder\GameObjectDirector.cs" />
     <Compile Include="Builder\HeadQuartersBuilder.cs" />
     <Compile Include="Builder\KøbenhavnBuilder.cs" />
     <Compile Include="Builder\LevelDirector.cs" />
+    <Compile Include="Builder\LootItemBuilder.cs" />
+    <Compile Include="Builder\MapBuilder.cs" />
     <Compile Include="Builder\PlayerBuilder.cs" />
     <Compile Include="Builder\SkagenBuilder.cs" />
     <Compile Include="Builder\VeganStoreBuilder.cs" />
@@ -55,6 +58,7 @@
     <Compile Include="Components\Animator.cs" />
     <Compile Include="Components\Collider.cs" />
     <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\LootItem.cs" />
     <Compile Include="Components\Player.cs" />
     <Compile Include="Components\SpriteRenderer.cs" />
     <Compile Include="Components\Transform.cs" />
@@ -66,6 +70,7 @@
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="InsideLevel.cs" />
+    <Compile Include="Interfaces\IBuilder.cs" />
     <Compile Include="Interfaces\IGOBuilder.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\ILBuilder.cs" />
@@ -73,6 +78,9 @@
     <Compile Include="Interfaces\IOnCollisionStay.cs" />
     <Compile Include="Interfaces\IStrategy.cs" />
     <Compile Include="Interfaces\IUpdateable.cs" />
+    <Compile Include="Inventory.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemGenerator.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="OutsideLevel.cs" />
     <Compile Include="Program.cs" />
@@ -85,6 +93,7 @@
     <Compile Include="Tools\AutoFac.cs" />
     <Compile Include="Tools\Conn.cs" />
     <Compile Include="Tools\Mapper.cs" />
+    <Compile Include="Tooltip.cs" />
     <Compile Include="Types\category.cs" />
     <Compile Include="Types\inventory.cs" />
     <Compile Include="Types\items.cs" />
@@ -120,21 +129,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Aarhus.png" />
+    <Content Include="Content\Aarhus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Apple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Cellar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CheeseBurger.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Cloths.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\CollisionTexture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Esbjerg.png" />
-    <Content Include="Content\Headquarters.png" />
-    <Content Include="Content\København.png" />
+    <Content Include="Content\Denmark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Electronics.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Esbjerg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Headquarters.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\København.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pirate1Spritesheet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Skagen.png" />
-    <Content Include="Content\Vegan store.png" />
+    <Content Include="Content\Skagen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sofa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Tooltip1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Vegan store.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
     <Content Include="Content\Pirate1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -177,10 +219,15 @@
     <Content Include="SpriteGenerator\IMG\Frame4\Shoes\1.png" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <MonoGameContentReference Include="Content\Content.mgcb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </MonoGameContentReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Content\StandardFont.spritefont">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

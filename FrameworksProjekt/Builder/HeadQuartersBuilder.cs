@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FrameworksProjekt.Interfaces;
+using Microsoft.Xna.Framework;
 
 namespace FrameworksProjekt.Builder
 {
@@ -17,12 +18,22 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Headquarters");
+            l = new Level("Headquarters", new Vector2(350, 500), new Tuple<int, int>(240, -100));
+            l.InterestPoints.Add(new Rectangle(240, 400, 10, 200), () => DirectoryAction());
+            l.InterestPoints.Add(new Rectangle(800, 300, 400, 400), () => Inventory());
         }
 
         public void DirectoryAction()
         {
+            LevelDirector ld = new LevelDirector(new AarhusBuilder());
+            l = ld.Construct();
+            GameWorld.Instance.GameLevel = l;
+            GameWorld.Instance.LoadLevel(l);
+        }
 
+        public void Inventory()
+        {
+            GameWorld.Instance.DrawInventory = true;
         }
     }
 }

@@ -4,6 +4,8 @@ using FrameworksProjekt.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using FrameworksProjekt.Items;
+using System;
 
 namespace FrameworksProjekt
 {
@@ -19,7 +21,16 @@ namespace FrameworksProjekt
         private Camera camera;
         private Rectangle displayRect;
         private List<Minion> minions;
-        private List<Collider> colliders; 
+        private List<Collider> colliders;
+        private GameObject player;
+        private List<Tooltip> tooltips;
+        private SpriteFont standardFont;
+        // inventorys of all shops ordered by the city enum in level.cs 
+        private Inventory[] inventorys;
+        // headquarter inventory
+        private Inventory mainInventory;
+        private ItemGenerator itemGenerator;
+        private bool drawInventory;
 
         public float Delta { get; set; }
         private static GameWorld instance;
@@ -93,13 +104,107 @@ namespace FrameworksProjekt
             set { gameObjects = value; }
         }
 
+        public GameObject Player
+        {
+            get
+            {
+                return player;
+            }
+
+            set
+            {
+                player = value;
+            }
+        }
+
+        internal List<Tooltip> Tooltips
+        {
+            get
+            {
+                return tooltips;
+            }
+
+            set
+            {
+                tooltips = value;
+            }
+        }
+
+        public SpriteFont StandardFont
+        {
+            get
+            {
+                return standardFont;
+            }
+
+            set
+            {
+                standardFont = value;
+            }
+        }
+
+        public GraphicsDeviceManager Graphics
+        {
+            get
+            {
+                return graphics;
+            }
+
+            set
+            {
+                graphics = value;
+            }
+        }
+
+        public Inventory[] Inventorys
+        {
+            get
+            {
+                return inventorys;
+            }
+
+            set
+            {
+                inventorys = value;
+            }
+        }
+
+        public Inventory MainInventory
+        {
+            get
+            {
+                return mainInventory;
+            }
+
+            set
+            {
+                mainInventory = value;
+            }
+        }
+
+        public bool DrawInventory
+        {
+            get
+            {
+                return drawInventory;
+            }
+
+            set
+            {
+                drawInventory = value;
+            }
+        }
+
         private GameWorld()
         {
-            graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.Camera = new Camera(Vector2.Zero);
-            graphics.PreferredBackBufferWidth = 1422;
-            graphics.PreferredBackBufferHeight = 800;
+            Graphics.PreferredBackBufferWidth = 1422;
+            Graphics.PreferredBackBufferHeight = 800;
+            Inventorys = new Inventory[5];
+            itemGenerator = new ItemGenerator();
+            MainInventory = new Inventory();
         }
 
         /// <summary>
@@ -116,10 +221,11 @@ namespace FrameworksProjekt
             GameObjectDirector GOD = new GameObjectDirector(new PlayerBuilder());
             gameObjects.Add(GOD.Construct());
 
-            LevelDirector LD  = new LevelDirector(new AarhusBuilder());
+            LevelDirector LD  = new LevelDirector(new HeadQuartersBuilder());
             gameLevel = LD.Construct();
 
             this.Colliders = new List<Collider>();
+            this.tooltips = new List<Tooltip>();
 
             base.Initialize();
         }
@@ -132,6 +238,7 @@ namespace FrameworksProjekt
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            standardFont = Content.Load<SpriteFont>("StandardFont");
 
             this.GameLevel.LoadContent(Content);
 
@@ -141,6 +248,8 @@ namespace FrameworksProjekt
             }
 
             DisplayRect = GraphicsDevice.Viewport.Bounds;
+
+            ResetInventorys();
 
             // TODO: use this.Content to load your game content here
         }
@@ -165,6 +274,9 @@ namespace FrameworksProjekt
                 Exit();
 
             // TODO: Add your update logic here
+            tooltips.Clear();
+            drawInventory = false;
+
             Delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
             foreach (GameObject obj in gameObjects)
             {
@@ -192,6 +304,14 @@ namespace FrameworksProjekt
                 obj.Draw(spriteBatch);
             }
 
+            foreach(Tooltip t in tooltips)
+            {
+                t.Draw(spriteBatch);
+            }
+
+            if (drawInventory)
+                DrawMainInventory(spriteBatch);
+    
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -199,6 +319,35 @@ namespace FrameworksProjekt
         public void LoadLevel(Level l)
         {
             l.LoadContent(Content);
+        }
+
+        private void ResetInventorys()
+        {
+            Inventorys = new Inventory[5];
+
+            for(int i = 0; i<Inventorys.Length; i++)
+            {
+                Inventorys[i] = new Inventory();
+                Inventorys[i].AddItem(itemGenerator.GenerateItem((Category)i, 5));
+            }
+        }
+
+        private void DrawMainInventory(SpriteBatch spriteBatch)
+        {
+            int height = 100;
+            int width = 80;
+            Vector2 startPos = new Vector2(800, 300);
+
+            for(int i = 0; i < mainInventory.Items.Count; i++)
+            {
+                Item it = mainInventory.Items[i];
+                float x = startPos.X + width * i % 4;
+                float y = (float)Math.Floor(startPos.Y + height * i / 4);
+
+                spriteBatch.Draw(it.Sprite, new Vector2(x, y));
+                spriteBatch.DrawString(StandardFont, it.Name, new Vector2(x, y + 64), Color.Black);
+                spriteBatch.DrawString(StandardFont, "x"+it.Count, new Vector2(x, y + 80), Color.Black);
+            }
         }
     }
 }

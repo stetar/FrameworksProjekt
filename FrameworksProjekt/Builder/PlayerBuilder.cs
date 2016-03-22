@@ -24,6 +24,8 @@ namespace FrameworksProjekt
             go.AddComponent(new Player(go));
             go.AddComponent(new Animator(go));
             go.AddComponent(new Collider(go));
+
+            GameWorld.Instance.Player = go;
         }
     }
 }

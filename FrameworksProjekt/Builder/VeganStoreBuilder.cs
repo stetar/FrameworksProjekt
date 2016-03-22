@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FrameworksProjekt.Interfaces;
+using Microsoft.Xna.Framework;
 
 namespace FrameworksProjekt.Builder
 {
@@ -17,7 +18,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Vegan store");
+            l = new Level("Vegan store", new Vector2(0, 500), new Tuple<int, int>(0, 0));
         }
 
         public void DirectoryAction()

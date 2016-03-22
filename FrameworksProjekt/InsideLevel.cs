@@ -9,12 +9,10 @@ namespace FrameworksProjekt
     class InsideLevel : Level
     {
         private Vector2 spawnPoint;
-        private Vector2 exitPoint;
 
-        public InsideLevel(string imageString, Vector2 spawnPoint, Vector2 exitPoint) : base(imageString)
+        public InsideLevel(string imageString, Vector2 spawnPoint, Tuple<int, int> boundaries) : base(imageString, spawnPoint, boundaries)
         {
-            this.spawnPoint = spawnPoint;
-            this.exitPoint = exitPoint;
+
         }
 
         public void CreateInterestPoints()

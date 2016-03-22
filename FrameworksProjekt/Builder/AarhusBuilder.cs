@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using FrameworksProjekt.Interfaces;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using FrameworksProjekt.Items;
 
 namespace FrameworksProjekt.Builder
 {
@@ -18,16 +20,33 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Aarhus");
-            l.InterestPoints.Add(new Rectangle(500, 500, 100, 100), () => DirectoryAction());
+            l = new OutsideLevel("Aarhus", new Vector2(20,500), new Tuple<int, int>(-120, -120), City.Aarhus);
+            l.InterestPoints.Add(new Rectangle(-120, 400, 20, 200), () => DirectoryAction());
+            l.InterestPoints.Add(new Rectangle(1640, 400, 50, 200), () => ShopAction());
+            l.InterestPoints.Add(new Rectangle(4100, 400, 20, 200), () => DirectoryAction2());
         }
 
         public void DirectoryAction()
         {
-            LevelDirector LD = new LevelDirector(new CellarBuilder());
+            LevelDirector LD = new LevelDirector(new HeadQuartersBuilder());
             l = LD.Construct();
             GameWorld.Instance.GameLevel = l;
             GameWorld.Instance.LoadLevel(l);
+        }
+
+
+        public void DirectoryAction2()
+        {
+            LevelDirector ld = new LevelDirector(new MapBuilder());
+            l = ld.Construct();
+
+            GameWorld.Instance.GameLevel = l;
+            GameWorld.Instance.LoadLevel(l);
+        }
+
+        public void ShopAction()
+        {
+            ((OutsideLevel)l).ShopAction();
         }
     }
 }
