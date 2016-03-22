@@ -13,5 +13,10 @@ namespace FrameworksProjekt
         {
 
         }
+
+        public void CreateInterestPoints()
+        {
+            
+        }
     }
 }

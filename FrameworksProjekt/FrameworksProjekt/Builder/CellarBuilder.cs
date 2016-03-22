@@ -18,7 +18,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Cellar", new Tuple<int, int>(320,100));
+            l = new Level("Cellar");
             l.InterestPoints.Add(new Rectangle(500, 500, 100, 100), () => DirectoryAction());
         }
 
