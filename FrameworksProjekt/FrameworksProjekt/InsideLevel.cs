@@ -37,10 +37,5 @@ namespace FrameworksProjekt
 
             GameWorld.Instance.Player.GetTransform.Position = spawnPoint;
         }
-
-        public override void CreateInterestPoints()
-        {
-            
-        }
     }
 }

@@ -41,17 +41,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="Builder\AarhusBuilder.cs" />
+    <Compile Include="Builder\CellarBuilder.cs" />
     <Compile Include="Builder\Director.cs" />
+    <Compile Include="Builder\EsbjergBuilder.cs" />
+    <Compile Include="Builder\GameObjectDirector.cs" />
+    <Compile Include="Builder\HeadQuartersBuilder.cs" />
+    <Compile Include="Builder\KøbenhavnBuilder.cs" />
+    <Compile Include="Builder\LevelDirector.cs" />
+    <Compile Include="Builder\LootItemBuilder.cs" />
     <Compile Include="Builder\PlayerBuilder.cs" />
+    <Compile Include="Builder\SkagenBuilder.cs" />
+    <Compile Include="Builder\VeganStoreBuilder.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Components\Animator.cs" />
     <Compile Include="Components\Collider.cs" />
     <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\LootItem.cs" />
     <Compile Include="Components\Player.cs" />
     <Compile Include="Components\SpriteRenderer.cs" />
     <Compile Include="Components\Transform.cs" />
     <Compile Include="Factories\CategoryFac.cs" />
-    <Compile Include="Factories\inventoryFac.cs" />
     <Compile Include="Factories\ItemFac.cs" />
     <Compile Include="Builder\MinionBuilder.cs" />
     <Compile Include="Components\Minion.cs" />
@@ -59,13 +69,14 @@
     <Compile Include="GameWorld.cs" />
     <Compile Include="InsideLevel.cs" />
     <Compile Include="Interfaces\IBuilder.cs" />
+    <Compile Include="Interfaces\IGOBuilder.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
+    <Compile Include="Interfaces\ILBuilder.cs" />
     <Compile Include="Interfaces\ILoadable.cs" />
     <Compile Include="Interfaces\IOnCollisionStay.cs" />
     <Compile Include="Interfaces\IStrategy.cs" />
     <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Level.cs" />
-    <Compile Include="LevelBuilder.cs" />
     <Compile Include="OutsideLevel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,7 +89,6 @@
     <Compile Include="Tools\Conn.cs" />
     <Compile Include="Tools\Mapper.cs" />
     <Compile Include="Types\category.cs" />
-    <Compile Include="Types\inventory.cs" />
     <Compile Include="Types\items.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,10 +122,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\*.*">
+    <Content Include="Content\Aarhus.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Aarhus.jpg">
+    <Content Include="Content\Cellar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Cellar.png">
@@ -124,13 +134,40 @@
     <Content Include="Content\CollisionTexture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Pirate1Spritesheet.png">
+    <Content Include="Content\CollisionTexture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Icon.ico" />
+    <Content Include="Content\Content.mgcb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Esbjerg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Headquarters.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\København.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pirate1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pirate1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pirate1Spritesheet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pirate1Spritesheet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Skagen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Vegan store.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icon.ico" />
     <Content Include="SpriteGenerator\IMG\Frame1\Arms\h1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -241,10 +278,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
+    <None Include="Content\Content.mgcb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

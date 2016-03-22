@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace FrameworksProjekt
 {
@@ -9,11 +10,6 @@ namespace FrameworksProjekt
     {
 
         public OutsideLevel(string imageString, Tuple<int, int> boundaries) : base(imageString, boundaries)
-        {
-
-        }
-
-        public override void CreateInterestPoints()
         {
 
         }

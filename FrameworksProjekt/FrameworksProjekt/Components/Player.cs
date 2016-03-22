@@ -19,7 +19,7 @@ namespace FrameworksProjekt
         Right
     }
 
-    class Player : Component, ILoadable, IUpdateable, IOnCollisionStay
+    public class Player : Component, ILoadable, IUpdateable, IOnCollisionStay
     {
         private float speed = 200;
         KeyboardState ks;

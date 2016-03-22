@@ -12,7 +12,7 @@ namespace FrameworksProjekt.Components
     {
         Chubby,
         Weeaboo,
-        Hipster,
+        Hipster
 
     }
     public class Minion : Component, ILoadable, IUpdateable
@@ -48,7 +48,11 @@ namespace FrameworksProjekt.Components
 
         public void Update()
         {
-            Move();
+            if (target != null)
+            {
+                Move();
+            }
+
         }
 
         public void Move()
@@ -63,6 +67,10 @@ namespace FrameworksProjekt.Components
             {
                 translation += new Vector2(1,0);
                 direction = Direction.Right;
+            }
+            else if (this.GameObject.GetTransform.Position.X == target.X)
+            {
+                target = new Vector2();
             }
 
             UpdateAnimation();

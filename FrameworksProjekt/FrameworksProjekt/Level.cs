@@ -8,7 +8,7 @@ using System.Text;
 
 namespace FrameworksProjekt
 {
-    public abstract class Level
+    public class Level
     {
         private Texture2D background;
         private string imageString;
@@ -74,8 +74,6 @@ namespace FrameworksProjekt
 
             this.boundaries = new Tuple<int, int>(boundaries.Item1, background.Width - this.boundaries.Item2);
         }
-
-        public abstract void CreateInterestPoints();
 
         public void Draw(SpriteBatch spriteBatch)
         {
