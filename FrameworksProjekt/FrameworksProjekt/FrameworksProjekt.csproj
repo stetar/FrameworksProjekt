@@ -18,7 +18,7 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -38,6 +38,14 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
@@ -122,6 +130,137 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Windows\Debug\Content\0qoomye5.0zg.png" />
+    <Content Include="bin\Windows\Debug\Content\1pvhodb2.uqp.png" />
+    <Content Include="bin\Windows\Debug\Content\2loilkxe.sky.png" />
+    <Content Include="bin\Windows\Debug\Content\3mrpeyyv.uxl.png" />
+    <Content Include="bin\Windows\Debug\Content\3yfdwk3c.tt3.png" />
+    <Content Include="bin\Windows\Debug\Content\4b00uass.0rd.png" />
+    <Content Include="bin\Windows\Debug\Content\4b5pqwfw.ojh.png" />
+    <Content Include="bin\Windows\Debug\Content\4lu11xb4.2pq.png" />
+    <Content Include="bin\Windows\Debug\Content\a41ty0i0.0lk.png" />
+    <Content Include="bin\Windows\Debug\Content\Aarhus.png" />
+    <Content Include="bin\Windows\Debug\Content\alripjid.dh2.png" />
+    <Content Include="bin\Windows\Debug\Content\bz4f0jnv.du0.png" />
+    <Content Include="bin\Windows\Debug\Content\Cellar.png" />
+    <Content Include="bin\Windows\Debug\Content\cn4fll0b.inw.png" />
+    <Content Include="bin\Windows\Debug\Content\CollisionTexture.png" />
+    <Content Include="bin\Windows\Debug\Content\dmt0ofz5.yic.png" />
+    <Content Include="bin\Windows\Debug\Content\duxq1d35.p2s.png" />
+    <Content Include="bin\Windows\Debug\Content\Esbjerg.png" />
+    <Content Include="bin\Windows\Debug\Content\fci5whzh.xny.png" />
+    <Content Include="bin\Windows\Debug\Content\filvdpdt.qro.png" />
+    <Content Include="bin\Windows\Debug\Content\fmycji4o.vvm.png" />
+    <Content Include="bin\Windows\Debug\Content\fo4uufwx.2nx.png" />
+    <Content Include="bin\Windows\Debug\Content\g0m13cy3.14u.png" />
+    <Content Include="bin\Windows\Debug\Content\Headquarters.png" />
+    <Content Include="bin\Windows\Debug\Content\hje0i4uh.ixy.png" />
+    <Content Include="bin\Windows\Debug\Content\hjntua0n.wpl.png" />
+    <Content Include="bin\Windows\Debug\Content\huqoiux0.2l2.png" />
+    <Content Include="bin\Windows\Debug\Content\i2i1paxn.ea0.png" />
+    <Content Include="bin\Windows\Debug\Content\ixssnumj.ajc.png" />
+    <Content Include="bin\Windows\Debug\Content\iykya43o.r1q.png" />
+    <Content Include="bin\Windows\Debug\Content\jrwg2cxr.nnq.png" />
+    <Content Include="bin\Windows\Debug\Content\København.png" />
+    <Content Include="bin\Windows\Debug\Content\m1e5fzpp.sys.png" />
+    <Content Include="bin\Windows\Debug\Content\maev4ifk.da1.png" />
+    <Content Include="bin\Windows\Debug\Content\mgs3hixq.ujc.png" />
+    <Content Include="bin\Windows\Debug\Content\mk1emvrd.f12.png" />
+    <Content Include="bin\Windows\Debug\Content\mmyrntdh.4cr.png" />
+    <Content Include="bin\Windows\Debug\Content\mqgl1z2o.e1k.png" />
+    <Content Include="bin\Windows\Debug\Content\n03ucb3k.xnr.png" />
+    <Content Include="bin\Windows\Debug\Content\pfknsvc3.i4g.png" />
+    <Content Include="bin\Windows\Debug\Content\Pirate1.png" />
+    <Content Include="bin\Windows\Debug\Content\Pirate1Spritesheet.png" />
+    <Content Include="bin\Windows\Debug\Content\psdgs5xe.4kd.png" />
+    <Content Include="bin\Windows\Debug\Content\qd3sufo5.34p.png" />
+    <Content Include="bin\Windows\Debug\Content\qsc10u2u.4mo.png" />
+    <Content Include="bin\Windows\Debug\Content\qyzihx5r.y0v.png" />
+    <Content Include="bin\Windows\Debug\Content\rjkr2czs.e21.png" />
+    <Content Include="bin\Windows\Debug\Content\sgx5lggh.ui2.png" />
+    <Content Include="bin\Windows\Debug\Content\Skagen.png" />
+    <Content Include="bin\Windows\Debug\Content\sttpghq5.5zf.png" />
+    <Content Include="bin\Windows\Debug\Content\sy3kvwgo.vq2.png" />
+    <Content Include="bin\Windows\Debug\Content\tfcnjjiu.x2g.png" />
+    <Content Include="bin\Windows\Debug\Content\umkfby1n.lrv.png" />
+    <Content Include="bin\Windows\Debug\Content\unrl54re.0ht.png" />
+    <Content Include="bin\Windows\Debug\Content\Vegan store.png" />
+    <Content Include="bin\Windows\Debug\Content\vn0vblv3.x0k.png" />
+    <Content Include="bin\Windows\Debug\Content\wbvbzxzn.cjl.png" />
+    <Content Include="bin\Windows\Debug\Content\xeg00das.gai.png" />
+    <Content Include="bin\Windows\Debug\Content\xezswyrs.dp2.png" />
+    <Content Include="bin\Windows\Debug\Content\zeuebs5m.vvr.png" />
+    <Content Include="bin\Windows\Debug\Content\zisj3uoc.cml.png" />
+    <Content Include="bin\Windows\Debug\EntityFramework.dll" />
+    <Content Include="bin\Windows\Debug\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Windows\Debug\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Windows\Debug\EntityFramework.xml" />
+    <Content Include="bin\Windows\Debug\FrameworksProjekt.exe" />
+    <Content Include="bin\Windows\Debug\FrameworksProjekt.pdb" />
+    <Content Include="bin\Windows\Debug\FrameworksProjekt.vshost.exe" />
+    <Content Include="bin\Windows\Debug\MonoGame.Framework.dll" />
+    <Content Include="bin\Windows\Debug\MonoGame.Framework.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct2D1.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct2D1.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct3D11.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct3D11.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct3D9.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct3D9.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.DXGI.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.DXGI.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.MediaFoundation.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.MediaFoundation.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.RawInput.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.RawInput.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.XAudio2.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.XAudio2.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.XInput.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.XInput.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.xml" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame1\Arms\h1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame1\BodyTemplate.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame1\Faces\f1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame1\Faces\face2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame1\Hats\ha1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame1\Hats\ha2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame1\Outfits\u1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame1\Outfits\u2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame1\Shoes\1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame2\Arms\h1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame2\BodyTemplate.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame2\Faces\f1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame2\Faces\face2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame2\Hats\ha1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame2\Hats\ha2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame2\Outfits\u1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame2\Outfits\u2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame2\Shoes\1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame3\Arms\h1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame3\BodyTemplate.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame3\Faces\f1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame3\Faces\face2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame3\Hats\ha1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame3\Hats\ha2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame3\Outfits\u1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame3\Outfits\u2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame3\Shoes\1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame4\Arms\h1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame4\BodyTemplate.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame4\Faces\f1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame4\Faces\face2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame4\Hats\ha1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame4\Hats\ha2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame4\Outfits\u1.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame4\Outfits\u2.png" />
+    <Content Include="bin\Windows\Debug\SpriteGenerator\IMG\Frame4\Shoes\1.png" />
+    <Content Include="bin\Windows\Debug\System.Data.SQLite.dll" />
+    <Content Include="bin\Windows\Debug\System.Data.SQLite.EF6.dll" />
+    <Content Include="bin\Windows\Debug\System.Data.SQLite.Linq.dll" />
+    <Content Include="bin\Windows\Debug\System.Data.SQLite.xml" />
+    <Content Include="bin\Windows\Debug\x64\SQLite.Interop.dll" />
+    <Content Include="bin\Windows\Debug\x86\SQLite.Interop.dll" />
+    <Content Include="bin\Windows\Release\FrameworksProjekt.vshost.exe" />
     <Content Include="Content\Aarhus.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -168,6 +307,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
+    <Content Include="obj\x86\Debug\FrameworksProjekt.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\x86\Debug\FrameworksProjekt.exe" />
+    <Content Include="obj\x86\Debug\FrameworksProjekt.pdb" />
     <Content Include="SpriteGenerator\IMG\Frame1\Arms\h1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -279,12 +421,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Content\Content.mgcb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="bin\Windows\Debug\Content\Content.mgcb" />
+    <None Include="bin\Windows\Debug\FrameworksProjekt.exe.config" />
+    <None Include="bin\Windows\Debug\FrameworksProjekt.vshost.exe.config" />
+    <None Include="bin\Windows\Release\FrameworksProjekt.exe.config" />
+    <None Include="bin\Windows\Release\FrameworksProjekt.vshost.exe.config" />
+    <None Include="bin\Windows\Release\FrameworksProjekt.vshost.exe.manifest" />
+    <None Include="obj\x86\Debug\build.force" />
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\x86\Debug\FrameworksProjekt.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Windows\Debug\Content\IMG\" />
+    <Folder Include="bin\x64\Debug\" />
+    <Folder Include="bin\x64\Release\" />
+    <Folder Include="obj\x64\Debug\" />
+    <Folder Include="obj\x64\Release\" />
+    <Folder Include="obj\x86\Debug\TempPE\" />
+    <Folder Include="obj\x86\Release\" />
     <Folder Include="SpriteGenerator\IMG\Pirates\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
