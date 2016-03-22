@@ -48,11 +48,7 @@ namespace FrameworksProjekt.Components
 
         public void Update()
         {
-            if (target != null)
-            {
-                Move();
-            }
-
+            Move();
         }
 
         public void Move()
@@ -67,10 +63,6 @@ namespace FrameworksProjekt.Components
             {
                 translation += new Vector2(1,0);
                 direction = Direction.Right;
-            }
-            else if (this.GameObject.GetTransform.Position.X == target.X)
-            {
-                target = new Vector2();
             }
 
             UpdateAnimation();

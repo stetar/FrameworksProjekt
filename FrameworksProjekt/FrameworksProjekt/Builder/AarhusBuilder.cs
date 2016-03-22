@@ -33,7 +33,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Aarhus", new Tuple<int, int>(100,100));
+            l = new Level("Aarhus");
             l.InterestPoints.Add(new Rectangle(500, 500, 100, 100), () => DirectoryAction());
         }
 
