@@ -21,7 +21,7 @@ namespace FrameworksProjekt
 
     class Player : Component, ILoadable, IUpdateable, IOnCollisionStay
     {
-        private float speed = 100;
+        private float speed = 200;
         KeyboardState ks;
         public Animator animator;
         private Direction direction;
@@ -77,9 +77,9 @@ namespace FrameworksProjekt
             UpdateAnimation();
             
             // Player is too far right
-            if(GameObject.GetTransform.Position.X + translation.X * speed * GameWorld.Instance.Delta > GameWorld.Instance.GameLevel.Boundaries.Item2)
+            if(GameObject.GetTransform.Position.X + translation.X * speed * GameWorld.Instance.Delta + GameObject.Width > GameWorld.Instance.GameLevel.Boundaries.Item2)
             {
-                GameObject.GetTransform.Position = new Vector2(GameWorld.Instance.GameLevel.Boundaries.Item2, GameObject.GetTransform.Position.Y);
+                GameObject.GetTransform.Position = new Vector2(GameWorld.Instance.GameLevel.Boundaries.Item2 - GameObject.Width, GameObject.GetTransform.Position.Y);
             }
             // Player is too far left 
             else if(GameObject.GetTransform.Position.X + translation.X * speed * GameWorld.Instance.Delta < GameWorld.Instance.GameLevel.Boundaries.Item1)
@@ -108,9 +108,10 @@ namespace FrameworksProjekt
 
         public void UpdateCamera()
         {
-            Transform t = (Transform)this.GameObject.GetComponent("Transform");
+            Transform t = GameObject.GetTransform;
             SpriteRenderer s = (SpriteRenderer)this.GameObject.GetComponent("SpriteRenderer");
 
+            // Camera x/y based on playerposition only
             int x = (int)(t.Position.X + s.Rectangle.Width / 2 - GameWorld.Instance.DisplayRect.Width / 2);
             int y = (int)(t.Position.Y + s.Rectangle.Height / 2 - GameWorld.Instance.DisplayRect.Height + s.Rectangle.Height + 100);
 
@@ -120,9 +121,9 @@ namespace FrameworksProjekt
                 x = 0;
             }               
             // if player is approaching right border of level
-            else if(x > GameWorld.Instance.GameLevel.Width - GameWorld.Instance.DisplayRect.Width/2)
+            else if(x > GameWorld.Instance.GameLevel.Width - GameWorld.Instance.DisplayRect.Width)
             {
-                x = GameWorld.Instance.GameLevel.Width - GameWorld.Instance.DisplayRect.Width / 2;
+                x = GameWorld.Instance.GameLevel.Width - GameWorld.Instance.DisplayRect.Width;
             }
 
             if(y < 0)

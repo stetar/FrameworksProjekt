@@ -64,6 +64,14 @@ namespace FrameworksProjekt
             }
         }
 
+        public int Width
+        {
+            get
+            {
+                return ((SpriteRenderer)this.GetComponent("SpriteRenderer")).Sprite.Width;
+            }
+        }
+
         public void AddComponent(Component component)
         {
             components.Add(component);

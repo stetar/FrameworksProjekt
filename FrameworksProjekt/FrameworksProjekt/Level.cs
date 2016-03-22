@@ -81,7 +81,7 @@ namespace FrameworksProjekt
         {
             Rectangle sourceRect = new Rectangle((int)GameWorld.Instance.Camera.Position.X, (int)GameWorld.Instance.Camera.Position.Y, GameWorld.Instance.DisplayRect.Width, GameWorld.Instance.DisplayRect.Height);
 
-            spriteBatch.Draw(background, Vector2.Zero, sourceRect, Color.White);
+            spriteBatch.Draw(background, new Rectangle(0, 0, GameWorld.Instance.DisplayRect.Width, GameWorld.Instance.DisplayRect.Height), sourceRect, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
         }
     }
 }
