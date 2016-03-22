@@ -35,6 +35,15 @@ namespace FrameworksProjekt
         {
             Vector2 spawn = spawnPoint;
 
+            if(spawnPoint.X < Boundaries.Item1)
+            {
+                spawn.X = Boundaries.Item1;
+            }
+            else if(spawnPoint.X > Boundaries.Item2)
+            {
+                spawn.X = Boundaries.Item2;
+            }
+
             GameWorld.Instance.Player.GetTransform.Position = spawnPoint;
         }
     }
