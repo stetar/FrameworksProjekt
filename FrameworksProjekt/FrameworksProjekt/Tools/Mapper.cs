@@ -9,11 +9,11 @@ namespace FrameworksProjekt
 {
     public class Mapper<T> where T : new()
     {
-        private Dictionary<string, string> mappings { get; set; }
+        private Dictionary<string, string> _mappings { get; set; }
 
         public Mapper()
         {
-            mappings = CreateMap();
+            _mappings = CreateMap();
         }
 
         public T Map(IDataRecord record)
@@ -21,8 +21,8 @@ namespace FrameworksProjekt
             var item = Activator.CreateInstance<T>();
             var itemType = item.GetType();
 
-            foreach(var map in mappings)
-            {   
+            foreach(var map in _mappings)
+            {
                 var prop = itemType.GetProperty(map.Key);
 
                 if(record[map.Value] != DBNull.Value)

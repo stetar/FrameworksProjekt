@@ -12,7 +12,7 @@ namespace FrameworksProjekt.Components
     {
         Chubby,
         Weeaboo,
-        Hipster
+        Hipster,
 
     }
     public class Minion : Component, ILoadable, IUpdateable
