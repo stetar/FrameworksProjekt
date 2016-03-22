@@ -7,15 +7,15 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace FrameworksProjekt
+namespace WindowsFormsApplication2
 {
     static class SpriteGenerator
     {
         // folder names
         private static string mainPath;
         private static string spriteName;
-        private static string mainDirectory = "SpriteGenerator/IMG/";
-        private static string destinationFolder = "Content/";
+        private static string mainDirectory = "IMG/";
+        private static string destinationFolder = mainDirectory + "Pirates/";
         // main body template - might add a random option for this too
         private static string bodyTemplate = "BodyTemplate.png";
 
@@ -107,10 +107,10 @@ namespace FrameworksProjekt
             {
                 string folderPath = mainPath + "/" + frame.FolderName + "/" + frame.Components[i];
 
-                //if(File.Exists(folderPath + spritePartNames[i]))
-                //{
+                if(File.Exists(folderPath + spritePartNames[i]))
+                {
                     spriteParts[i] = new SpriteTemplate(folderPath + spritePartNames[i], frame.Offsets[i]);
-                //}
+                }
             }
         }
 
@@ -122,12 +122,12 @@ namespace FrameworksProjekt
             {
                 string folderPath = mainPath + "/" + frame.FolderName + "/" + frame.Components[i];
 
-                //if(Directory.Exists(folderPath))
-                //{ 
+                if(Directory.Exists(folderPath))
+                { 
                     filesNames = Directory.GetFiles(folderPath).ToList();
                     int t = r.Next(0, filesNames.Count);
-                    spritePartNames[i] = filesNames[t].Substring(filesNames[t].LastIndexOf("\\"));
-                //}
+                    spritePartNames[i] = filesNames[t].Substring(filesNames[t].IndexOf("\\"));
+                }
             }
         }
 

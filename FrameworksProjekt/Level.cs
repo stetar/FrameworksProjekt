@@ -12,8 +12,7 @@ namespace FrameworksProjekt
     {
         private Texture2D background;
         private string imageString;
-        // distance from left and right wall that player stops
-        private Tuple<int, int> boundaries;
+        
         // Actions to do if collision with given interest-point
         private Dictionary<Rectangle, Action> interestPoints;
 
@@ -24,19 +23,6 @@ namespace FrameworksProjekt
             get
             {
                 return background.Width;
-            }
-        }
-
-        public Tuple<int, int> Boundaries
-        {
-            get
-            {
-                return boundaries;
-            }
-
-            set
-            {
-                boundaries = value;
             }
         }
 
@@ -61,18 +47,15 @@ namespace FrameworksProjekt
             }
         }
 
-        public Level(string imageString, Tuple<int, int> boundaries)
+        public Level(string imageString)
         {
             this.imageString = imageString;
             this.InterestPoints = new Dictionary<Rectangle, Action>();
-            this.Boundaries = boundaries;
         }
 
         public void LoadContent(ContentManager content)
         {
             background = content.Load<Texture2D>(imageString);
-
-            this.boundaries = new Tuple<int, int>(boundaries.Item1, background.Width - this.boundaries.Item2);
         }
 
         public void Draw(SpriteBatch spriteBatch)

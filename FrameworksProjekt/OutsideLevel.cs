@@ -9,9 +9,14 @@ namespace FrameworksProjekt
     class OutsideLevel : Level
     {
 
-        public OutsideLevel(string imageString, Tuple<int, int> boundaries) : base(imageString, boundaries)
+        public OutsideLevel(string imageString) : base(imageString)
         {
 
+        }
+
+        public void CreateInterestPoints()
+        {
+            
         }
     }
 }

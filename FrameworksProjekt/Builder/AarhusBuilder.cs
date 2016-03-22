@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace FrameworksProjekt.Builder
 {
-    class CellarBuilder : ILBuilder
+    class AarhusBuilder : ILBuilder
     {
         private Level l;
 
@@ -18,13 +18,16 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Cellar", new Tuple<int, int>(320,100));
+            l = new Level("Aarhus");
             l.InterestPoints.Add(new Rectangle(500, 500, 100, 100), () => DirectoryAction());
         }
 
         public void DirectoryAction()
         {
-
+            LevelDirector LD = new LevelDirector(new CellarBuilder());
+            l = LD.Construct();
+            GameWorld.Instance.GameLevel = l;
+            GameWorld.Instance.LoadLevel(l);
         }
     }
 }

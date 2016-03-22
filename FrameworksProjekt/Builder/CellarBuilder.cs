@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FrameworksProjekt.Interfaces;
+using Microsoft.Xna.Framework;
 
 namespace FrameworksProjekt.Builder
 {
-    class SkagenBuilder : ILBuilder
+    class CellarBuilder : ILBuilder
     {
         private Level l;
 
@@ -17,12 +18,13 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Skagen", new Tuple<int, int>(100, 100));
+            l = new Level("Cellar");
+            l.InterestPoints.Add(new Rectangle(500, 500, 100, 100), () => DirectoryAction());
         }
 
         public void DirectoryAction()
         {
-            //Add functionality
+
         }
     }
 }

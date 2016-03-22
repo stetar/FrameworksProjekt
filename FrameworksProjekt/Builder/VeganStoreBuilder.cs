@@ -6,7 +6,7 @@ using FrameworksProjekt.Interfaces;
 
 namespace FrameworksProjekt.Builder
 {
-    class HeadQuartersBuilder : ILBuilder
+    class VeganStoreBuilder : ILBuilder
     {
         private Level l;
 
@@ -17,12 +17,12 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Headquarters", new Tuple<int, int>(400,100));
+            l = new Level("Vegan store");
         }
 
         public void DirectoryAction()
         {
-               
+
         }
     }
 }

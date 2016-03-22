@@ -17,7 +17,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("København", new Tuple<int, int>(100, 100));
+            l = new Level("København");
         }
 
         public void DirectoryAction()

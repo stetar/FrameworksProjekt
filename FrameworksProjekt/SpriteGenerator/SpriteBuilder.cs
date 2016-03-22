@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrameworksProjekt
+namespace WindowsFormsApplication2
 {
     static class SpriteBuilder
     {
