@@ -234,7 +234,7 @@ namespace FrameworksProjekt
             GameObjectDirector GOD = new GameObjectDirector(new PlayerBuilder());
             gameObjects.Add(GOD.Construct());
 
-            LevelDirector LD  = new LevelDirector(new WorldMapBuilder());
+            LevelDirector LD  = new LevelDirector(new HeadQuartersBuilder());
             gameLevel = LD.Construct();
 
             this.Colliders = new List<Collider>();
@@ -394,7 +394,7 @@ namespace FrameworksProjekt
         {
             int height = 100;
             int width = 80;
-            Vector2 startPos = new Vector2(800, 300);
+            Vector2 startPos = new Vector2(900, 200);
 
             for(int i = 0; i < mainInventory.Items.Count; i++)
             {
