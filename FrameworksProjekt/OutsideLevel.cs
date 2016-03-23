@@ -19,6 +19,7 @@ namespace FrameworksProjekt
         private bool cooldown;
         private DateTime timeOfRobbery;
         private int cooldownTime = 20000;
+        private City city;
 
         internal Inventory Inventory
         {
@@ -33,9 +34,23 @@ namespace FrameworksProjekt
             }
         }
 
+        public City City
+        {
+            get
+            {
+                return city;
+            }
+
+            set
+            {
+                city = value;
+            }
+        }
+
         public OutsideLevel(string imageString, Vector2 spawnPoint, Tuple<int, int> boundaries, City city) : base(imageString, spawnPoint, boundaries)
         {
             this.Inventory = GameWorld.Instance.Inventorys[(int)city];
+            this.City = city;
             cooldown = false;
         }
 

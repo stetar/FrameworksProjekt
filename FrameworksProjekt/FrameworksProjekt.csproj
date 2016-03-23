@@ -43,6 +43,7 @@
     <Compile Include="Animation.cs" />
     <Compile Include="Builder\AarhusBuilder.cs" />
     <Compile Include="Builder\CellarBuilder.cs" />
+    <Compile Include="Builder\CoffeeshopBuilder.cs" />
     <Compile Include="Builder\Director.cs" />
     <Compile Include="Builder\EsbjergBuilder.cs" />
     <Compile Include="Builder\GameObjectDirector.cs" />
@@ -162,9 +163,6 @@
     <Content Include="Content\København.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Pirate1Spritesheet.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Skagen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -181,42 +179,119 @@
     <Content Include="Content\Pirate1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SpriteGenerator\IMG\Frame1\Arms\h1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame1\BodyTemplate.png" />
-    <Content Include="SpriteGenerator\IMG\Frame1\Faces\f1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame1\Faces\face2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame1\Hats\ha1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame1\Hats\ha2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame1\Outfits\u1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame1\Outfits\u2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame1\Shoes\1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame2\Arms\h1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame2\BodyTemplate.png" />
-    <Content Include="SpriteGenerator\IMG\Frame2\Faces\f1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame2\Faces\face2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame2\Hats\ha1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame2\Hats\ha2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame2\Outfits\u1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame2\Outfits\u2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame2\Shoes\1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame3\Arms\h1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame3\BodyTemplate.png" />
-    <Content Include="SpriteGenerator\IMG\Frame3\Faces\f1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame3\Faces\face2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame3\Hats\ha1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame3\Hats\ha2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame3\Outfits\u1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame3\Outfits\u2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame3\Shoes\1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame4\Arms\h1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame4\BodyTemplate.png" />
-    <Content Include="SpriteGenerator\IMG\Frame4\Faces\f1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame4\Faces\face2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame4\Hats\ha1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame4\Hats\ha2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame4\Outfits\u1.png" />
-    <Content Include="SpriteGenerator\IMG\Frame4\Outfits\u2.png" />
-    <Content Include="SpriteGenerator\IMG\Frame4\Shoes\1.png" />
+    <Content Include="SpriteGenerator\IMG\Frame1\Arms\h1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame1\BodyTemplate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame1\Faces\f1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame1\Faces\face2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame1\Hats\ha1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame1\Hats\ha2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame1\Outfits\u1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame1\Outfits\u2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame1\Shoes\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame2\Arms\h1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame2\BodyTemplate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame2\Faces\f1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame2\Faces\face2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame2\Hats\ha1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame2\Hats\ha2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame2\Outfits\u1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame2\Outfits\u2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame2\Shoes\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame3\Arms\h1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame3\BodyTemplate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame3\Faces\f1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame3\Faces\face2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame3\Hats\ha1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame3\Hats\ha2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame3\Outfits\u1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame3\Outfits\u2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame3\Shoes\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame4\Arms\h1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame4\BodyTemplate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame4\Faces\f1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame4\Faces\face2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame4\Hats\ha1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame4\Hats\ha2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame4\Outfits\u1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame4\Outfits\u2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpriteGenerator\IMG\Frame4\Shoes\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+	<Content Include="Content\Pirates\*.png">
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb">
@@ -246,7 +321,9 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
+    
   <Target Name="AfterBuild">
+
   </Target>
-  -->
+-->
 </Project>

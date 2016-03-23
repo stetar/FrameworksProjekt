@@ -19,3 +19,20 @@
 /processorParam:TextureFormat=Compressed
 /build:StandardFont.spritefont
 
+#begin ThisFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:ThisFont.spritefont
+
+#begin Pirates/Pirate1Spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Pirates/Pirate1Spritesheet.png
+
