@@ -24,7 +24,8 @@ namespace FrameworksProjekt.Components
         private Miniontype type;
         private IStrategy strategy;
         private Vector2 target;
-
+        private Level currentLevel;
+        private static Random r = new Random();
 
         public Miniontype Type
         {
@@ -32,9 +33,22 @@ namespace FrameworksProjekt.Components
             set { type = value; }
         }
 
+        public Level CurrentLevel
+        {
+            get
+            {
+                return currentLevel;
+            }
+
+            set
+            {
+                currentLevel = value;
+            }
+        }
+
         public Minion(GameObject gameObject) : base(gameObject)
         {
-            direction = Direction.Down;
+            this.direction = Direction.Down;
         }
 
         public void LoadContent(ContentManager content)
@@ -54,15 +68,35 @@ namespace FrameworksProjekt.Components
         public void Move()
         {
             Vector2 translation = Vector2.Zero;
-            if (this.GameObject.GetTransform.Position.X > target.X)
+
+            if(Math.Abs(target.X - this.GameObject.GetTransform.Position.X) < 1)
             {
-                translation += new Vector2(-1,0);
-                direction = Direction.Left;
+                target = Vector2.Zero;
             }
-            else if (this.GameObject.GetTransform.Position.X < target.X)
+
+            if(target != Vector2.Zero)
+            { 
+                if (this.GameObject.GetTransform.Position.X > target.X)
+                {
+                    translation += new Vector2(-1,0);
+                    direction = Direction.Left;
+                    animator.PlayAnimation("WalkLeft");
+                }
+                else if (this.GameObject.GetTransform.Position.X < target.X)
+                {
+                    translation += new Vector2(1,0);
+                    direction = Direction.Right;
+                    animator.PlayAnimation("WalkRight");
+                }
+            }
+            else
             {
-                translation += new Vector2(1,0);
-                direction = Direction.Right;
+                animator.PlayAnimation("IdleFront");
+
+                if(r.Next(1000) <= 1)
+                {
+                    target = new Vector2(r.Next(currentLevel.Boundaries.Item1, currentLevel.Boundaries.Item2 - ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).Rectangle.Width), this.GameObject.GetTransform.Position.Y);
+                }
             }
 
             UpdateAnimation();
@@ -77,7 +111,11 @@ namespace FrameworksProjekt.Components
 
         public void CreateAnimation()
         {
-            
+            animator.CreateAnimation("IdleFront", new Animation(2, 0, 0, 128, 128, 2, new Vector2(0, 0)));
+            animator.CreateAnimation("WalkRight", new Animation(2, 128, 0, 128, 128, 4, new Vector2(0, 0)));
+            animator.CreateAnimation("WalkLeft", new Animation(2, 256, 0, 128, 128, 4, new Vector2(0, 0)));
+
+            animator.PlayAnimation("IdleFront");
         }
 
         public void SetTypeValues()

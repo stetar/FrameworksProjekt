@@ -21,6 +21,7 @@ namespace FrameworksProjekt
     {
         private Texture2D background;
         private string imageString;
+        private string name;
         private Vector2 spawnPoint;
         // Actions to do if collision with given interest-point
         private Dictionary<Rectangle, Action> interestPoints;
@@ -69,20 +70,46 @@ namespace FrameworksProjekt
             }
         }
 
+        public Vector2 SpawnPoint
+        {
+            get
+            {
+                return spawnPoint;
+            }
+
+            set
+            {
+                spawnPoint = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+            }
+        }
+
         public Level(string imageString, Vector2 spawnPoint, Tuple<int, int> boundaries)
         {
             this.imageString = imageString;
             this.InterestPoints = new Dictionary<Rectangle, Action>();
             this.boundaries = boundaries;
-            this.spawnPoint = spawnPoint;
-
+            this.SpawnPoint = spawnPoint;
+            this.name = imageString;
         }
 
         public void LoadContent(ContentManager content)
         {
             background = content.Load<Texture2D>(imageString);
             boundaries = new Tuple<int, int>(boundaries.Item1, Width - boundaries.Item2);
-            GameWorld.Instance.Player.GetTransform.Position = spawnPoint; 
+            GameWorld.Instance.Player.GetTransform.Position = SpawnPoint; 
         }
 
         public void Draw(SpriteBatch spriteBatch)

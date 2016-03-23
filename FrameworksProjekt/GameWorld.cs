@@ -13,6 +13,14 @@ namespace FrameworksProjekt
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
+    /// 
+    public enum SpawnRoom
+    {
+        Cellar,
+        VeganStore,
+        CoffeeShop
+    }
+
     public class GameWorld : Game
     {
         GraphicsDeviceManager graphics;
@@ -32,9 +40,10 @@ namespace FrameworksProjekt
         private Inventory mainInventory;
         private ItemGenerator itemGenerator;
         private bool drawInventory;
+        private static Random r = new Random();
+        private static GameWorld instance;
 
         public float Delta { get; set; }
-        private static GameWorld instance;
 
         public static GameWorld Instance
         {
@@ -249,6 +258,8 @@ namespace FrameworksProjekt
                 obj.LoadContent(Content);
             }
 
+            GenerateMinion(SpawnRoom.Cellar);
+
             DisplayRect = GraphicsDevice.Viewport.Bounds;
 
             ResetInventorys();
@@ -303,7 +314,17 @@ namespace FrameworksProjekt
 
             foreach (GameObject obj in gameObjects)
             {
-                obj.Draw(spriteBatch);
+                Minion m = (Minion)obj.GetComponent("Minion");
+
+                // Only draw minions if in current gamelevel
+                if ( m == null )
+                {
+                    obj.Draw(spriteBatch);
+                }
+                else if(gameLevel.Name == m.CurrentLevel.Name)
+                {
+                    obj.Draw(spriteBatch);                 
+                }
             }
 
             foreach(Tooltip t in tooltips)
@@ -332,6 +353,44 @@ namespace FrameworksProjekt
                 Inventorys[i] = new Inventory();
                 Inventorys[i].AddItem(itemGenerator.GenerateItem((Category)i, 5));
             }
+        }
+
+        private void GenerateMinion(SpawnRoom spawn)
+        {
+            GameObjectDirector d = new GameObjectDirector(new MinionBuilder());
+            LevelDirector ld;
+            // minion
+            GameObject g = d.Construct();
+            Level l;
+
+            switch((int)spawn)
+            {
+                case 1:
+                    ld = new LevelDirector(new CellarBuilder());
+                    break;
+
+                case 2:
+                    ld = new LevelDirector(new VeganStoreBuilder());
+                    break;
+
+                case 3:
+                    ld = new LevelDirector(new CoffeeshopBuilder());
+                    break;
+
+                default:
+                    ld = new LevelDirector(new CellarBuilder());
+                    break;
+            }
+
+            l = ld.Construct();
+            l.LoadContent(GameWorld.Instance.Content);
+            ((Minion)g.GetComponent("Minion")).CurrentLevel = l;
+
+            g.GetTransform.Position = new Vector2(r.Next(l.Boundaries.Item1, l.Boundaries.Item2 - ((SpriteRenderer)g.GetComponent("SpriteRenderer")).Rectangle.Width), l.SpawnPoint.Y);
+
+            g.LoadContent(Content);
+
+            gameObjects.Add(g);
         }
 
         private void DrawMainInventory(SpriteBatch spriteBatch)

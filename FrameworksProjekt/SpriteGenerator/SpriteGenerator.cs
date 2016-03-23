@@ -7,15 +7,15 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace WindowsFormsApplication2
+namespace FrameworksProjekt.SpriteGenerator
 {
     static class SpriteGenerator
     {
         // folder names
         private static string mainPath;
         private static string spriteName;
-        private static string mainDirectory = "IMG/";
-        private static string destinationFolder = mainDirectory + "Pirates/";
+        private static string mainDirectory = "SpriteGenerator/IMG/";
+        private static string destinationFolder = "Content/Pirates/";
         // main body template - might add a random option for this too
         private static string bodyTemplate = "BodyTemplate.png";
 
@@ -126,7 +126,7 @@ namespace WindowsFormsApplication2
                 { 
                     filesNames = Directory.GetFiles(folderPath).ToList();
                     int t = r.Next(0, filesNames.Count);
-                    spritePartNames[i] = filesNames[t].Substring(filesNames[t].IndexOf("\\"));
+                    spritePartNames[i] = filesNames[t].Substring(filesNames[t].LastIndexOf("\\"));
                 }
             }
         }

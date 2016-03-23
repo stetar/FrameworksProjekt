@@ -34,7 +34,6 @@ namespace FrameworksProjekt.Builder
             GameWorld.Instance.LoadLevel(l);
         }
 
-
         public void DirectoryAction2()
         {
             LevelDirector ld = new LevelDirector(new WorldMapBuilder());
