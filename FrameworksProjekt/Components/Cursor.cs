@@ -52,8 +52,9 @@ namespace FrameworksProjekt
         public void Update()
         {
             state = Mouse.GetState();
-
             position = new Vector2(Mouse.GetState().X - sprite.Width / 2, Mouse.GetState().Y - sprite.Width / 2);
+            // Opdater rectangles position
+            Rectangle = new Rectangle((int)position.X, (int)position.Y, sprite.Width, sprite.Height);
             this.GameObject.GetTransform.Position = position;
 #if DEBUG
             System.Diagnostics.Debug.WriteLine(position.X + ", "+position.Y);
