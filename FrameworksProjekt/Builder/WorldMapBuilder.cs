@@ -54,10 +54,10 @@ namespace FrameworksProjekt.Builder
 
         public void GoToAarhus()
         {
-            foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
-            {
-                if (key.Intersects(cursor.Rectangle))
-                {
+            //foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
+            //{
+            //    if (key.Intersects(cursor.Rectangle))
+            //    {
                     if (mouseState.LeftButton == ButtonState.Pressed)
                     {
                         LevelDirector LD = new LevelDirector(new AarhusBuilder());
@@ -65,8 +65,12 @@ namespace FrameworksProjekt.Builder
                         GameWorld.Instance.GameLevel = l;
                         GameWorld.Instance.LoadLevel(l);
                     }
-                }
-            }
+                    else
+                    {
+                        GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(10, 10, 200, 200),"Click to go to Aarhus" , new Vector2(10, 10), Color.White, Color.Black));
+                    }
+            //    }
+            //}
         }
 
         public void GoToSkagen()
@@ -81,6 +85,10 @@ namespace FrameworksProjekt.Builder
                         l = LD.Construct();
                         GameWorld.Instance.GameLevel = l;
                         GameWorld.Instance.LoadLevel(l);
+                    }
+                    else
+                    {
+                        GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(10, 10, 200, 200), "Click to go to Aarhus", new Vector2(10, 10), Color.White, Color.Black));
                     }
                 }
             }
