@@ -13,7 +13,8 @@ namespace FrameworksProjekt
         Aarhus,
         Esbjerg, 
         Skagen,
-        København
+        København,
+        Grenaa
     }
 
     public class Level

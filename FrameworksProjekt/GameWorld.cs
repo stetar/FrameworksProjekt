@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using FrameworksProjekt.Items;
 using System;
+using System.Linq;
 
 namespace FrameworksProjekt
 {
@@ -217,8 +218,9 @@ namespace FrameworksProjekt
         {
             // TODO: Add your initialization logic here
             gameObjects = new List<GameObject>();
-            Colliders = new List<Collider>();
             GameObjectDirector GOD = new GameObjectDirector(new PlayerBuilder());
+            gameObjects.Add(GOD.Construct());
+            GOD = new GameObjectDirector(new CursorBuilder());
             gameObjects.Add(GOD.Construct());
 
             LevelDirector LD  = new LevelDirector(new HeadQuartersBuilder());

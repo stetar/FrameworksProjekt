@@ -149,15 +149,7 @@ namespace FrameworksProjekt
 
         public void OnCollisonStay(Collider other)
         {
-            if (other == other.GameObject.GetComponent("Door"))
-            {
-                KeyboardState ks = new KeyboardState();
 
-                if (ks.IsKeyDown(Keys.Space))
-                {
-                    
-                }
-            }
         }
     }
 }
