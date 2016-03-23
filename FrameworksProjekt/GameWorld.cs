@@ -234,7 +234,7 @@ namespace FrameworksProjekt
             GameObjectDirector GOD = new GameObjectDirector(new PlayerBuilder());
             gameObjects.Add(GOD.Construct());
 
-            LevelDirector LD  = new LevelDirector(new HeadQuartersBuilder());
+            LevelDirector LD  = new LevelDirector(new WorldMapBuilder());
             gameLevel = LD.Construct();
 
             this.Colliders = new List<Collider>();

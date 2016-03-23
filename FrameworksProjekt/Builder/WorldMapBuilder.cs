@@ -36,24 +36,25 @@ namespace FrameworksProjekt.Builder
 
         public void GoToGrenaa()
         {
-            foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
+
+            if (cursor.State.LeftButton == ButtonState.Pressed)
             {
-                if (key.Intersects(cursor.Rectangle))
-                {
-                    if (cursor.State.LeftButton == ButtonState.Pressed)
-                    {
-                        LevelDirector LD = new LevelDirector(new GrenaaBuilder());
-                        l = LD.Construct();
-                        GameWorld.Instance.GameLevel = l;
-                        GameWorld.Instance.LoadLevel(l);
-                    }
-                }
+                LevelDirector LD = new LevelDirector(new GrenaaBuilder());
+                l = LD.Construct();
+                GameWorld.Instance.GameLevel = l;
+                GameWorld.Instance.LoadLevel(l);
             }
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(630, 300, 250, 60), "Click to go to Grenaa\nthe Execution Dock of your gang",
+                    new Vector2(10, 10), Color.White, Color.Black));
+            }
+
         }
 
         public void GoToAarhus()
         {
-            if (cursor.ouseState.LeftButton == ButtonState.Pressed)
+            if (cursor.State.LeftButton == ButtonState.Pressed)
             {
                 LevelDirector LD = new LevelDirector(new AarhusBuilder());
                 l = LD.Construct();
@@ -62,7 +63,7 @@ namespace FrameworksProjekt.Builder
             }
             else
             {
-                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(10, 10, 200, 200), "Click to go to Aarhus",
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(530, 360, 160, 40), "Click to go to Aarhus",
                     new Vector2(10, 10), Color.White, Color.Black));
             }
         }
@@ -70,7 +71,7 @@ namespace FrameworksProjekt.Builder
         public void GoToSkagen()
         {
 
-            if (mouseState.LeftButton == ButtonState.Pressed)
+            if (cursor.State.LeftButton == ButtonState.Pressed)
             {
                 LevelDirector LD = new LevelDirector(new SkagenBuilder());
                 l = LD.Construct();
@@ -79,7 +80,7 @@ namespace FrameworksProjekt.Builder
             }
             else
             {
-                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(10, 10, 200, 200), "Click to go to Skagen",
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(570, 130, 160, 40), "Click to go to Skagen",
                     new Vector2(10, 10), Color.White, Color.Black));
             }
         }
@@ -87,23 +88,33 @@ namespace FrameworksProjekt.Builder
 
         public void GoToEsbjerg()
         {
-            if (mouseState.LeftButton == ButtonState.Pressed)
+            if (cursor.State.LeftButton == ButtonState.Pressed)
             {
                 LevelDirector LD = new LevelDirector(new EsbjergBuilder());
                 l = LD.Construct();
                 GameWorld.Instance.GameLevel = l;
                 GameWorld.Instance.LoadLevel(l);
             }
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(320, 430, 160, 40), "Click to go to Esbjerg",
+                    new Vector2(10, 10), Color.White, Color.Black));
+            }
         }
 
         public void GoToKøbenhavn()
         {
-            if (mouseState.LeftButton == ButtonState.Pressed)
+            if (cursor.State.LeftButton == ButtonState.Pressed)
             {
                 LevelDirector LD = new LevelDirector(new KøbenhavnBuilder());
                 l = LD.Construct();
                 GameWorld.Instance.GameLevel = l;
                 GameWorld.Instance.LoadLevel(l);
+            }
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(10, 10, 200, 200), "Click to go to København",
+                    new Vector2(10, 10), Color.White, Color.Black));
             }
         }
     }
