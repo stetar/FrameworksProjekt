@@ -43,7 +43,7 @@ namespace FrameworksProjekt
         {
             ks = Keyboard.GetState();
 
-            if (!ks.IsKeyDown(Keys.Space))
+            if (!ks.IsKeyDown(Keys.Space) && !cooldown)
             {
                 GameWorld.Instance.Tooltips.Add(t);
 
