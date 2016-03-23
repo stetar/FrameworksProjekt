@@ -13,7 +13,6 @@ namespace FrameworksProjekt.Builder
     {
         private Level l;
         private Cursor cursor;
-        private MouseState mouseState = Mouse.GetState();
 
         public Level GetResult()
         {
@@ -41,7 +40,7 @@ namespace FrameworksProjekt.Builder
             {
                 if (key.Intersects(cursor.Rectangle))
                 {
-                    if (mouseState.LeftButton == ButtonState.Pressed)
+                    if (cursor.State.LeftButton == ButtonState.Pressed)
                     {
                         LevelDirector LD = new LevelDirector(new GrenaaBuilder());
                         l = LD.Construct();
@@ -54,12 +53,17 @@ namespace FrameworksProjekt.Builder
 
         public void GoToAarhus()
         {
-            if (mouseState.LeftButton == ButtonState.Pressed)
+            if (cursor.ouseState.LeftButton == ButtonState.Pressed)
             {
                 LevelDirector LD = new LevelDirector(new AarhusBuilder());
                 l = LD.Construct();
                 GameWorld.Instance.GameLevel = l;
                 GameWorld.Instance.LoadLevel(l);
+            }
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(10, 10, 200, 200), "Click to go to Aarhus",
+                    new Vector2(10, 10), Color.White, Color.Black));
             }
         }
 
@@ -73,8 +77,13 @@ namespace FrameworksProjekt.Builder
                 GameWorld.Instance.GameLevel = l;
                 GameWorld.Instance.LoadLevel(l);
             }
-
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(10, 10, 200, 200), "Click to go to Skagen",
+                    new Vector2(10, 10), Color.White, Color.Black));
+            }
         }
+
 
         public void GoToEsbjerg()
         {
