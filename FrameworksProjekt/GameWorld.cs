@@ -43,6 +43,10 @@ namespace FrameworksProjekt
         private static Random r = new Random();
         private static GameWorld instance;
 
+        // Testing
+        // Log mouse position in debug 
+        bool logMouse = true;
+
         public float Delta { get; set; }
 
         public static GameWorld Instance
@@ -333,6 +337,11 @@ namespace FrameworksProjekt
 
             if (drawInventory)
                 DrawMainInventory(spriteBatch);
+
+            if(logMouse)
+            {
+                System.Diagnostics.Debug.WriteLine((Mouse.GetState().X + camera.Position.X)+", " + Mouse.GetState().Y + camera.Position.Y);
+            }
     
             spriteBatch.End();
             base.Draw(gameTime);
@@ -341,17 +350,6 @@ namespace FrameworksProjekt
         public void LoadLevel(Level l)
         {
             l.LoadContent(Content);
-        }
-
-        private void ResetInventorys()
-        {
-            Inventorys = new Inventory[5];
-
-            for(int i = 0; i<Inventorys.Length; i++)
-            {
-                Inventorys[i] = new Inventory();
-                Inventorys[i].AddItem(itemGenerator.GenerateItem((Category)i, 5));
-            }
         }
 
         private void GenerateMinion(SpawnRoom spawn)
@@ -407,6 +405,25 @@ namespace FrameworksProjekt
                 spriteBatch.Draw(it.Sprite, new Vector2(x, y));
                 spriteBatch.DrawString(StandardFont, it.Name, new Vector2(x, y + 64), Color.Black);
                 spriteBatch.DrawString(StandardFont, "x"+it.Count, new Vector2(x, y + 80), Color.Black);
+            }
+        }
+
+        private void ResetInventorys()
+        {
+            Inventorys = new Inventory[5];
+
+            for (int i = 0; i < Inventorys.Length; i++)
+            {
+                Inventorys[i] = new Inventory();
+                Inventorys[i].AddItem(itemGenerator.GenerateItem((Category)i, 5));
+            }
+        }
+
+        private void AddItemToInventorys()
+        {
+            for (int i = 0; i < Inventorys.Length; i++)
+            {
+                Inventorys[i].AddItem(itemGenerator.GenerateItem((Category)i, 5));
             }
         }
     }
