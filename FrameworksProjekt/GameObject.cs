@@ -102,7 +102,7 @@ namespace FrameworksProjekt
             {
                 if (c is IOnCollisionStay)
                 {
-                    (c as IOnCollisionStay).OnCollisonStay(other);
+                    (c as IOnCollisionStay).OnCollisionStay(other);
                 }
             }
         }
