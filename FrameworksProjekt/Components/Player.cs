@@ -147,7 +147,7 @@ namespace FrameworksProjekt
             GameWorld.Instance.Camera.Position = new Vector2(x, y);
         }
 
-        public void OnCollisonStay(Collider other)
+        public void OnCollisionStay(Collider other)
         {
 
         }

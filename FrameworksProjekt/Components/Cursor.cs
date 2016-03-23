@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FrameworksProjekt.Components;
+using FrameworksProjekt.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,7 +11,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FrameworksProjekt
 {
-    public class Cursor : Component, IUpdateable, ILoadable
+    public class Cursor : Component, IUpdateable, ILoadable, IOnCollisionStay
     {
         private Texture2D sprite;
         private Vector2 position;
@@ -27,7 +29,6 @@ namespace FrameworksProjekt
 
         public void LoadContent(ContentManager content)
         {
-            //sprite = content.Load<Texture2D>("Hook");
             sprite = ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).Sprite;
             ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).Rectangle = new Rectangle(0, 0, sprite.Width, sprite.Height);
             position = GameObject.GetTransform.Position;
@@ -41,6 +42,11 @@ namespace FrameworksProjekt
 #if DEBUG
             System.Diagnostics.Debug.WriteLine(position.X + ", "+position.Y);
 #endif
+        }
+
+        public void OnCollisionStay(Collider other)
+        {
+            
         }
 
     }

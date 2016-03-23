@@ -8,6 +8,6 @@ namespace FrameworksProjekt.Interfaces
 {
     interface IOnCollisionStay
     {
-        void OnCollisonStay(Collider other);
+        void OnCollisionStay(Collider other);
     }
 }

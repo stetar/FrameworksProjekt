@@ -21,7 +21,7 @@ namespace FrameworksProjekt.Components
             
         }
 
-        public void OnCollisonStay(Collider other)
+        public void OnCollisionStay(Collider other)
         {
             
         }
