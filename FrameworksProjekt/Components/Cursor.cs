@@ -16,11 +16,25 @@ namespace FrameworksProjekt
         private Texture2D sprite;
         private Vector2 position;
         private Rectangle rectangle;
+        private MouseState state;
 
         public Rectangle Rectangle
         {
             get { return rectangle; }
             set { rectangle = value; }
+        }
+
+        public MouseState State
+        {
+            get
+            {
+                return state;
+            }
+
+            set
+            {
+                state = value;
+            }
         }
 
         public Cursor(GameObject gameObject) : base(gameObject)
@@ -37,6 +51,8 @@ namespace FrameworksProjekt
 
         public void Update()
         {
+            state = Mouse.GetState();
+
             position = new Vector2(Mouse.GetState().X - sprite.Width / 2, Mouse.GetState().Y - sprite.Width / 2);
             this.GameObject.GetTransform.Position = position;
 #if DEBUG
