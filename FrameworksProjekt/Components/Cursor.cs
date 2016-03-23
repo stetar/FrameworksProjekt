@@ -17,6 +17,8 @@ namespace FrameworksProjekt
         private Vector2 position;
         private Rectangle rectangle;
         private MouseState state;
+        // Navne på alle level der bruger cursoren
+        private List<string> cursorLevelNames = new List<string> { "Denmark" };
 
         public Rectangle Rectangle
         {
@@ -51,6 +53,12 @@ namespace FrameworksProjekt
 
         public void Update()
         {
+            if (!cursorLevelNames.Contains(GameWorld.Instance.GameLevel.Name))
+            {
+                GameWorld.Instance.GameObjects.Remove(this.GameObject);
+                return;
+            }
+
             state = Mouse.GetState();
             position = new Vector2(Mouse.GetState().X - sprite.Width / 2, Mouse.GetState().Y - sprite.Width / 2);
             // Opdater rectangles position
