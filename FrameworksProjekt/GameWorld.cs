@@ -44,7 +44,7 @@ namespace FrameworksProjekt
         private static GameWorld instance;
 
         // Testing
-        // Log mouse position in debug 
+        // Log mouse position in debug and show mouse
         bool logMouse = true;
 
         public float Delta { get; set; }
@@ -240,6 +240,11 @@ namespace FrameworksProjekt
             this.Colliders = new List<Collider>();
             this.tooltips = new List<Tooltip>();
 
+            if(logMouse)
+            {
+                this.IsMouseVisible = true;
+            }
+
             base.Initialize();
         }
 
@@ -340,7 +345,7 @@ namespace FrameworksProjekt
 
             if(logMouse)
             {
-                System.Diagnostics.Debug.WriteLine((Mouse.GetState().X + camera.Position.X)+", " + Mouse.GetState().Y + camera.Position.Y);
+                System.Diagnostics.Debug.WriteLine((Mouse.GetState().X + camera.Position.X)+", " + (Mouse.GetState().Y + camera.Position.Y));
             }
     
             spriteBatch.End();
