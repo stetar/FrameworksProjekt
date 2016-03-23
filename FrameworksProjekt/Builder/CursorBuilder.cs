@@ -19,8 +19,10 @@ namespace FrameworksProjekt.Builder
         public void BuildGameObject()
         {
             go = new GameObject(new Vector2(0, 0));
-            go.AddComponent(new SpriteRenderer(go, "Hook", 10, Color.White));
+            go.AddComponent(new SpriteRenderer(go, "Hook", 1, Color.White));
             go.AddComponent(new Cursor(go));
+
+            go.LoadContent(GameWorld.Instance.Content);
         }
     }
 }

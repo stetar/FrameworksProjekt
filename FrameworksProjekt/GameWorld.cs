@@ -229,8 +229,6 @@ namespace FrameworksProjekt
             gameObjects = new List<GameObject>();
             GameObjectDirector GOD = new GameObjectDirector(new PlayerBuilder());
             gameObjects.Add(GOD.Construct());
-            GOD = new GameObjectDirector(new CursorBuilder());
-            gameObjects.Add(GOD.Construct());
 
             LevelDirector LD  = new LevelDirector(new HeadQuartersBuilder());
             gameLevel = LD.Construct();
@@ -291,9 +289,10 @@ namespace FrameworksProjekt
             drawInventory = false;
 
             Delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
-            foreach (GameObject obj in gameObjects)
+
+            for (int i = 0; i < GameObjects.Count; i++)
             {
-                obj.Update();
+                GameObjects[i].Update();
             }
             base.Update(gameTime);
         }
@@ -363,7 +362,7 @@ namespace FrameworksProjekt
             GameObject g = d.Construct();
             Level l;
 
-            switch((int)spawn)
+            switch ((int)spawn)
             {
                 case 1:
                     ld = new LevelDirector(new CellarBuilder());

@@ -12,7 +12,7 @@ namespace FrameworksProjekt
     public class Cursor : Component, IUpdateable, ILoadable
     {
         private Texture2D sprite;
-        private Point position;
+        private Vector2 position;
         private Rectangle rectangle;
 
         public Rectangle Rectangle
@@ -23,18 +23,24 @@ namespace FrameworksProjekt
 
         public Cursor(GameObject gameObject) : base(gameObject)
         {
-           
         }
 
         public void LoadContent(ContentManager content)
         {
-            sprite = content.Load<Texture2D>("Hook");
-            Rectangle = new Rectangle(this.position.X, this.position.Y, sprite.Width, sprite.Height);
+            //sprite = content.Load<Texture2D>("Hook");
+            sprite = ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).Sprite;
+            ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).Rectangle = new Rectangle(0, 0, sprite.Width, sprite.Height);
+            position = GameObject.GetTransform.Position;
+            Rectangle = new Rectangle((int)this.position.X - sprite.Width/2, (int)this.position.Y - sprite.Height/2, sprite.Width, sprite.Height);
         }
 
         public void Update()
         {
-            position = new Point(Mouse.GetState().X, Mouse.GetState().Y);
+            position = new Vector2(Mouse.GetState().X - sprite.Width / 2, Mouse.GetState().Y - sprite.Width / 2);
+            this.GameObject.GetTransform.Position = position;
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine(position.X + ", "+position.Y);
+#endif
         }
 
     }

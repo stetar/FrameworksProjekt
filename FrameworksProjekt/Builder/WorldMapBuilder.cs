@@ -28,6 +28,11 @@ namespace FrameworksProjekt.Builder
             l.InterestPoints.Add(new Rectangle(580, 405, 75, 55), () => GoToAarhus());
             l.InterestPoints.Add(new Rectangle(359, 472, 75, 55), () => GoToEsbjerg());
             l.InterestPoints.Add(new Rectangle(885, 519, 75, 55), () => GoToKøbenhavn());
+
+            GameObjectDirector d = new GameObjectDirector(new CursorBuilder());
+            GameObject g = d.Construct();
+            cursor = ((Cursor)g.GetComponent("Cursor"));
+            GameWorld.Instance.GameObjects.Add(g);
         }
 
         public void GoToGrenaa()

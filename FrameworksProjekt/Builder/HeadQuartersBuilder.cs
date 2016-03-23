@@ -39,7 +39,7 @@ namespace FrameworksProjekt.Builder
 
         public void DirectoryAction2()
         {
-            LevelDirector ld = new LevelDirector(new CellarBuilder());
+            LevelDirector ld = new LevelDirector(new WorldMapBuilder());
             l = ld.Construct();
             GameWorld.Instance.GameLevel = l;
             GameWorld.Instance.LoadLevel(l);
