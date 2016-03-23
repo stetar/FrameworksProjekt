@@ -22,7 +22,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Denmark", new Vector2(-150,-150), new Tuple<int, int>(0,0) );
+            l = new Level("Denmark", new Vector2(-150, -150), new Tuple<int, int>(0, 0));
             l.InterestPoints.Add(new Rectangle(611, 172, 75, 55), () => GoToSkagen());
             l.InterestPoints.Add(new Rectangle(688, 364, 55, 40), () => GoToGrenaa());
             l.InterestPoints.Add(new Rectangle(580, 405, 75, 55), () => GoToAarhus());
@@ -54,69 +54,47 @@ namespace FrameworksProjekt.Builder
 
         public void GoToAarhus()
         {
-            foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
+            if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                if (key.Intersects(cursor.Rectangle))
-                {
-                    if (mouseState.LeftButton == ButtonState.Pressed)
-                    {
-                        LevelDirector LD = new LevelDirector(new AarhusBuilder());
-                        l = LD.Construct();
-                        GameWorld.Instance.GameLevel = l;
-                        GameWorld.Instance.LoadLevel(l);
-                    }
-                }
+                LevelDirector LD = new LevelDirector(new AarhusBuilder());
+                l = LD.Construct();
+                GameWorld.Instance.GameLevel = l;
+                GameWorld.Instance.LoadLevel(l);
             }
         }
 
         public void GoToSkagen()
         {
-            foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
+
+            if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                if (key.Intersects(cursor.Rectangle))
-                {
-                    if (mouseState.LeftButton == ButtonState.Pressed)
-                    {
-                        LevelDirector LD = new LevelDirector(new SkagenBuilder());
-                        l = LD.Construct();
-                        GameWorld.Instance.GameLevel = l;
-                        GameWorld.Instance.LoadLevel(l);
-                    }
-                }
+                LevelDirector LD = new LevelDirector(new SkagenBuilder());
+                l = LD.Construct();
+                GameWorld.Instance.GameLevel = l;
+                GameWorld.Instance.LoadLevel(l);
             }
+
         }
 
         public void GoToEsbjerg()
         {
-            foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
+            if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                if (key.Intersects(cursor.Rectangle))
-                {
-                    if (mouseState.LeftButton == ButtonState.Pressed)
-                    {
-                        LevelDirector LD = new LevelDirector(new EsbjergBuilder());
-                        l = LD.Construct();
-                        GameWorld.Instance.GameLevel = l;
-                        GameWorld.Instance.LoadLevel(l);
-                    }
-                }
+                LevelDirector LD = new LevelDirector(new EsbjergBuilder());
+                l = LD.Construct();
+                GameWorld.Instance.GameLevel = l;
+                GameWorld.Instance.LoadLevel(l);
             }
         }
 
         public void GoToKøbenhavn()
         {
-            foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
+            if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                if (key.Intersects(cursor.Rectangle))
-                {
-                    if (mouseState.LeftButton == ButtonState.Pressed)
-                    {
-                        LevelDirector LD = new LevelDirector(new KøbenhavnBuilder());
-                        l = LD.Construct();
-                        GameWorld.Instance.GameLevel = l;
-                        GameWorld.Instance.LoadLevel(l);
-                    }
-                }
+                LevelDirector LD = new LevelDirector(new KøbenhavnBuilder());
+                l = LD.Construct();
+                GameWorld.Instance.GameLevel = l;
+                GameWorld.Instance.LoadLevel(l);
             }
         }
     }
