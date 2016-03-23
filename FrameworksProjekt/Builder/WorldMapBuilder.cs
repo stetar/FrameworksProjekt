@@ -63,7 +63,7 @@ namespace FrameworksProjekt.Builder
             }
             else
             {
-                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(530, 360, 160, 40), "Click to go to Aarhus",
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(520, 360, 170, 40), "Click to go to Aarhus",
                     new Vector2(10, 10), Color.White, Color.Black));
             }
         }
@@ -80,7 +80,7 @@ namespace FrameworksProjekt.Builder
             }
             else
             {
-                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(570, 130, 160, 40), "Click to go to Skagen",
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(570, 130, 170, 40), "Click to go to Skagen",
                     new Vector2(10, 10), Color.White, Color.Black));
             }
         }
@@ -97,7 +97,7 @@ namespace FrameworksProjekt.Builder
             }
             else
             {
-                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(320, 430, 160, 40), "Click to go to Esbjerg",
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(320, 430, 170, 40), "Click to go to Esbjerg",
                     new Vector2(10, 10), Color.White, Color.Black));
             }
         }
@@ -113,7 +113,7 @@ namespace FrameworksProjekt.Builder
             }
             else
             {
-                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(10, 10, 200, 200), "Click to go to København",
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(850, 480, 200, 40), "Click to go to København",
                     new Vector2(10, 10), Color.White, Color.Black));
             }
         }
