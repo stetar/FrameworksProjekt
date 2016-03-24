@@ -166,6 +166,11 @@ namespace FrameworksProjekt.Components
                 // Headquarter coords in Grenaa
                 target = new Vector2(300, 500);
             }
+            // Outside in wrong city - going to busstop
+            else if(currentLevel is OutsideLevel && TargetLevel.Name != currentLevel.Name)
+            {
+
+            }
             else if(target == Vector2.Zero)
             {
                 animator.PlayAnimation("IdleFront");

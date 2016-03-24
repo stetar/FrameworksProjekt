@@ -18,7 +18,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new OutsideLevel("Skagen", new Vector2(0, 500), new Tuple<int, int>(0, 0), City.Skagen);
+            l = new OutsideLevel("Skagen", new Vector2(0, 500), new Tuple<int, int>(0, 0), City.Skagen, new Vector2(50, 500));
         }
 
         public void DirectoryAction()
