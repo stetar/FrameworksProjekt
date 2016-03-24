@@ -151,14 +151,6 @@ namespace FrameworksProjekt.Components
                 MoveLevel(ld.Construct());
                 target = Vector2.Zero;
             }
-            //// about to take the bus
-            //else if( currentLevel is OutsideLevel && (targetLevel is OutsideLevel && ((OutsideLevel)targetLevel).City != ((OutsideLevel)currentLevel).City)
-            //    || (targetLevel is InsideLevel && ((InsideLevel)targetLevel).City) != ((OutsideLevel)currentLevel).City)
-            //    && VeryCloseToTarget())
-            //{
-            //    currentLevel = targetLevel;
-            //    target = Vector2.Zero;
-            //}
         }
 
         public void FindTarget()
@@ -177,7 +169,7 @@ namespace FrameworksProjekt.Components
             // Outside in wrong city - going to busstop
             else if(currentLevel is OutsideLevel && TargetLevel.Name != currentLevel.Name)
             {
-                target = ((OutsideLevel)currentLevel).MapPosition;
+
             }
             else if(target == Vector2.Zero)
             {
