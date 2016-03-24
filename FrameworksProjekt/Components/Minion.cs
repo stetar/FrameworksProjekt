@@ -157,7 +157,7 @@ namespace FrameworksProjekt.Components
                 && currentLevel is OutsideLevel
                 && VeryCloseToTarget())
             {
-                currentLevel = targetLevel;
+                MoveLevel(targetLevel);
                 target = Vector2.Zero;
             }
         }
