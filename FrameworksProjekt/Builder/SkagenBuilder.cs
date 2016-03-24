@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FrameworksProjekt.Interfaces;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace FrameworksProjekt.Builder
 {
@@ -19,11 +20,31 @@ namespace FrameworksProjekt.Builder
         public void BuildLevel()
         {
             l = new OutsideLevel("Skagen", new Vector2(0, 500), new Tuple<int, int>(0, 0), City.Skagen, new Vector2(50, 500));
+            l.InterestPoints.Add(new Rectangle(40, 400, 80, 200), () => MapAction());
+            l.InterestPoints.Add(new Rectangle(1605, 505, 80, 200), () => ShopAction());
         }
 
-        public void DirectoryAction()
+
+        public void MapAction()
         {
-            //Add functionality here.
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                LevelDirector LD = new LevelDirector(new WorldMapBuilder());
+                l = LD.Construct();
+                GameWorld.Instance.GameLevel = l;
+                GameWorld.Instance.LoadLevel(l);
+            }
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(30, 350, 100, 40), "World map.",
+                   new Vector2(10, 10), Color.LightGray, Color.Black));
+            }
+
+        }
+
+        public void ShopAction()
+        {
+            ((OutsideLevel)l).ShopAction();
         }
     }
 }
