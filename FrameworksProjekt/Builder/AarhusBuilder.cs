@@ -20,7 +20,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new OutsideLevel("Aarhus", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Aarhus);
+            l = new OutsideLevel("Aarhus", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Aarhus, new Vector2(50, 500));
             l.InterestPoints.Add(new Rectangle(40, 400, 80, 200), () => MapAction());
             l.InterestPoints.Add(new Rectangle(1640, 400, 50, 200), () => ShopAction());
             l.InterestPoints.Add(new Rectangle(2540, 400, 100, 200), () => CoffeeShop());

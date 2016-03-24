@@ -18,7 +18,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new InsideLevel("Cellar", new Vector2(600, 500), new Tuple<int, int>(350, 100), new Vector2(1322, 550), new OutsideLevel("Grenaa", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Grenaa));
+            l = new InsideLevel("Cellar", new Vector2(600, 500), new Tuple<int, int>(350, 100), new Vector2(1322, 550), new OutsideLevel("Grenaa", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Grenaa, new Vector2(50, 500)));
             l.InterestPoints.Add(new Rectangle(1222, 500, 100, 100), () => DirectoryAction());
         }
 

@@ -20,6 +20,7 @@ namespace FrameworksProjekt
         private DateTime timeOfRobbery;
         private int cooldownTime = 20000;
         private City city;
+        private Vector2 mapPosition;
 
         internal Inventory Inventory
         {
@@ -47,11 +48,25 @@ namespace FrameworksProjekt
             }
         }
 
-        public OutsideLevel(string imageString, Vector2 spawnPoint, Tuple<int, int> boundaries, City city) : base(imageString, spawnPoint, boundaries)
+        public Vector2 MapPosition
+        {
+            get
+            {
+                return mapPosition;
+            }
+
+            set
+            {
+                mapPosition = value;
+            }
+        }
+
+        public OutsideLevel(string imageString, Vector2 spawnPoint, Tuple<int, int> boundaries, City city, Vector2 mapPosition) : base(imageString, spawnPoint, boundaries)
         {
             this.Inventory = GameWorld.Instance.Inventorys[(int)city];
             this.City = city;
             cooldown = false;
+            this.MapPosition = mapPosition;
         }
 
         public void ShopAction()
