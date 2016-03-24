@@ -28,7 +28,7 @@ namespace FrameworksProjekt.Builder
 
         public void DirectoryAction()
         {
-            if(Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
                 LevelDirector LD = new LevelDirector(new HeadQuartersBuilder());
                 l = LD.Construct();
