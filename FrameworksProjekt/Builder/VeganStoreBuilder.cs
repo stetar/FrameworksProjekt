@@ -19,11 +19,15 @@ namespace FrameworksProjekt.Builder
         public void BuildLevel()
         {
             l = new InsideLevel("Vegan store", new Vector2(0, 500), new Tuple<int, int>(0, 0), new Vector2(50, 550), new OutsideLevel("København", new Vector2(0, 500), new Tuple<int, int>(0, 0), City.København));
+            l.InterestPoints.Add(new Rectangle(1222, 500, 100, 100), () => DirectoryAction());
         }
 
         public void DirectoryAction()
         {
-            //Add functionality here.
+            LevelDirector ld = new LevelDirector(new KøbenhavnBuilder());
+            l = ld.Construct();
+            GameWorld.Instance.GameLevel = l;
+            GameWorld.Instance.LoadLevel(l);
         }
     }
 }

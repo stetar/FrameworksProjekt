@@ -46,7 +46,7 @@ namespace FrameworksProjekt
 
         // Testing
         // Log mouse position in debug and show mouse
-        bool logMouse = false;
+        bool logMouse = true;
 
         public float Delta { get; set; }
 

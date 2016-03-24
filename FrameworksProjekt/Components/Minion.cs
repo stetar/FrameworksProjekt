@@ -99,7 +99,9 @@ namespace FrameworksProjekt.Components
         {
             this.direction = Direction.Down;
             this.Cost = new ItemGenerator().GenerateItem((Category)r.Next(5), 5);
+#if DEBUG
             GameWorld.Instance.MainInventory.AddItem(Cost);
+#endif
             this.wild = true;
         }
 

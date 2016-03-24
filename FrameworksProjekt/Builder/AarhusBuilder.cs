@@ -24,6 +24,7 @@ namespace FrameworksProjekt.Builder
             l.InterestPoints.Add(new Rectangle(-120, 400, 20, 200), () => DirectoryAction());
             l.InterestPoints.Add(new Rectangle(1640, 400, 50, 200), () => ShopAction());
             l.InterestPoints.Add(new Rectangle(4100, 400, 20, 200), () => DirectoryAction2());
+            l.InterestPoints.Add(new Rectangle(2540, 400, 100, 200), () => CoffeeShop());
         }
 
         public void DirectoryAction()
@@ -46,6 +47,22 @@ namespace FrameworksProjekt.Builder
         public void ShopAction()
         {
             ((OutsideLevel)l).ShopAction();
+        }
+
+        public void CoffeeShop()
+        {
+            if(Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                LevelDirector ld = new LevelDirector(new CoffeeshopBuilder());
+                l = ld.Construct();
+                GameWorld.Instance.GameLevel = l;
+                GameWorld.Instance.LoadLevel(l);
+            }
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(2520, 350, 180, 40), "Coffee Shop.",
+                new Vector2(10, 10), Color.LightGray, Color.Black));
+            }
         }
     }
 }

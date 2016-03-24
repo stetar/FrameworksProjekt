@@ -23,6 +23,7 @@ namespace FrameworksProjekt.Builder
             l.InterestPoints.Add(new Rectangle(1630, 400, 100, 200), () => ShopAction());
             l.InterestPoints.Add(new Rectangle(300, 400, 100, 200), () => DirectoryAction());
             l.InterestPoints.Add(new Rectangle(40, 400, 80, 200), () => MapAction());
+            l.InterestPoints.Add(new Rectangle(2060, 400, 100, 200), () => Cellar());
         }
 
         public void DirectoryAction()
@@ -59,6 +60,22 @@ namespace FrameworksProjekt.Builder
             {
                 GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(30, 350, 100, 40), "World map.",
                    new Vector2(10, 10), Color.LightGray, Color.Black));
+            }
+        }
+
+        public void Cellar()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                LevelDirector ld = new LevelDirector(new CellarBuilder());
+                l = ld.Construct();
+                GameWorld.Instance.GameLevel = l;
+                GameWorld.Instance.LoadLevel(l);
+            }
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(2020, 350, 180, 40), "Gaming klubben.",
+                new Vector2(10, 10), Color.LightGray, Color.Black));
             }
         }
     }
