@@ -27,6 +27,7 @@ namespace FrameworksProjekt
         private Dictionary<Rectangle, Action> interestPoints;
         // The distance from outer egdes of level that player can walk
         private Tuple<int, int> boundaries;
+        private bool loaded;
 
         public int Width
         {
@@ -48,7 +49,7 @@ namespace FrameworksProjekt
         {
             get
             {
-                return boundaries;
+                return new Tuple<int, int>(boundaries.Item1, Width - boundaries.Item2);
             }
 
             set
@@ -103,13 +104,23 @@ namespace FrameworksProjekt
             this.boundaries = boundaries;
             this.SpawnPoint = spawnPoint;
             this.name = imageString;
+            this.loaded = false;
+            LoadContent(GameWorld.Instance.Content);
         }
 
         public void LoadContent(ContentManager content)
         {
-            background = content.Load<Texture2D>(imageString);
-            boundaries = new Tuple<int, int>(boundaries.Item1, Width - boundaries.Item2);
-            GameWorld.Instance.Player.GetTransform.Position = SpawnPoint; 
+            if(!this.loaded)
+            {
+                background = content.Load<Texture2D>(imageString);            
+
+                this.loaded = true;
+            }
+            else
+            {
+                // getting loaded twice means player requested load
+                GameWorld.Instance.Player.GetTransform.Position = SpawnPoint;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

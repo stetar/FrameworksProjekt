@@ -18,7 +18,7 @@ namespace FrameworksProjekt.Builder
 
         public void BuildLevel()
         {
-            l = new Level("Vegan store", new Vector2(0, 500), new Tuple<int, int>(0, 0));
+            l = new InsideLevel("Vegan store", new Vector2(0, 500), new Tuple<int, int>(0, 0), new Vector2(50, 550), new OutsideLevel("København", new Vector2(0, 500), new Tuple<int, int>(0, 0), City.København));
         }
 
         public void DirectoryAction()

@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using FrameworksProjekt.Factories;
 using FrameworksProjekt.Interfaces;
 using FrameworksProjekt.Items;
+using FrameworksProjekt.Builder;
 
 namespace FrameworksProjekt
 {
@@ -27,14 +28,12 @@ namespace FrameworksProjekt
         public Animator animator;
         private Direction direction;
         private IStrategy strategy;
-        private Inventory inventory;
 
         CategoryFac cs = new CategoryFac();
 
         public Player(GameObject gameObject) : base(gameObject)
         {
             direction = Direction.Down;
-            inventory = new Inventory();
         }
 
         public void LoadContent(ContentManager content)
@@ -149,7 +148,38 @@ namespace FrameworksProjekt
 
         public void OnCollisionStay(Collider other)
         {
+            Minion m = ((Minion)other.GameObject.GetComponent("Minion"));
 
+            // If minion and in same level as player and not recruited
+            if ( m != null && m.CurrentLevel.Name == GameWorld.Instance.GameLevel.Name && m.Wild == true)
+            {
+                Vector2 position = other.GameObject.GetTransform.Position;
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    if(GameWorld.Instance.MainInventory.CheckForItems(m.Cost))
+                    {
+                        // Hired minion
+                        m.Wild = false;
+                        // set minion target level to headquarter
+                        LevelDirector ld = new LevelDirector(new HeadQuartersBuilder());
+                        m.TargetLevel = ld.Construct();
+                        // remove cost from player inventory
+                        GameWorld.Instance.MainInventory.RemoveItem(m.Cost.Name, m.Cost.Count);
+                        // add new recruit to recruits list in gameworld
+                        GameWorld.Instance.Recruits.Add(m);
+                    }
+                    else
+                    {
+                        GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle((int)position.X - 100, (int)position.Y - 100, 400, 40), "Sorry not enough items. Minion cost: " + m.Cost.Name + " x" + m.Cost.Count, new Vector2(10, 10), Color.LightGray, Color.Black));
+                    }
+                }
+                else
+                {
+                    GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle((int)position.X - 100, (int)position.Y - 100, 400, 40), "Minion cost: " + m.Cost.Name + " x" + m.Cost.Count, new Vector2(10, 10), Color.LightGray, Color.Black));
+                }
+
+            }
         }
     }
 }
