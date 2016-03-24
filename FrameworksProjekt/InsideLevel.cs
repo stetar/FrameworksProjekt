@@ -42,10 +42,5 @@ namespace FrameworksProjekt
             this.minionExitPoint = minionExitPoint;
             this.city = city;
         }
-
-        public void CreateInterestPoints()
-        { 
-
-        }
     }
 }

@@ -88,6 +88,7 @@ namespace FrameworksProjekt.Components
                         if (key.Intersects(this.CollisionBox))
                         {
                             GameWorld.Instance.GameLevel.InterestPoints[key]();
+                            break;
                         }
                     }
                 }

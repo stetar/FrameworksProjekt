@@ -151,6 +151,15 @@ namespace FrameworksProjekt.Components
                 MoveLevel(ld.Construct());
                 target = Vector2.Zero;
             }
+            // taking buss
+            else if (targetLevel != null
+                && targetLevel.Name != currentLevel.Name
+                && currentLevel is OutsideLevel
+                && VeryCloseToTarget())
+            {
+                currentLevel = targetLevel;
+                target = Vector2.Zero;
+            }
         }
 
         public void FindTarget()
@@ -166,10 +175,10 @@ namespace FrameworksProjekt.Components
                 // Headquarter coords in Grenaa
                 target = new Vector2(300, 500);
             }
-            // Outside in wrong city - going to busstop
+            // Outside in wrong city - going to busstop (only have to go into headquarter if outside)
             else if(currentLevel is OutsideLevel && TargetLevel.Name != currentLevel.Name)
             {
-
+                target = ((OutsideLevel)currentLevel).MapPosition;
             }
             else if(target == Vector2.Zero)
             {
