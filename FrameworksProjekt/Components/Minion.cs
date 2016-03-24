@@ -5,17 +5,20 @@ using System.Runtime.Remoting.Channels;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using FrameworksProjekt.Interfaces;
+using FrameworksProjekt.Items;
+using FrameworksProjekt.Builder;
 
 namespace FrameworksProjekt.Components
 {
     public enum Miniontype
     {
         Chubby,
-        Weeaboo,
+        Vegan,
         Hipster,
 
     }
-    public class Minion : Component, ILoadable, IUpdateable
+    public class Minion : Component, ILoadable, IUpdateable, IOnCollisionStay
     {
         private float speed;
         private float strength;
@@ -25,6 +28,13 @@ namespace FrameworksProjekt.Components
         private IStrategy strategy;
         private Vector2 target;
         private Level currentLevel;
+        private Level targetLevel;
+        // Has minion been Shanghaiied yet
+        private bool wild;
+        // Cost of conversion
+        private Item cost;
+        private bool loaded = false;
+        private bool plundering = false;
         private static Random r = new Random();
 
         public Miniontype Type
@@ -46,32 +56,134 @@ namespace FrameworksProjekt.Components
             }
         }
 
+        public bool Wild
+        {
+            get
+            {
+                return wild;
+            }
+
+            set
+            {
+                wild = value;
+            }
+        }
+
+        public Item Cost
+        {
+            get
+            {
+                return cost;
+            }
+
+            set
+            {
+                cost = value;
+            }
+        }
+
+        public Level TargetLevel
+        {
+            get
+            {
+                return targetLevel;
+            }
+
+            set
+            {
+                targetLevel = value;
+            }
+        }
+
         public Minion(GameObject gameObject) : base(gameObject)
         {
             this.direction = Direction.Down;
+            this.Cost = new ItemGenerator().GenerateItem((Category)r.Next(5), 5);
+            GameWorld.Instance.MainInventory.AddItem(Cost);
+            this.wild = true;
         }
 
         public void LoadContent(ContentManager content)
         {
-            this.animator = (Animator) GameObject.GetComponent("Animator");
-            this.strategy = new Idle(animator);
+            if (!loaded)
+            {
+                this.animator = (Animator)GameObject.GetComponent("Animator");
+                this.strategy = new Idle(animator);
 
-            SetTypeValues();
-            CreateAnimation();
+                SetTypeValues();
+                CreateAnimation();
+
+                loaded = true;
+            }
         }
 
         public void Update()
         {
+            CheckActions();
+
+            FindTarget();
+
             Move();
+        }
+
+        public void CheckActions()
+        {
+            // leaving indoor room when first converted or leaving headquarter
+            if (targetLevel != currentLevel
+                && currentLevel is InsideLevel 
+                && target == ((InsideLevel)currentLevel).MinionExitPoint 
+                && VeryCloseToTarget())
+            {
+                MoveLevel(((InsideLevel)currentLevel).City);
+                target = Vector2.Zero;
+            }
+            // entering headquarter
+            else if (targetLevel != null
+                && targetLevel.Name == "Headquarters" 
+                && currentLevel.Name == "Grenaa"
+                // Headquarter x-coord in Grenaa
+                && target.X == 300
+                && VeryCloseToTarget())
+            {
+                LevelDirector ld = new LevelDirector(new HeadQuartersBuilder());
+                MoveLevel(ld.Construct());
+                target = Vector2.Zero;
+            }
+        }
+
+        public void FindTarget()
+        {
+            // just converted - leaving inside level
+            if(wild == false && currentLevel is InsideLevel && targetLevel.Name != currentLevel.Name)
+            {
+                target = ((InsideLevel)currentLevel).MinionExitPoint;
+            }
+            // In Grenaa - returning to headquarter
+            else if (TargetLevel != null && TargetLevel.Name == "Headquarters" && currentLevel.Name == "Grenaa")
+            {
+                // Headquarter coords in Grenaa
+                target = new Vector2(300, 500);
+            }
+            else if(target == Vector2.Zero)
+            {
+                animator.PlayAnimation("IdleFront");
+
+                // random chance of choosing random target in level
+                if (r.Next(1000) <= 1)
+                {
+                    target = new Vector2(r.Next(currentLevel.Boundaries.Item1, currentLevel.Boundaries.Item2 - ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).Rectangle.Width), this.GameObject.GetTransform.Position.Y);
+                }
+            }
         }
 
         public void Move()
         {
             Vector2 translation = Vector2.Zero;
 
-            if(Math.Abs(target.X - this.GameObject.GetTransform.Position.X) < 1)
+            if(VeryCloseToTarget())
             {
                 target = Vector2.Zero;
+                animator.PlayAnimation("IdleFront");
             }
 
             if(target != Vector2.Zero)
@@ -87,15 +199,6 @@ namespace FrameworksProjekt.Components
                     translation += new Vector2(1,0);
                     direction = Direction.Right;
                     animator.PlayAnimation("WalkRight");
-                }
-            }
-            else
-            {
-                animator.PlayAnimation("IdleFront");
-
-                if(r.Next(1000) <= 1)
-                {
-                    target = new Vector2(r.Next(currentLevel.Boundaries.Item1, currentLevel.Boundaries.Item2 - ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).Rectangle.Width), this.GameObject.GetTransform.Position.Y);
                 }
             }
 
@@ -132,12 +235,29 @@ namespace FrameworksProjekt.Components
                     speed = 90;
                     return;
 
-                    case Miniontype.Weeaboo:
+                    case Miniontype.Vegan:
                     strength = 3;
                     speed = 110;
                     return;
 
             }
+        }
+
+        public void OnCollisionStay(Collider other)
+        {
+            
+        }
+
+        public void MoveLevel(Level targetLevel)
+        {
+            // tiny bit of randomness to spawnpoint so minions wont clump up as much
+            this.GameObject.GetTransform.Position = new Vector2(targetLevel.SpawnPoint.X + r.Next(100), targetLevel.SpawnPoint.Y + r.Next(20) - 10);
+            this.currentLevel = targetLevel;
+        }
+
+        public bool VeryCloseToTarget()
+        {
+            return Math.Abs(target.X - this.GameObject.GetTransform.Position.X) < 1;
         }
     }
 }

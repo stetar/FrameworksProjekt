@@ -37,7 +37,6 @@ namespace FrameworksProjekt.Components
 
         public Collider(GameObject gameObject) : base(gameObject)
         {
-            
         }
 
         public void LoadContent(ContentManager content)
@@ -45,6 +44,8 @@ namespace FrameworksProjekt.Components
             spriteRenderer = (SpriteRenderer) GameObject.GetComponent("SpriteRenderer");
 
             sprite = content.Load<Texture2D>("CollisionTexture");
+
+            GameWorld.Instance.Colliders.Add(this);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -80,13 +81,19 @@ namespace FrameworksProjekt.Components
                         }
                     }
                 }
-
-                foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
+                if (this.GameObject.GetComponent("Player") != null || this.GameObject.GetComponent("Cursor") != null)
                 {
-                    if (key.Intersects(this.CollisionBox))
+                    foreach (Rectangle key in GameWorld.Instance.GameLevel.InterestPoints.Keys)
                     {
-                        GameWorld.Instance.GameLevel.InterestPoints[key]();
+                        if (key.Intersects(this.CollisionBox))
+                        {
+                            GameWorld.Instance.GameLevel.InterestPoints[key]();
+                        }
                     }
+                }
+                else if(this.GameObject.GetComponent("Minion") != null)
+                {
+
                 }
             }
         }

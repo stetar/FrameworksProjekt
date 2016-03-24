@@ -64,5 +64,23 @@ namespace FrameworksProjekt
         {
             return Items.Find(x => x.Name == itemName);
         }
+
+        public bool CheckForItems(Item items)
+        {
+            Item it = GetItem(items.Name);
+            bool toReturn = false;
+
+            if (it != null && it.Count >= items.Count)
+            {
+                toReturn = true;
+            }
+
+            return toReturn;
+        }
+
+        internal void AddItem(object p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -38,14 +38,15 @@ namespace FrameworksProjekt
         private Inventory[] inventorys;
         // headquarter inventory
         private Inventory mainInventory;
-        private ItemGenerator itemGenerator;
+        private Spawner spawner;
         private bool drawInventory;
         private static Random r = new Random();
         private static GameWorld instance;
+        private List<Minion> recruits;
 
         // Testing
         // Log mouse position in debug and show mouse
-        bool logMouse = true;
+        bool logMouse = false;
 
         public float Delta { get; set; }
 
@@ -209,6 +210,19 @@ namespace FrameworksProjekt
             }
         }
 
+        public List<Minion> Recruits
+        {
+            get
+            {
+                return recruits;
+            }
+
+            set
+            {
+                recruits = value;
+            }
+        }
+
         private GameWorld()
         {
             Graphics = new GraphicsDeviceManager(this);
@@ -217,7 +231,7 @@ namespace FrameworksProjekt
             Graphics.PreferredBackBufferWidth = 1422;
             Graphics.PreferredBackBufferHeight = 800;
             Inventorys = new Inventory[5];
-            itemGenerator = new ItemGenerator();
+            spawner = new Spawner();
             MainInventory = new Inventory();
         }
 
@@ -231,14 +245,13 @@ namespace FrameworksProjekt
         {
             // TODO: Add your initialization logic here
             gameObjects = new List<GameObject>();
-            GameObjectDirector GOD = new GameObjectDirector(new PlayerBuilder());
-            gameObjects.Add(GOD.Construct());
 
             LevelDirector LD  = new LevelDirector(new HeadQuartersBuilder());
             gameLevel = LD.Construct();
 
             this.Colliders = new List<Collider>();
             this.tooltips = new List<Tooltip>();
+            this.recruits = new List<Minion>();
 
             if(logMouse)
             {
@@ -258,6 +271,8 @@ namespace FrameworksProjekt
             spriteBatch = new SpriteBatch(GraphicsDevice);
             standardFont = Content.Load<SpriteFont>("StandardFont");
 
+            this.spawner.Init();
+
             this.GameLevel.LoadContent(Content);
 
             foreach (GameObject obj in gameObjects)
@@ -265,11 +280,7 @@ namespace FrameworksProjekt
                 obj.LoadContent(Content);
             }
 
-            GenerateMinion(SpawnRoom.Cellar);
-
             DisplayRect = GraphicsDevice.Viewport.Bounds;
-
-            ResetInventorys();
 
             // TODO: use this.Content to load your game content here
         }
@@ -388,7 +399,7 @@ namespace FrameworksProjekt
             l.LoadContent(GameWorld.Instance.Content);
             ((Minion)g.GetComponent("Minion")).CurrentLevel = l;
 
-            g.GetTransform.Position = new Vector2(r.Next(l.Boundaries.Item1, l.Boundaries.Item2 - ((SpriteRenderer)g.GetComponent("SpriteRenderer")).Rectangle.Width), l.SpawnPoint.Y);
+            g.GetTransform.Position = new Vector2(r.Next(l.Boundaries.Item1, l.Boundaries.Item2 - 128), l.SpawnPoint.Y);
 
             g.LoadContent(Content);
 
@@ -398,38 +409,19 @@ namespace FrameworksProjekt
         private void DrawMainInventory(SpriteBatch spriteBatch)
         {
             int height = 100;
-            int width = 80;
+            int width = 100;
             Vector2 startPos = new Vector2(900, 200);
 
             for(int i = 0; i < mainInventory.Items.Count; i++)
             {
                 Item it = mainInventory.Items[i];
-                float x = startPos.X + width * i % 4;
-                float y = (float)Math.Floor(startPos.Y + height * i / 4);
+                float x = startPos.X + width * ( i % 4 );
+                float y = startPos.Y + height * (float)Math.Floor(i / 4d);
 
                 spriteBatch.Draw(it.Sprite, new Vector2(x, y));
                 spriteBatch.DrawString(StandardFont, it.Name, new Vector2(x, y + 64), Color.Black);
                 spriteBatch.DrawString(StandardFont, "x"+it.Count, new Vector2(x, y + 80), Color.Black);
             }
-        }
-
-        private void ResetInventorys()
-        {
-            Inventorys = new Inventory[5];
-
-            for (int i = 0; i < Inventorys.Length; i++)
-            {
-                Inventorys[i] = new Inventory();
-                Inventorys[i].AddItem(itemGenerator.GenerateItem((Category)i, 5));
-            }
-        }
-
-        private void AddItemToInventorys()
-        {
-            for (int i = 0; i < Inventorys.Length; i++)
-            {
-                Inventorys[i].AddItem(itemGenerator.GenerateItem((Category)i, 5));
-            }
-        }
+        }   
     }
 }

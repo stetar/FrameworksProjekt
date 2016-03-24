@@ -23,6 +23,7 @@ namespace FrameworksProjekt.Builder
             go.AddComponent(new SpriteRenderer(go, "Pirates/"+SpriteBuilder.GetSprite(), 1, Color.White));
             go.AddComponent(new Minion(go));
             go.AddComponent(new Animator(go));
+            go.AddComponent(new Collider(go));
         }
     }
 }

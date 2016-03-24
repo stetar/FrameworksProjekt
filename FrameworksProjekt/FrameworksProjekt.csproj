@@ -89,6 +89,7 @@
     <Compile Include="OutsideLevel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spawner.cs" />
     <Compile Include="SpriteGenerator\SpriteBuilder.cs" />
     <Compile Include="SpriteGenerator\SpriteFrame.cs" />
     <Compile Include="SpriteGenerator\SpriteGenerator.cs" />
@@ -298,8 +299,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-	<Content Include="Content\Pirates\*.png">
-		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Pirates\*.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
