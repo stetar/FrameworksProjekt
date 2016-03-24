@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FrameworksProjekt.Interfaces;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace FrameworksProjekt.Builder
 {
@@ -19,11 +20,23 @@ namespace FrameworksProjekt.Builder
         public void BuildLevel()
         {
             l = new OutsideLevel("København", new Vector2(0, 500), new Tuple<int, int>(0, 0), City.København);
+            l.InterestPoints.Add(new Rectangle(3720, 500, 100, 100), () => VeganStore());
         }
 
-        public void DirectoryAction()
+        public void VeganStore()
         {
-            //Add functionality here.
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                LevelDirector ld = new LevelDirector(new VeganStoreBuilder());
+                l = ld.Construct();
+                GameWorld.Instance.GameLevel = l;
+                GameWorld.Instance.LoadLevel(l);
+            }
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle(3580, 400, 180, 40), "Veganske Dyrevenner",
+                new Vector2(10, 10), Color.LightGray, Color.Black));
+            }
         }
     }
 }
