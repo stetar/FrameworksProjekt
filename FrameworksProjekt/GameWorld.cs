@@ -381,6 +381,7 @@ namespace FrameworksProjekt
 
             spriteBatch.Begin();
 
+            if(gameLevel is OutsideLevel)
             spriteBatch.Draw(background, new Vector2(0, 0));
 
             gameLevel.Draw(spriteBatch);
