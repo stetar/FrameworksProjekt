@@ -94,6 +94,19 @@ namespace FrameworksProjekt.Components
             }
         }
 
+        public float Strength
+        {
+            get
+            {
+                return strength;
+            }
+
+            set
+            {
+                strength = value;
+            }
+        }
+
         public Minion(GameObject gameObject) : base(gameObject)
         {
             this.direction = Direction.Down;
@@ -157,6 +170,15 @@ namespace FrameworksProjekt.Components
                 MoveLevel(targetLevel);
                 target = Vector2.Zero;
             }
+            // plundering store
+            else if(targetLevel is OutsideLevel
+                && currentLevel.Name == targetLevel.Name
+                && VeryCloseToTarget())
+            {
+                ((OutsideLevel)currentLevel).MinionShopAction(this);
+                LevelDirector ld = new LevelDirector(new HeadQuartersBuilder());
+                this.TargetLevel = ld.Construct();
+            }
         }
 
         public void FindTarget()
@@ -172,10 +194,15 @@ namespace FrameworksProjekt.Components
                 // Headquarter coords in Grenaa
                 target = new Vector2(300, 500);
             }
-            // Outside in wrong city - going to busstop (only have to go into headquarter if outside)
+            // Outside in wrong city - going to busstop (only have to go into headquarter if outside and above statement checks that looting is in targetlevel)
             else if(currentLevel is OutsideLevel && TargetLevel.Name != currentLevel.Name)
             {
                 target = ((OutsideLevel)currentLevel).MapPosition;
+            }
+            // outside in targetLevel - out plundering
+            else if(currentLevel is OutsideLevel && TargetLevel.Name == currentLevel.Name)
+            {
+                target = ((OutsideLevel)currentLevel).ShopPosition;
             }
             else if(target == Vector2.Zero)
             {
@@ -239,17 +266,17 @@ namespace FrameworksProjekt.Components
             switch (type)
             {
                     case Miniontype.Chubby:
-                    strength = 10;
+                    Strength = 10;
                     speed = 70;
                     return;
                     
                     case Miniontype.Hipster:
-                    strength = 7;
+                    Strength = 7;
                     speed = 90;
                     return;
 
                     case Miniontype.Vegan:
-                    strength = 3;
+                    Strength = 3;
                     speed = 110;
                     return;
 
