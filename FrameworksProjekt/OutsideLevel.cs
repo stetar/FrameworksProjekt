@@ -17,12 +17,12 @@ namespace FrameworksProjekt
         Tooltip t = new Tooltip(new Rectangle(1520, 100, 300, 100), "Hold space to loot the store!", new Vector2(20, 20), Color.LightGray, Color.Black);
         Tooltip t1 = new Tooltip(new Rectangle(1520, 100, 300, 100), "Closed until further notice due to piracy.", new Vector2(10, 20), Color.LightGray, Color.Black);
         Tooltip t2 = new Tooltip(new Rectangle(1520, 100, 300, 100), "This store is out of stock. \n Thx Pirates!", new Vector2(20, 20), Color.LightGray, Color.Black);
-        private bool cooldown;
         private DateTime timeOfRobbery;
         private int cooldownTime = 20000;
         private City city;
         private Vector2 mapPosition;
         private Vector2 shopPosition;
+        private static bool[] shopCooldowns = new bool[] { false, false, false, false, false };
 
         internal Inventory Inventory
         {
@@ -79,7 +79,6 @@ namespace FrameworksProjekt
         public OutsideLevel(string imageString, Vector2 spawnPoint, Tuple<int, int> boundaries, City city, Vector2 mapPosition, Vector2 shopPosition) : base(imageString, spawnPoint, boundaries)
         {
             this.City = city;
-            cooldown = false;
             this.MapPosition = mapPosition;
             this.ShopPosition = shopPosition;
         }
@@ -87,27 +86,28 @@ namespace FrameworksProjekt
         public void ShopAction()
         {
             ks = Keyboard.GetState();
+            Inventory inv = Inventory;
 
-            if (!ks.IsKeyDown(Keys.Space) && !cooldown)
+            if (inv.Items.Count > 0)
             {
-                GameWorld.Instance.Tooltips.Add(t);
-
-                if ((DateTime.Now - timeOfRobbery).TotalMilliseconds > cooldownTime)
+                if (!ks.IsKeyDown(Keys.Space) && !shopCooldowns[(int)City])
                 {
-                    cooldown = false;
+                    GameWorld.Instance.Tooltips.Add(t);
+
+                    if ((DateTime.Now - timeOfRobbery).TotalMilliseconds > cooldownTime)
+                    {
+                        shopCooldowns[(int)City] = false;
+                    }
                 }
-            }
-            else if (cooldown)
-            {
-                GameWorld.Instance.Tooltips.Add(t1);
-            }
-            // loot store
-            else
-            {
-                Inventory inv = Inventory;
-                // check store for items
-                if (inv.Items.Count > 0)
+                else if (shopCooldowns[(int)City])
                 {
+                    GameWorld.Instance.Tooltips.Add(t1);
+                }
+                // loot store
+                else
+                {
+                    // check store for items
+
                     // Select random item
                     Item i = inv.Items[r.Next(inv.Items.Count)];
                     // Select random amount of that item. - should be made more advanced
@@ -116,14 +116,15 @@ namespace FrameworksProjekt
                     GameWorld.Instance.MainInventory.AddItem(new Item(i.Name, count, i.Category));
                     Inventory.RemoveItem(i.Name, count);
 
-                    cooldown = true;
+                    shopCooldowns[(int)City] = true;
 
                     timeOfRobbery = DateTime.Now;
+
                 }
-                else
-                {
-                    GameWorld.Instance.Tooltips.Add(t2);
-                }
+            }
+            else
+            {
+                GameWorld.Instance.Tooltips.Add(t2);
             }
         }
 
@@ -131,7 +132,12 @@ namespace FrameworksProjekt
         {
             Inventory inv = Inventory;
 
-            if (inv.Items.Count > 0 && !cooldown)
+            if ((DateTime.Now - timeOfRobbery).TotalMilliseconds > cooldownTime)
+            {
+                shopCooldowns[(int)City] = false;
+            }
+
+            if (inv.Items.Count > 0 && !shopCooldowns[(int)City])
             {
                 // Select random item
                 Item i = inv.Items[r.Next(inv.Items.Count)];
@@ -141,7 +147,7 @@ namespace FrameworksProjekt
                 GameWorld.Instance.MainInventory.AddItem(new Item(i.Name, count, i.Category));
                 Inventory.RemoveItem(i.Name, count);
 
-                cooldown = true;
+                shopCooldowns[(int)City] = true;
 
                 timeOfRobbery = DateTime.Now;
             }
