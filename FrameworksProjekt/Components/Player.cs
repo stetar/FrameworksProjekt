@@ -150,35 +150,59 @@ namespace FrameworksProjekt
         {
             Minion m = ((Minion)other.GameObject.GetComponent("Minion"));
 
-            // If minion and in same level as player and not recruited
-            if ( m != null && m.CurrentLevel.Name == GameWorld.Instance.GameLevel.Name && m.Wild == true)
+            // If minion 
+            if(m != null)
             {
-                Vector2 position = other.GameObject.GetTransform.Position;
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                // and in same level as player and not recruited
+                if (m.CurrentLevel.Name == GameWorld.Instance.GameLevel.Name && m.Wild == true)
                 {
-                    if(GameWorld.Instance.MainInventory.CheckForItems(m.Cost))
+                    Vector2 position = other.GameObject.GetTransform.Position;
+
+                    if (Keyboard.GetState().IsKeyDown(Keys.Space))
                     {
-                        // Hired minion
-                        m.Wild = false;
-                        // set minion target level to headquarter
-                        LevelDirector ld = new LevelDirector(new HeadQuartersBuilder());
-                        m.TargetLevel = ld.Construct();
-                        // remove cost from player inventory
-                        GameWorld.Instance.MainInventory.RemoveItem(m.Cost.Name, m.Cost.Count);
-                        // add new recruit to recruits list in gameworld
-                        GameWorld.Instance.Recruits.Add(m);
+                        if (GameWorld.Instance.MainInventory.CheckForItems(m.Cost))
+                        {
+                            // Hired minion
+                            m.Wild = false;
+                            // set minion target level to headquarter
+                            LevelDirector ld = new LevelDirector(new HeadQuartersBuilder());
+                            m.TargetLevel = ld.Construct();
+                            // remove cost from player inventory
+                            GameWorld.Instance.MainInventory.RemoveItem(m.Cost.Name, m.Cost.Count);
+                            // add new recruit to recruits list in gameworld
+                            GameWorld.Instance.Recruits.Add(m);
+                        }
+                        else
+                        {
+                            GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle((int)position.X - 100, (int)position.Y - 100, 400, 40), "Sorry not enough items. Minion cost: " + m.Cost.Name + " x" + m.Cost.Count, new Vector2(10, 10), Color.LightGray, Color.Black));
+                        }
                     }
                     else
                     {
-                        GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle((int)position.X - 100, (int)position.Y - 100, 400, 40), "Sorry not enough items. Minion cost: " + m.Cost.Name + " x" + m.Cost.Count, new Vector2(10, 10), Color.LightGray, Color.Black));
+                        GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle((int)position.X - 100, (int)position.Y - 100, 400, 40), "Minion cost: " + m.Cost.Name + " x" + m.Cost.Count, new Vector2(10, 10), Color.LightGray, Color.Black));
                     }
                 }
-                else
+                // if minion is in headquarter and currentlevel is headquarter
+                else if (m.CurrentLevel.Name == "Headquarters"
+                    && m.TargetLevel.Name == GameWorld.Instance.GameLevel.Name
+                    && m.TargetLevel.Name == m.CurrentLevel.Name)
                 {
-                    GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle((int)position.X - 100, (int)position.Y - 100, 400, 40), "Minion cost: " + m.Cost.Name + " x" + m.Cost.Count, new Vector2(10, 10), Color.LightGray, Color.Black));
-                }
+                    // start plundering menu - set active minion to this minion
+                    if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                    {
+                        GameWorld.Instance.ActiveMinion = m;
+                        LevelDirector ld = new LevelDirector(new LootMapBuilder());
+                        Level l = ld.Construct();
+                        GameWorld.Instance.GameLevel = l;
+                        GameWorld.Instance.LoadLevel(l);
+                    }
+                    else
+                    {
+                        Vector2 position = m.GameObject.GetTransform.Position;
 
+                        GameWorld.Instance.Tooltips.Add(new Tooltip(new Rectangle((int)position.X - 100, (int)position.Y - 45, 300, 40), "Send Plundering", new Vector2(10, 10), Color.LightGray, Color.Black));
+                    }
+                }
             }
         }
     }

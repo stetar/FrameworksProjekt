@@ -43,6 +43,8 @@ namespace FrameworksProjekt
         private static Random r = new Random();
         private static GameWorld instance;
         private List<Minion> recruits;
+        // Minion that player is currently sending out to loot or sending to train
+        private Minion activeMinion;
 
         // Testing
         // Log mouse position in debug and show mouse
@@ -220,6 +222,19 @@ namespace FrameworksProjekt
             set
             {
                 recruits = value;
+            }
+        }
+
+        public Minion ActiveMinion
+        {
+            get
+            {
+                return activeMinion;
+            }
+
+            set
+            {
+                activeMinion = value;
             }
         }
 

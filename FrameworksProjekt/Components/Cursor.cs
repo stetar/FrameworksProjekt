@@ -18,7 +18,7 @@ namespace FrameworksProjekt
         private Rectangle rectangle;
         private MouseState state;
         // Navne på alle level der bruger cursoren
-        private List<string> cursorLevelNames = new List<string> { "Denmark" };
+        private List<string> cursorLevelNames = new List<string> { "Denmark", "Denmark2" };
 
         public Rectangle Rectangle
         {
