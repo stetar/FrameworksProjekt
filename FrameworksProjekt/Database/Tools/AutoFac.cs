@@ -18,7 +18,7 @@ namespace FrameworksProjekt
             table = typeof(T).Name;
         }
 
-        public T Get(int ID)
+        public T Get(long ID)
         {
             using (var cmd = new SQLiteCommand("SELECT * FROM " + table + " WHERE ID=@ID", Conn.CreateConnection()))
             {
@@ -49,6 +49,18 @@ namespace FrameworksProjekt
         }
 
         public List<T> GetBy(string field, string value)
+        {
+            using (var cmd = new SQLiteCommand("SELECT * FROM " + table + " WHERE " + field + " =@KID", Conn.CreateConnection()))
+            {
+                cmd.Parameters.AddWithValue("@KID", value);
+
+                List<T> list = mapper.MapList(cmd.ExecuteReader());
+                cmd.Connection.Close();
+                return list;
+            }
+        }
+
+        public List<T> GetByInt(string field, string value)
         {
             using (var cmd = new SQLiteCommand("SELECT * FROM " + table + " WHERE " + field + " =@KID", Conn.CreateConnection()))
             {

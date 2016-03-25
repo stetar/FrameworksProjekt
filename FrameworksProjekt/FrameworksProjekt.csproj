@@ -66,11 +66,14 @@
     <Compile Include="Components\SpriteRenderer.cs" />
     <Compile Include="Components\Transform.cs" />
     <Compile Include="Components\Cursor.cs" />
-    <Compile Include="Factories\CategoryFac.cs" />
-    <Compile Include="Factories\inventoryFac.cs" />
-    <Compile Include="Factories\ItemFac.cs" />
+    <Compile Include="Database\DatabaseMan.cs" />
+    <Compile Include="Database\Factories\CategoryFac.cs" />
+    <Compile Include="Database\Factories\InventoryFac.cs" />
+    <Compile Include="Database\Factories\ItemFac.cs" />
     <Compile Include="Builder\MinionBuilder.cs" />
     <Compile Include="Components\Minion.cs" />
+    <Compile Include="Database\Factories\MinionFac.cs" />
+    <Compile Include="Database\Types\Minion.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="InsideLevel.cs" />
@@ -92,13 +95,13 @@
     <Compile Include="SpriteGenerator\SpriteFrame.cs" />
     <Compile Include="SpriteGenerator\SpriteGenerator.cs" />
     <Compile Include="SpriteGenerator\SpriteTemplate.cs" />
-    <Compile Include="Tools\AutoFac.cs" />
-    <Compile Include="Tools\Conn.cs" />
-    <Compile Include="Tools\Mapper.cs" />
+    <Compile Include="Database\Tools\AutoFac.cs" />
+    <Compile Include="Database\Tools\Conn.cs" />
+    <Compile Include="Database\Tools\Mapper.cs" />
     <Compile Include="Tooltip.cs" />
-    <Compile Include="Types\category.cs" />
-    <Compile Include="Types\inventory.cs" />
-    <Compile Include="Types\items.cs" />
+    <Compile Include="Database\Types\Category.cs" />
+    <Compile Include="Database\Types\Inventory.cs" />
+    <Compile Include="Database\Types\Item.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">

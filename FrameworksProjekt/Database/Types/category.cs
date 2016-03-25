@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace FrameworksProjekt.Types
+namespace FrameworksProjekt.Database.Types
 {
-    class category
+    class Category
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public string name { get; set; }
     }
 }

@@ -8,7 +8,6 @@ namespace FrameworksProjekt
 {
     public class Inventory
     {
-
         private List<Item> items;
 
         internal List<Item> Items
@@ -76,11 +75,6 @@ namespace FrameworksProjekt
             }
 
             return toReturn;
-        }
-
-        internal void AddItem(object p)
-        {
-            throw new NotImplementedException();
         }
     }
 }

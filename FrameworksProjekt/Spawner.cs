@@ -12,7 +12,7 @@ namespace FrameworksProjekt
     class Spawner
     {
         private static Random r = new Random();
-        private ItemGenerator it = new ItemGenerator();
+        private ItemGenerator it;
         private GameObjectDirector GOD;
 
         public Spawner()

@@ -33,7 +33,6 @@ namespace FrameworksProjekt.Components
         // Cost of conversion
         private Item cost;
         private bool loaded = false;
-        private bool plundering = false;
         private static Random r = new Random();
 
         public Miniontype Type
@@ -107,6 +106,19 @@ namespace FrameworksProjekt.Components
             }
         }
 
+        public float Speed
+        {
+            get
+            {
+                return speed;
+            }
+
+            set
+            {
+                speed = value;
+            }
+        }
+
         public Minion(GameObject gameObject) : base(gameObject)
         {
             this.direction = Direction.Down;
@@ -115,6 +127,12 @@ namespace FrameworksProjekt.Components
             GameWorld.Instance.MainInventory.AddItem(Cost);
 #endif
             this.wild = true;
+        }
+
+        public Minion(GameObject gameObject, float speed, float strength) : base(gameObject)
+        {
+            this.Speed = speed;
+            this.strength = strength;
         }
 
         public void LoadContent(ContentManager content)
@@ -244,7 +262,7 @@ namespace FrameworksProjekt.Components
 
             UpdateAnimation();
 
-            GameObject.GetTransform.Translate(translation * speed * GameWorld.Instance.Delta);
+            GameObject.GetTransform.Translate(translation * Speed * GameWorld.Instance.Delta);
         }
 
         public void UpdateAnimation()
@@ -267,17 +285,17 @@ namespace FrameworksProjekt.Components
             {
                     case Miniontype.Chubby:
                     Strength = 10;
-                    speed = 70;
+                    Speed = 70;
                     return;
                     
                     case Miniontype.Hipster:
                     Strength = 7;
-                    speed = 90;
+                    Speed = 90;
                     return;
 
                     case Miniontype.Vegan:
                     Strength = 3;
-                    speed = 110;
+                    Speed = 110;
                     return;
 
             }
@@ -298,6 +316,21 @@ namespace FrameworksProjekt.Components
         public bool VeryCloseToTarget()
         {
             return Math.Abs(target.X - this.GameObject.GetTransform.Position.X) < 1;
+        }
+
+        // Save converted minion in database
+        public void SaveMinion()
+        {
+            Database.Types.Minion dm = new Database.Types.Minion();
+
+            dm.currentLevelName = currentLevel.Name;
+            dm.targetLevelName = targetLevel.Name;
+            dm.Speed = this.Speed;
+            dm.Strength = this.Strength;
+            dm.X = GameObject.GetTransform.Position.X;
+            dm.Y = GameObject.GetTransform.Position.Y;
+
+            new Database.Factories.MinionFac().Insert(dm);
         }
     }
 }

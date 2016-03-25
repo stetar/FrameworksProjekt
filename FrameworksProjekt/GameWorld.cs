@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Input;
 using FrameworksProjekt.Items;
 using System;
 using System.Linq;
+using FrameworksProjekt.Database;
+using System.Data.SQLite;
+using FrameworksProjekt.Database.Factories;
 
 namespace FrameworksProjekt
 {
@@ -45,6 +48,12 @@ namespace FrameworksProjekt
         private List<Minion> recruits;
         // Minion that player is currently sending out to loot or sending to train
         private Minion activeMinion;
+        private DatabaseMan databaseManager;
+        private bool shouldLoad;
+
+        private InventoryFac infa = new InventoryFac();
+        private ItemFac itfa = new ItemFac();
+        private MinionFac mifa = new MinionFac();
 
         // Testing
         // Log mouse position in debug and show mouse
@@ -238,6 +247,19 @@ namespace FrameworksProjekt
             }
         }
 
+        public bool ShouldLoad
+        {
+            get
+            {
+                return shouldLoad;
+            }
+
+            set
+            {
+                shouldLoad = value;
+            }
+        }
+
         private GameWorld()
         {
             Graphics = new GraphicsDeviceManager(this);
@@ -245,9 +267,7 @@ namespace FrameworksProjekt
             this.Camera = new Camera(Vector2.Zero);
             Graphics.PreferredBackBufferWidth = 1422;
             Graphics.PreferredBackBufferHeight = 800;
-            Inventorys = new Inventory[5];
-            spawner = new Spawner();
-            MainInventory = new Inventory();
+            shouldLoad = false;
         }
 
         /// <summary>
@@ -264,14 +284,22 @@ namespace FrameworksProjekt
             LevelDirector LD  = new LevelDirector(new HeadQuartersBuilder());
             gameLevel = LD.Construct();
 
+            Inventorys = new Inventory[5];
+            MainInventory = new Inventory();
+
             this.Colliders = new List<Collider>();
             this.tooltips = new List<Tooltip>();
             this.recruits = new List<Minion>();
 
-            if(logMouse)
+            if (logMouse)
             {
                 this.IsMouseVisible = true;
             }
+
+            this.databaseManager = new DatabaseMan();
+            databaseManager.SetUp();
+
+            spawner = new Spawner();
 
             base.Initialize();
         }
@@ -287,6 +315,11 @@ namespace FrameworksProjekt
             standardFont = Content.Load<SpriteFont>("StandardFont");
 
             this.spawner.Init();
+
+            if (shouldLoad)
+            {
+                LoadSave();
+            }
 
             this.GameLevel.LoadContent(Content);
 
@@ -378,6 +411,11 @@ namespace FrameworksProjekt
             base.Draw(gameTime);
         }
 
+        protected override void OnExiting(Object sender, EventArgs e)
+        {
+            SaveGame();
+        }
+
         public void LoadLevel(Level l)
         {
             l.LoadContent(Content);
@@ -423,9 +461,9 @@ namespace FrameworksProjekt
 
         private void DrawMainInventory(SpriteBatch spriteBatch)
         {
-            int height = 100;
+            int height = 120;
             int width = 100;
-            Vector2 startPos = new Vector2(900, 200);
+            Vector2 startPos = new Vector2(900, 100);
 
             for(int i = 0; i < mainInventory.Items.Count; i++)
             {
@@ -434,9 +472,111 @@ namespace FrameworksProjekt
                 float y = startPos.Y + height * (float)Math.Floor(i / 4d);
 
                 spriteBatch.Draw(it.Sprite, new Vector2(x, y));
-                spriteBatch.DrawString(StandardFont, it.Name, new Vector2(x, y + 64), Color.Black);
-                spriteBatch.DrawString(StandardFont, "x"+it.Count, new Vector2(x, y + 80), Color.Black);
+                spriteBatch.DrawString(StandardFont, it.Name.Replace(" ", "\n"), new Vector2(x, y + 64), Color.Black);
+                spriteBatch.DrawString(StandardFont, "x"+it.Count, new Vector2(x, y + 100), Color.Black);
             }
         }   
+
+        private void SaveGame()
+        {
+            databaseManager.RecreateMinionTable();
+
+            databaseManager.RecreateInventoryTable();
+
+            foreach(Minion m in Recruits)
+            {
+                m.SaveMinion();
+            }
+
+            foreach(Item i in mainInventory.Items)
+            {
+                //create new inventory line/item in database
+                Database.Types.Inventory iI = new Database.Types.Inventory();
+                iI.Item = itfa.GetBy("Name", i.Name)[0].ID;
+                iI.Count = i.Count;
+                iI.Name = i.Name;
+
+                infa.Insert(iI);
+            }
+        }
+
+        public void LoadSave()
+        {
+            using (var conn = new SQLiteCommand(Conn.CreateConnection()))
+            {
+                // Load items
+                foreach (Database.Types.Inventory iI in infa.GetAll())
+                {
+                    mainInventory.AddItem(new Item(iI.Name, (int)iI.Count, (Category)itfa.Get(iI.ID).Category));
+                }
+
+                foreach (Database.Types.Minion m in mifa.GetAll())
+                {
+                    GameObjectDirector GOD = new GameObjectDirector(new MinionBuilder());
+                    GameObject g = GOD.Construct();
+                    Minion mn = (Minion)g.GetComponent("Minion");
+
+                    mn.CurrentLevel = CreateGameLevel(m.currentLevelName);
+                    mn.TargetLevel = CreateGameLevel(m.targetLevelName);
+                    mn.Speed = (float)m.Speed;
+                    mn.Strength = (float)m.Strength;
+                    mn.Wild = false;
+                    g.GetTransform.Position = new Vector2((float)m.X, (float)m.Y);
+
+                    recruits.Add(mn);
+                    gameObjects.Add(g);
+                }
+            }
+        }
+
+        private Level CreateGameLevel(string name)
+        {
+            Level l;
+
+            switch(name)
+            {
+                case "Cellar":
+                    l = new InsideLevel("Cellar", new Vector2(600, 500), new Tuple<int, int>(350, 100), new Vector2(1322, 550), new OutsideLevel("Grenaa", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Grenaa, new Vector2(50, 500), new Vector2(1650, 550)));
+                    break;
+
+                case "CoffeeShop":
+                    l = new InsideLevel("Cellar", new Vector2(500, 500), new Tuple<int, int>(400, 100), new Vector2(1322, 550), new OutsideLevel("Aarhus", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Aarhus, new Vector2(50, 500), new Vector2(1660, 550)));
+                    break;
+
+                case "Esbjerg":
+                    l = new OutsideLevel("Esbjerg", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Aarhus, new Vector2(50, 500), new Vector2(1660, 550));
+                    break;
+
+                case "Grenaa":
+                    l = new OutsideLevel("Grenaa", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Grenaa, new Vector2(50, 500), new Vector2(1650, 550));
+                    break;
+
+                case "Headquarters":
+                    l = new InsideLevel("Headquarters", new Vector2(350, 500), new Tuple<int, int>(240, -100), new Vector2(260, 550), new OutsideLevel("Grenaa", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Grenaa, new Vector2(50, 500), new Vector2(1650, 550)));
+                    break;
+
+                case "København":
+                    l = new OutsideLevel("København", new Vector2(120, 500), new Tuple<int, int>(-120, -120), City.København, new Vector2(50, 500), new Vector2(1605, 550));
+                    break;
+
+                case "Skagen":
+                    l = new OutsideLevel("Skagen", new Vector2(0, 500), new Tuple<int, int>(-120, -120), City.Skagen, new Vector2(50, 500), new Vector2(1605, 550));
+                    break;
+
+                case "Vegan store":
+                    l = new InsideLevel("Vegan store", new Vector2(0, 500), new Tuple<int, int>(400, 100), new Vector2(50, 550), new OutsideLevel("København", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.København, new Vector2(50, 500), new Vector2(1605, 550)));
+                    break;
+
+                case "Aarhus":
+                    l = new OutsideLevel("Aarhus", new Vector2(120, 500), new Tuple<int, int>(-120, -120), City.Aarhus, new Vector2(50, 500), new Vector2(1660, 550));
+                    break;
+
+                default:
+                    l = new InsideLevel("Headquarters", new Vector2(350, 500), new Tuple<int, int>(240, -100), new Vector2(260, 550), new OutsideLevel("Grenaa", new Vector2(20, 500), new Tuple<int, int>(-120, -120), City.Grenaa, new Vector2(50, 500), new Vector2(1650, 550)));
+                    break;
+            }
+
+            return l;
+        }
     }
 }

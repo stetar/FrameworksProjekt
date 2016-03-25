@@ -10,12 +10,12 @@ namespace FrameworksProjekt
 {
     public static class Conn
     {
-        private static string connectionString = "Data Source=DatabaseMagi.db; Version=3";
-        private static SQLiteConnection con = new SQLiteConnection(connectionString);
+        private static string connectionString = "Data Source=main.db; Version=3";
+        private static SQLiteConnection con;
 
         public static SQLiteConnection CreateConnection()
         {
-            var _con = con;
+            var _con = new SQLiteConnection(connectionString);
             _con.Open();
             return _con;
         }
