@@ -12,7 +12,7 @@ namespace FrameworksProjekt
     class Spawner
     {
         private static Random r = new Random();
-        private ItemGenerator it = new ItemGenerator();
+        private ItemGenerator it;
         private GameObjectDirector GOD;
 
         public Spawner()
@@ -24,7 +24,7 @@ namespace FrameworksProjekt
         {
             it = new ItemGenerator();
             
-            ResetInventorys();
+            ResetInventories();
             SpawnPlayer();
             GenerateMinion(SpawnRoom.Cellar);
             GenerateMinion(SpawnRoom.Cellar);
@@ -89,9 +89,9 @@ namespace FrameworksProjekt
         }
 
 
-        private void ResetInventorys()
+        private void ResetInventories()
         {
-            Inventory[] Inventorys = GameWorld.Instance.Inventorys;
+            Inventory[] Inventorys = GameWorld.Instance.Inventories;
             Inventorys = new Inventory[5];
 
             for (int i = 0; i < Inventorys.Length; i++)
@@ -100,12 +100,12 @@ namespace FrameworksProjekt
                 Inventorys[i].AddItem(it.GenerateItem((Category)i, 5));
             }
 
-            GameWorld.Instance.Inventorys = Inventorys;
+            GameWorld.Instance.Inventories = Inventorys;
         }
 
-        public void AddItemToInventorys()
+        public void AddItemToInventories()
         {
-            Inventory[] Inventorys = GameWorld.Instance.Inventorys;
+            Inventory[] Inventorys = GameWorld.Instance.Inventories;
 
             for (int i = 0; i < Inventorys.Length; i++)
             {

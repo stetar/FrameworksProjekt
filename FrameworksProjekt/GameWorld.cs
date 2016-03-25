@@ -35,7 +35,7 @@ namespace FrameworksProjekt
         private List<Tooltip> tooltips;
         private SpriteFont standardFont;
         // inventorys of all shops ordered by the city enum in level.cs 
-        private Inventory[] inventorys;
+        private Inventory[] inventories;
         // headquarter inventory
         private Inventory mainInventory;
         private Spawner spawner;
@@ -51,19 +51,6 @@ namespace FrameworksProjekt
         bool logMouse = true;
 
         public float Delta { get; set; }
-
-        public static GameWorld Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new GameWorld();
-                }
-
-                return instance;
-            }
-        }
 
         public List<Minion> Minions
         {
@@ -115,11 +102,6 @@ namespace FrameworksProjekt
             set { colliders = value; }
         }
 
-        public List<GameObject> GameObjects
-        {
-            get { return gameObjects; }
-            set { gameObjects = value; }
-        }
 
         public GameObject Player
         {
@@ -132,6 +114,12 @@ namespace FrameworksProjekt
             {
                 player = value;
             }
+        }
+
+        public List<GameObject> GameObjects
+        {
+            get { return gameObjects; }
+            set { gameObjects = value; }
         }
 
         internal List<Tooltip> Tooltips
@@ -173,16 +161,16 @@ namespace FrameworksProjekt
             }
         }
 
-        public Inventory[] Inventorys
+        public Inventory[] Inventories
         {
             get
             {
-                return inventorys;
+                return inventories;
             }
 
             set
             {
-                inventorys = value;
+                inventories = value;
             }
         }
 
@@ -238,6 +226,19 @@ namespace FrameworksProjekt
             }
         }
 
+        public static GameWorld Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameWorld();
+                }
+
+                return instance;
+            }
+        }
+
         private GameWorld()
         {
             Graphics = new GraphicsDeviceManager(this);
@@ -245,7 +246,7 @@ namespace FrameworksProjekt
             this.Camera = new Camera(Vector2.Zero);
             Graphics.PreferredBackBufferWidth = 1422;
             Graphics.PreferredBackBufferHeight = 800;
-            Inventorys = new Inventory[5];
+            Inventories = new Inventory[5];
             spawner = new Spawner();
             MainInventory = new Inventory();
         }

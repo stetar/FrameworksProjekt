@@ -63,7 +63,7 @@ namespace FrameworksProjekt
 
         public OutsideLevel(string imageString, Vector2 spawnPoint, Tuple<int, int> boundaries, City city, Vector2 mapPosition, Vector2 shopPosition) : base(imageString, spawnPoint, boundaries)
         {
-            this.Inventory = GameWorld.Instance.Inventorys[(int)city];
+            this.Inventory = GameWorld.Instance.Inventories[(int)city];
             this.City = city;
             cooldown = false;
             this.MapPosition = mapPosition;

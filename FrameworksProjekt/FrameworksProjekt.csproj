@@ -67,7 +67,6 @@
     <Compile Include="Components\Transform.cs" />
     <Compile Include="Components\Cursor.cs" />
     <Compile Include="Factories\CategoryFac.cs" />
-    <Compile Include="Factories\inventoryFac.cs" />
     <Compile Include="Factories\ItemFac.cs" />
     <Compile Include="Builder\MinionBuilder.cs" />
     <Compile Include="Components\Minion.cs" />
@@ -97,7 +96,6 @@
     <Compile Include="Tools\Mapper.cs" />
     <Compile Include="Tooltip.cs" />
     <Compile Include="Types\category.cs" />
-    <Compile Include="Types\inventory.cs" />
     <Compile Include="Types\items.cs" />
   </ItemGroup>
   <ItemGroup>
