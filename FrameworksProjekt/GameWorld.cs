@@ -439,6 +439,8 @@ namespace FrameworksProjekt
         protected override void OnExiting(Object sender, EventArgs e)
         {
             SaveGame();
+
+            base.OnExiting(sender, e);
         }
 
         public void LoadLevel(Level l)
