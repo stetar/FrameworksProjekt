@@ -140,6 +140,9 @@
     <Content Include="Content\Apple.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\CoffeeShop.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Cellar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
