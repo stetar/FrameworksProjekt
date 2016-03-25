@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using FrameworksProjekt.Items;
+using FrameworksProjekt.Components;
 
 namespace FrameworksProjekt
 {
@@ -21,17 +22,18 @@ namespace FrameworksProjekt
         private int cooldownTime = 20000;
         private City city;
         private Vector2 mapPosition;
+        private Vector2 shopPosition;
 
         internal Inventory Inventory
         {
             get
             {
-                return inventory;
+                return GameWorld.Instance.Inventorys[(int)city];
             }
 
             set
             {
-                inventory = value;
+                GameWorld.Instance.Inventorys[(int)city] = value;
             }
         }
 
@@ -61,12 +63,25 @@ namespace FrameworksProjekt
             }
         }
 
+        public Vector2 ShopPosition
+        {
+            get
+            {
+                return shopPosition;
+            }
+
+            set
+            {
+                shopPosition = value;
+            }
+        }
+
         public OutsideLevel(string imageString, Vector2 spawnPoint, Tuple<int, int> boundaries, City city, Vector2 mapPosition, Vector2 shopPosition) : base(imageString, spawnPoint, boundaries)
         {
-            this.Inventory = GameWorld.Instance.Inventorys[(int)city];
             this.City = city;
             cooldown = false;
             this.MapPosition = mapPosition;
+            this.ShopPosition = shopPosition;
         }
 
         public void ShopAction()
@@ -99,7 +114,7 @@ namespace FrameworksProjekt
                     int count = r.Next(i.Count - 1) + 1;
 
                     GameWorld.Instance.MainInventory.AddItem(new Item(i.Name, count, i.Category));
-                    inv.RemoveItem(i.Name, count);
+                    Inventory.RemoveItem(i.Name, count);
 
                     cooldown = true;
 
@@ -109,6 +124,26 @@ namespace FrameworksProjekt
                 {
                     GameWorld.Instance.Tooltips.Add(t2);
                 }
+            }
+        }
+
+        public void MinionShopAction(Minion m)
+        {
+            Inventory inv = Inventory;
+
+            if (inv.Items.Count > 0 && !cooldown)
+            {
+                // Select random item
+                Item i = inv.Items[r.Next(inv.Items.Count)];
+                // Select random amount of that item based on minion strength
+                int count = r.Next((int)Math.Round((i.Count - 1) * m.Strength/10)) + 1;
+
+                GameWorld.Instance.MainInventory.AddItem(new Item(i.Name, count, i.Category));
+                Inventory.RemoveItem(i.Name, count);
+
+                cooldown = true;
+
+                timeOfRobbery = DateTime.Now;
             }
         }
     }
