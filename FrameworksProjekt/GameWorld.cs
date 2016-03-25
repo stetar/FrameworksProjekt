@@ -51,8 +51,6 @@ namespace FrameworksProjekt
         private DatabaseMan databaseManager;
         private bool shouldLoad;
 
-        private Texture2D background;
-
         private InventoryFac infa = new InventoryFac();
         private ItemFac itfa = new ItemFac();
         private MinionFac mifa = new MinionFac();
@@ -318,8 +316,6 @@ namespace FrameworksProjekt
 
             this.spawner.Init();
 
-            background = Content.Load<Texture2D>("Background");
-
             if (shouldLoad)
             {
                 LoadSave();
@@ -360,6 +356,8 @@ namespace FrameworksProjekt
             tooltips.Clear();
             drawInventory = false;
 
+            spawner.Update();
+
             Delta = (float) gameTime.ElapsedGameTime.TotalSeconds;
 
             for (int i = 0; i < GameObjects.Count; i++)
@@ -380,9 +378,6 @@ namespace FrameworksProjekt
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
-
-            if(gameLevel is OutsideLevel)
-            spriteBatch.Draw(background, new Vector2(0, 0));
 
             gameLevel.Draw(spriteBatch);
 

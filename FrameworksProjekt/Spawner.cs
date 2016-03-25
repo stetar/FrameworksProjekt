@@ -14,6 +14,8 @@ namespace FrameworksProjekt
         private static Random r = new Random();
         private ItemGenerator it;
         private GameObjectDirector GOD;
+        private DateTime lastSpawn;
+        private int timeToSpawn = 600000;
 
         public Spawner()
         {
@@ -26,10 +28,11 @@ namespace FrameworksProjekt
             
             ResetInventories();
             SpawnPlayer();
-            GenerateMinion(SpawnRoom.Cellar);
-            GenerateMinion(SpawnRoom.Cellar);
-            GenerateMinion(SpawnRoom.VeganStore);
-            GenerateMinion(SpawnRoom.CoffeeShop);
+            SpawnChubby();
+            SpawnHipster();
+            SpawnVegan();
+
+            lastSpawn = DateTime.Now;
         }
 
         public void SpawnPlayer()
@@ -43,9 +46,22 @@ namespace FrameworksProjekt
             GenerateMinion(SpawnRoom.VeganStore);
         }
 
+        public void SpawnChubby()
+        {
+            GenerateMinion(SpawnRoom.Cellar);
+        }
+
+        public void SpawnHipster()
+        {
+            GenerateMinion(SpawnRoom.CoffeeShop);
+        }
+
         public void Update()
         {
+            if((lastSpawn-DateTime.Now).TotalMilliseconds > timeToSpawn)
+            {
 
+            }
         }
 
         private void GenerateMinion(SpawnRoom spawn)
