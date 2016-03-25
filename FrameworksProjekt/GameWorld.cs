@@ -50,6 +50,9 @@ namespace FrameworksProjekt
         private Minion activeMinion;
         private DatabaseMan databaseManager;
         private bool shouldLoad;
+        private bool animateRadio;
+        private DateTime radioAnimationStart;
+        private Texture2D[] radioFrames = new Texture2D[5];
 
         private InventoryFac infa = new InventoryFac();
         private ItemFac itfa = new ItemFac();
@@ -260,6 +263,20 @@ namespace FrameworksProjekt
             }
         }
 
+        public bool AnimateRadio
+        {
+            get
+            {
+                return animateRadio;
+            }
+
+            set
+            {
+                animateRadio = value;
+                radioAnimationStart = DateTime.Now;
+            }
+        }
+
         private GameWorld()
         {
             Graphics = new GraphicsDeviceManager(this);
@@ -268,6 +285,7 @@ namespace FrameworksProjekt
             Graphics.PreferredBackBufferWidth = 1422;
             Graphics.PreferredBackBufferHeight = 800;
             shouldLoad = false;
+            AnimateRadio = false;
         }
 
         /// <summary>
@@ -320,6 +338,8 @@ namespace FrameworksProjekt
             {
                 LoadSave();
             }
+
+            LoadRadioFrames();
 
             this.GameLevel.LoadContent(Content);
 
@@ -380,6 +400,9 @@ namespace FrameworksProjekt
             spriteBatch.Begin();
 
             gameLevel.Draw(spriteBatch);
+
+            if (AnimateRadio && gameLevel.Name == "Headquarters")
+                DrawRadio(spriteBatch);
 
             foreach (GameObject obj in gameObjects)
             {
@@ -580,6 +603,33 @@ namespace FrameworksProjekt
             }
 
             return l;
+        }
+
+        public void DrawRadio(SpriteBatch spriteBatch)
+        {
+            int delta = (int)(DateTime.Now - radioAnimationStart).TotalMilliseconds;
+            int delay = 2000;
+            Vector2 position = new Vector2(680, 260);
+
+            if(delta <= delay * radioFrames.Length )
+            {
+                Texture2D sprite = radioFrames[delta / delay];
+                //float scale = ((((delta % 1000) / 500) * 2) - 2) + 1;
+                spriteBatch.Draw(sprite, position, new Rectangle(0, 0, sprite.Width, sprite.Height), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 1);
+            }
+            else
+            {
+                animateRadio = false;
+            }
+        }
+
+        public void LoadRadioFrames()
+        {
+            radioFrames[0] = Content.Load<Texture2D>("Apple");
+            radioFrames[1] = Content.Load<Texture2D>("CheeseBurger");
+            radioFrames[2] = Content.Load<Texture2D>("Cloths");
+            radioFrames[3] = Content.Load<Texture2D>("Electronics");
+            radioFrames[4] = Content.Load<Texture2D>("Sofa");
         }
     }
 }

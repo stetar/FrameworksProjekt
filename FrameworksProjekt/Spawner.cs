@@ -31,7 +31,7 @@ namespace FrameworksProjekt
             SpawnChubby();
             SpawnHipster();
             SpawnVegan();
-
+            GameWorld.Instance.AnimateRadio = true;
             lastSpawn = DateTime.Now;
         }
 
@@ -58,9 +58,18 @@ namespace FrameworksProjekt
 
         public void Update()
         {
-            if((lastSpawn-DateTime.Now).TotalMilliseconds > timeToSpawn)
+            if((DateTime.Now - lastSpawn).TotalMilliseconds > timeToSpawn)
             {
+                SpawnVegan();
+                SpawnHipster();
+                SpawnChubby();
 
+                for(int i = 0; i < GameWorld.Instance.Inventorys.Count(); i++)
+                {
+                    GameWorld.Instance.Inventorys[i].AddItem(it.GenerateItem((Category)i, 5));
+                }
+
+                GameWorld.Instance.AnimateRadio = true;
             }
         }
 
