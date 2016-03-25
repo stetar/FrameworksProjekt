@@ -17,11 +17,6 @@ namespace FrameworksProjekt
             }
         }
 
-        public Component()
-        {
-
-        }
-
         public Component(GameObject gameObject)
         {
             this.gameObject = gameObject;

@@ -41,6 +41,7 @@ namespace FrameworksProjekt
 
         public Cursor(GameObject gameObject) : base(gameObject)
         {
+
         }
 
         public void LoadContent(ContentManager content)
@@ -48,8 +49,8 @@ namespace FrameworksProjekt
             sprite = ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).Sprite;
             ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).Rectangle = new Rectangle(0, 0, sprite.Width, sprite.Height);
             position = GameObject.GetTransform.Position;
-            Rectangle = new Rectangle((int)this.position.X - sprite.Width/2, (int)this.position.Y - sprite.Height/2, sprite.Width, sprite.Height);
-        }
+            Rectangle = new Rectangle((int)this.position.X - sprite.Width / 2, (int)this.position.Y - sprite.Height / 2, sprite.Width, sprite.Height);
+        }   
 
         public void Update()
         {
@@ -65,13 +66,13 @@ namespace FrameworksProjekt
             Rectangle = new Rectangle((int)position.X, (int)position.Y, sprite.Width, sprite.Height);
             this.GameObject.GetTransform.Position = position;
 #if DEBUG
-            System.Diagnostics.Debug.WriteLine(position.X + ", "+position.Y);
+            System.Diagnostics.Debug.WriteLine(position.X + ", " + position.Y);
 #endif
         }
 
         public void OnCollisionStay(Collider other)
         {
-            
+
         }
 
     }

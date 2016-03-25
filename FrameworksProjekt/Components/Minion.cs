@@ -25,7 +25,6 @@ namespace FrameworksProjekt.Components
         public Animator animator;
         private Direction direction;
         private Miniontype type;
-        private IStrategy strategy;
         private Vector2 target;
         private Level currentLevel;
         private Level targetLevel;
@@ -110,8 +109,6 @@ namespace FrameworksProjekt.Components
             if (!loaded)
             {
                 this.animator = (Animator)GameObject.GetComponent("Animator");
-                this.strategy = new Idle(animator);
-
                 SetTypeValues();
                 CreateAnimation();
 

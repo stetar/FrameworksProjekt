@@ -27,7 +27,6 @@ namespace FrameworksProjekt
         KeyboardState ks;
         public Animator animator;
         private Direction direction;
-        private IStrategy strategy;
 
         CategoryFac cs = new CategoryFac();
 
@@ -39,8 +38,6 @@ namespace FrameworksProjekt
         public void LoadContent(ContentManager content)
         {
             this.animator = (Animator)GameObject.GetComponent("Animator");
-            this.strategy = new Idle(animator);
-
             CreateAnimations();
         }
 

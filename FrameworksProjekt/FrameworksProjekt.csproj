@@ -45,7 +45,6 @@
     <Compile Include="Builder\CellarBuilder.cs" />
     <Compile Include="Builder\CoffeeshopBuilder.cs" />
     <Compile Include="Builder\CursorBuilder.cs" />
-    <Compile Include="Builder\Director.cs" />
     <Compile Include="Builder\EsbjergBuilder.cs" />
     <Compile Include="Builder\GameObjectDirector.cs" />
     <Compile Include="Builder\GrenaaBuilder.cs" />
@@ -74,13 +73,11 @@
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="InsideLevel.cs" />
-    <Compile Include="Interfaces\IBuilder.cs" />
     <Compile Include="Interfaces\IGOBuilder.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\ILBuilder.cs" />
     <Compile Include="Interfaces\ILoadable.cs" />
     <Compile Include="Interfaces\IOnCollisionStay.cs" />
-    <Compile Include="Interfaces\IStrategy.cs" />
     <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Items\Item.cs" />
@@ -94,7 +91,6 @@
     <Compile Include="SpriteGenerator\SpriteFrame.cs" />
     <Compile Include="SpriteGenerator\SpriteGenerator.cs" />
     <Compile Include="SpriteGenerator\SpriteTemplate.cs" />
-    <Compile Include="Strategies\Idle.cs" />
     <Compile Include="Tools\AutoFac.cs" />
     <Compile Include="Tools\Conn.cs" />
     <Compile Include="Tools\Mapper.cs" />
