@@ -71,8 +71,10 @@ namespace FrameworksProjekt.Components
         {
             if (doCollisionCheck)
             {
-                foreach (Collider other in GameWorld.Instance.Colliders)
+                for (int i = 0; i < GameWorld.Instance.Colliders.Count; i++)
                 {
+                    Collider other = GameWorld.Instance.Colliders[i];
+
                     if (other != this)
                     {
                         if (CollisionBox.Intersects(other.CollisionBox))

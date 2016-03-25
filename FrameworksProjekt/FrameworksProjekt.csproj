@@ -52,6 +52,7 @@
     <Compile Include="Builder\KøbenhavnBuilder.cs" />
     <Compile Include="Builder\LevelDirector.cs" />
     <Compile Include="Builder\LootItemBuilder.cs" />
+    <Compile Include="Builder\LootMapBuilder.cs" />
     <Compile Include="Builder\PlayerBuilder.cs" />
     <Compile Include="Builder\SkagenBuilder.cs" />
     <Compile Include="Builder\VeganStoreBuilder.cs" />
@@ -167,6 +168,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\København.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Denmark2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Skagen.png">
