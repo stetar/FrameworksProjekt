@@ -522,6 +522,7 @@ namespace FrameworksProjekt
                     mn.Strength = (float)m.Strength;
                     mn.Wild = false;
                     g.GetTransform.Position = new Vector2((float)m.X, (float)m.Y);
+                    ((SpriteRenderer)g.GetComponent("SpriteRenderer")).SpriteName = m.imagePath;
 
                     recruits.Add(mn);
                     gameObjects.Add(g);

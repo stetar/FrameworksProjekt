@@ -24,7 +24,7 @@ namespace FrameworksProjekt
         {
             it = new ItemGenerator();
             
-            ResetInventorys();
+            ResetInventories();
             SpawnPlayer();
             GenerateMinion(SpawnRoom.Cellar);
             GenerateMinion(SpawnRoom.Cellar);
@@ -89,7 +89,7 @@ namespace FrameworksProjekt
         }
 
 
-        private void ResetInventorys()
+        private void ResetInventories()
         {
             Inventory[] Inventorys = GameWorld.Instance.Inventorys;
             Inventorys = new Inventory[5];
@@ -103,7 +103,7 @@ namespace FrameworksProjekt
             GameWorld.Instance.Inventorys = Inventorys;
         }
 
-        public void AddItemToInventorys()
+        public void AddItemToInventories()
         {
             Inventory[] Inventorys = GameWorld.Instance.Inventorys;
 

@@ -17,7 +17,7 @@ namespace FrameworksProjekt
         Tooltip t = new Tooltip(new Rectangle(1520, 100, 300, 100), "Hold space to loot the store!", new Vector2(20, 20), Color.LightGray, Color.Black);
         Tooltip t1 = new Tooltip(new Rectangle(1520, 100, 300, 100), "Closed until further notice due to piracy.", new Vector2(10, 20), Color.LightGray, Color.Black);
         Tooltip t2 = new Tooltip(new Rectangle(1520, 100, 300, 100), "This store is out of stock. \n Thx Pirates!", new Vector2(20, 20), Color.LightGray, Color.Black);
-        private DateTime timeOfRobbery;
+        private static DateTime[] timeOfRobbery = new DateTime[5] ;
         private int cooldownTime = 20000;
         private City city;
         private Vector2 mapPosition;
@@ -88,13 +88,14 @@ namespace FrameworksProjekt
             ks = Keyboard.GetState();
             Inventory inv = Inventory;
 
+            // check store for items
             if (inv.Items.Count > 0)
             {
                 if (!ks.IsKeyDown(Keys.Space) && !shopCooldowns[(int)City])
                 {
                     GameWorld.Instance.Tooltips.Add(t);
 
-                    if ((DateTime.Now - timeOfRobbery).TotalMilliseconds > cooldownTime)
+                    if ((DateTime.Now - timeOfRobbery[(int)City]).TotalMilliseconds > cooldownTime)
                     {
                         shopCooldowns[(int)City] = false;
                     }
@@ -106,8 +107,6 @@ namespace FrameworksProjekt
                 // loot store
                 else
                 {
-                    // check store for items
-
                     // Select random item
                     Item i = inv.Items[r.Next(inv.Items.Count)];
                     // Select random amount of that item. - should be made more advanced
@@ -118,7 +117,7 @@ namespace FrameworksProjekt
 
                     shopCooldowns[(int)City] = true;
 
-                    timeOfRobbery = DateTime.Now;
+                    timeOfRobbery[(int)City] = DateTime.Now;
 
                 }
             }
@@ -132,7 +131,7 @@ namespace FrameworksProjekt
         {
             Inventory inv = Inventory;
 
-            if ((DateTime.Now - timeOfRobbery).TotalMilliseconds > cooldownTime)
+            if ((DateTime.Now - timeOfRobbery[(int)City]).TotalMilliseconds > cooldownTime)
             {
                 shopCooldowns[(int)City] = false;
             }
@@ -142,14 +141,14 @@ namespace FrameworksProjekt
                 // Select random item
                 Item i = inv.Items[r.Next(inv.Items.Count)];
                 // Select random amount of that item based on minion strength
-                int count = r.Next((int)Math.Round((i.Count - 1) * m.Strength/10)) + 1;
+                int count = r.Next((int)Math.Round((i.Count - 1) * m.Strength / 10)) + 1;
 
                 GameWorld.Instance.MainInventory.AddItem(new Item(i.Name, count, i.Category));
                 Inventory.RemoveItem(i.Name, count);
 
                 shopCooldowns[(int)City] = true;
 
-                timeOfRobbery = DateTime.Now;
+                timeOfRobbery[(int)City] = DateTime.Now;
             }
         }
     }

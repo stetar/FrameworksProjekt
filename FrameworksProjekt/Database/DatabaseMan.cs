@@ -21,7 +21,7 @@ namespace FrameworksProjekt.Database
         {
             // Minion - Category - Item - Playerinventory
             string[] tableSql = new string[] {
-                "CREATE TABLE Minion (ID INTEGER PRIMARY KEY, Speed FLOAT , Strength FLOAT, currentLevelName VARCHAR, targetLevelName VARCHAR, X FLOAT, Y FLOAT)",
+                "CREATE TABLE Minion (ID INTEGER PRIMARY KEY, Speed FLOAT , Strength FLOAT, currentLevelName VARCHAR, targetLevelName VARCHAR, X FLOAT, Y FLOAT, imagePath VARCHAR)",
                 "CREATE TABLE Category (ID INTEGER PRIMARY KEY, Name STRING)",
                 "CREATE TABLE Item (ID INTEGER PRIMARY KEY, Name STRING, Category INTEGER, FOREIGN KEY(CATEGORY) REFERENCES Category(ID))",
                 "CREATE TABLE Inventory (ID INTEGER PRIMARY KEY, Name STRING , Item INTEGER, Count INTEGER, FOREIGN KEY(Item) REFERENCES Item(ID))"
@@ -82,7 +82,7 @@ namespace FrameworksProjekt.Database
 
                 ExecuteCommand(sql, conn);
 
-                sql = "CREATE TABLE Minion (ID INTEGER PRIMARY KEY, Speed FLOAT , Strength FLOAT, currentLevelName VARCHAR, targetLevelName VARCHAR, X FLOAT, Y FLOAT)";
+                sql = "CREATE TABLE Minion (ID INTEGER PRIMARY KEY, Speed FLOAT , Strength FLOAT, currentLevelName VARCHAR, targetLevelName VARCHAR, X FLOAT, Y FLOAT, imagePath VARCHAR)";
 
                 ExecuteCommand(sql, conn);
             }

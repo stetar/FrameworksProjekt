@@ -10,9 +10,10 @@ namespace FrameworksProjekt.Database.Types
         public long ID { get; set; }
         public double Speed { get; set; }
         public double Strength { get; set; }
-        public string currentLevelName { get; set; }
-        public string targetLevelName { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
+        public string currentLevelName { get; set; }
+        public string targetLevelName { get; set; }
+        public string imagePath { get; set; }
     }
 }

@@ -18,6 +18,19 @@ namespace FrameworksProjekt
         private Texture2D rect;
         private SpriteFont font;
 
+        public Rectangle Rectangle
+        {
+            get
+            {
+                return rectangle;
+            }
+
+            set
+            {
+                rectangle = value;
+            }
+        }
+
         public Tooltip(Rectangle rectangle, string text, Vector2 textRelativePosition, Color backgroundColor, Color textColor)
         {
             this.rectangle = rectangle;
@@ -31,19 +44,6 @@ namespace FrameworksProjekt
             Color[] data = new Color[Rectangle.Width * Rectangle.Height];
             for (int i = 0; i < data.Length; i++) data[i] = backgroundColor;
             rect.SetData(data);
-        }
-
-        public Rectangle Rectangle
-        {
-            get
-            {
-                return rectangle;
-            }
-
-            set
-            {
-                rectangle = value;
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

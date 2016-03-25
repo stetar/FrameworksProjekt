@@ -329,6 +329,7 @@ namespace FrameworksProjekt.Components
             dm.Strength = this.Strength;
             dm.X = GameObject.GetTransform.Position.X;
             dm.Y = GameObject.GetTransform.Position.Y;
+            dm.imagePath = ((SpriteRenderer)GameObject.GetComponent("SpriteRenderer")).SpriteName;
 
             new Database.Factories.MinionFac().Insert(dm);
         }

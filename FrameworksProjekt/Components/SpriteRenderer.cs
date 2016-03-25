@@ -42,10 +42,23 @@ namespace FrameworksProjekt
             set { color = value; }
         }
 
+        public string SpriteName
+        {
+            get
+            {
+                return spriteName;
+            }
+
+            set
+            {
+                spriteName = value;
+            }
+        }
+
         public SpriteRenderer(GameObject gameObject, string spriteName, float layerDepth, Color color)
             : base(gameObject)
         {
-            this.spriteName = spriteName;
+            this.SpriteName = spriteName;
             this.layerDepth = layerDepth;
             Color = color;
         }
@@ -57,7 +70,7 @@ namespace FrameworksProjekt
 
         public void LoadContent(ContentManager content)
         {
-            Sprite = content.Load<Texture2D>(spriteName);
+            Sprite = content.Load<Texture2D>(SpriteName);
         }
     }
 }
